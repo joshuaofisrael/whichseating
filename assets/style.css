@@ -52,3 +52,7 @@ footer.site{background:var(--field);color:#f4efe6;padding:1.4rem 0;margin-top:1r
 footer.site a{color:#f0c98a}
 .flinks{line-height:1.9}
 @media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+#cookie-banner{position:fixed;right:1rem;bottom:1rem;z-index:30;max-width:22rem;background:#fffdf8;color:var(--ink);border:2px solid var(--field);border-radius:10px;padding:.75rem .9rem;box-shadow:0 8px 24px rgba(22,56,44,.18)}
+#cookie-banner p{margin:.15rem 0 .55rem;font-size:.92rem}
+#cookie-banner .btn{margin:.15rem .35rem .15rem 0}
+@media (max-width:640px){#cookie-banner{left:.75rem;right:.75rem;max-width:none}}

@@ -27,6 +27,7 @@ jobs:
             --exclude .github \
             --exclude _build \
             --exclude README.md \
+            --exclude LAUNCH-NOTES.md \
             --exclude deploy.sh \
             --exclude indexnow.sh \
             ./ _site/

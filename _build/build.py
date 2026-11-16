@@ -88,6 +88,25 @@ def team_list(v):
     return ", ".join(names[:-1]) + ", and " + names[-1]
 def cap_list(v):
     return "; ".join(c["label"].replace(" listed", "") + " " + c["value"] for c in v["capacities"])
+def pick_desc(where, vs):
+    names = ", ".join(v["name"] for v in vs)
+    full = "Which seats to pick in %s: %s." % (where, names)
+    if len(full) <= 155:
+        return full
+    return "Which seats to pick in %s. %d venue guides on this page." % (where, len(vs))
+
+def venue_title(name):
+    """Unique title under 60 characters. Shorten only when the full name does not fit."""
+    title = "Best Seats at %s" % name
+    if len(title) < 60:
+        return title
+    if " at " in name:
+        short = name.rsplit(" at ", 1)[1]
+        alt = "Best Seats at %s" % short
+        if short and len(alt) < 60:
+            return alt
+    raise SystemExit("title %d %s" % (len(title), name))
+
 def clip(d, n=155):
     d = re.sub(r"\s+", " ", d).strip()
     if len(d) <= n: return d
@@ -120,6 +139,7 @@ def crumbs_html(crumbs):
     return '<nav class="crumbs" aria-label="Breadcrumb"><ol>' + "".join(bits) + "</ol></nav>"
 
 def page(path, title, desc, body, crumbs=None, extra_ld=None, legal=False, index=True):
+    if len(title) >= 60: raise SystemExit("title %d %s" % (len(title), path))
     desc = clip(desc)
     if len(desc) > 155: raise SystemExit("desc %d %s" % (len(desc), path))
     canon = url(path if path != "404.html" else "404.html")
@@ -136,25 +156,37 @@ def page(path, title, desc, body, crumbs=None, extra_ld=None, legal=False, index
             {"@type": "ListItem", "position": i + 1, "name": n, "item": url(p)} for i, (p, n) in enumerate(crumbs)]})
     if extra_ld: blocks.extend(extra_ld)
     ldh = "".join(ld(b) for b in blocks)
+    og_type = "article" if any(b.get("@type") == "Article" for b in blocks) else "website"
     nav = "".join('<a href="%s"%s>%s</a>' % (p, ' aria-current="page"' if p == path else "", n) for p, n in NAV)
     robots = "noindex, follow" if noindex else "index, follow, max-image-preview:large"
     flag = "<!-- robots: noindex while INDEXABLE is false in _build/config.py -->" if not LAUNCH else "<!-- robots: indexable (INDEXABLE or --launch) -->"
     beacon = ("<!-- Cloudflare Web Analytics --><script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{\"token\": \"%s\"}'></script><!-- End Cloudflare Web Analytics -->" % config.CF_BEACON_TOKEN) if LAUNCH else "<!-- cf-beacon: added when INDEXABLE is true -->"
-    foot = " | ".join('<a href="%s">%s</a>' % (p, n) for n, p in FOOT)
+    # GA4 loads from consent.js only after Accept. The inline id is read by that file.
+    ga = ('<script>window.WHICH_GA4_ID=%s;</script><script src="/assets/consent.js?v=1" defer></script>' % json.dumps(config.GA4_ID)) if LAUNCH else "<!-- ga4 loader is added by build.py --launch -->"
+    foot_items = list(FOOT)
+    if LAUNCH:
+        foot_items.append(("Cookie settings", "/privacy/#analytics"))
+    foot_bits = []
+    for n, p in foot_items:
+        if n == "Cookie settings":
+            foot_bits.append('<a href="%s" id="cookie-settings">%s</a>' % (p, n))
+        else:
+            foot_bits.append('<a href="%s">%s</a>' % (p, n))
+    foot = " | ".join(foot_bits)
     return f'''<!doctype html>
 <html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
 <title>{E(title)}</title><meta name="description" content="{E(desc)}"><link rel="canonical" href="{canon}">
 <meta name="robots" content="{robots}">
 {flag}
-<meta property="og:type" content="website"><meta property="og:site_name" content="{BRAND}"><meta property="og:title" content="{E(title)}"><meta property="og:description" content="{E(desc)}"><meta property="og:url" content="{canon}"><meta property="og:image" content="{url("/og.png")}"><meta name="twitter:card" content="summary_large_image">
-<link rel="icon" href="/favicon.svg" type="image/svg+xml"><link rel="stylesheet" href="/assets/style.css?v=1">{ldh}
+<meta property="og:type" content="{og_type}"><meta property="og:site_name" content="{BRAND}"><meta property="og:title" content="{E(title)}"><meta property="og:description" content="{E(desc)}"><meta property="og:url" content="{canon}"><meta property="og:image" content="{url("/og.png")}"><meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml"><link rel="stylesheet" href="/assets/style.css?v=2">{ldh}
 </head><body><a class="skip" href="#main">Skip to content</a>
 <header class="site"><div class="wrap"><a class="brand" href="/">{LOGO}<span>{BRAND}</span></a><nav class="main" aria-label="Main">{nav}</nav></div></header>
 <main id="main" class="wrap">{crumbs_html(crumbs)}{body}<!-- ad-slot: below-content (reserved; no ad code) --></main>
 <footer class="site"><div class="wrap"><p class="fbrand"><strong>{BRAND}</strong> tells you which seats to pick at major US stadiums and arenas, and which to skip. Facts come from public lists and official pages. Section numbers are printed only when a source prints them. Layouts change, so check the venue's current chart before you buy.</p>
 <p class="flinks">{foot}</p>
 </div></footer>
-<script src="/assets/site.js?v=1" defer></script>{beacon}
+<script src="/assets/site.js?v=1" defer></script>{ga}{beacon}
 </body></html>'''
 
 def article(headline, path, about=None):
@@ -189,7 +221,7 @@ def sources_html(sources, extra=""):
 
 def bowl(sport):
     label = SURFACE.get(sport, "Field")
-    return '''<figure class="bowl"><figcaption><strong>Generic bowl.</strong> This is our drawing, not the venue seating chart, and it has no section numbers. The lowest band is closest to the %s. The upper band is farther away.</figcaption>
+    return '''<figure class="bowl"><figcaption><strong>Generic bowl.</strong> This is our drawing, not the venue seating chart, and it has no section numbers. The lowest band is closest to the %s. The upper band is farther away. <a href="/image-policy/">Image policy</a>.</figcaption>
 <svg viewBox="0 0 320 150" role="img"><title>Generic seating bowl</title>
 <rect x="40" y="28" width="240" height="94" rx="46" fill="#e7f3ee" stroke="#16382c" stroke-width="2"/>
 <rect x="78" y="52" width="164" height="52" rx="26" fill="#fff3df" stroke="#9a5b00" stroke-width="2"/>
@@ -321,7 +353,7 @@ def venue_page(v):
 </article>''' % (E(v["name"]), BRAND, config.VERIFIED, chips, quick, E(intro), bowl(sports_of(v)[0]),
                  E(best_text(v)), notes, E(v["name"]), table, config.VERIFIED,
                  " · ".join(links), faq_html(pairs), sources_html(v["sources"]))
-    title = "Best Seats at %s" % v["name"]
+    title = venue_title(v["name"])
     where = "the Bronx, New York" if v["city"] == "Bronx" else place(v)
     full = "Which seats to pick at %s in %s. Capacity, roof, and how to read the chart. No invented section numbers." % (v["name"], where)
     short = "Seat guide for %s. Capacity, roof, and how to read the chart. No invented section numbers." % v["name"]
@@ -335,14 +367,15 @@ def card(v):
     return '<li class="card"><h3><a href="/venues/%s/">%s</a></h3><p>%s. %s. %s. Opened %s.</p></li>' % (
         v["slug"], E(v["name"]), E(team_list(v)), E(place(v)), E(roof), E(v["opened"] or "not stated"))
 
+RELATED = ('<p>Related: <a href="/guides/how-to-choose-a-seat/">How to choose a seat</a>'
+           ' · <a href="/guides/shade-and-sun/">Shade and sun</a>'
+           ' · <a href="/guides/sections-to-skip/">Sections to skip</a>'
+           ' · <a href="/guides/accessible-seating/">Accessible seating</a></p>')
+
 def hub_page(path, title, desc, h1, intro, items, crumbs, pairs):
-    body = '<article class="prose wide"><h1>%s</h1><p class="byline">By %s. Last verified %s.</p><p>%s</p><ul class="cards">%s</ul>%s%s</article>' % (
-        E(h1), BRAND, config.VERIFIED, intro, "".join(card(v) for v in items), faq_html(pairs),
-        sources_html([{"title": "Sources and methods", "url": url("/methodology/"), "publisher": BRAND}]))
-    # methodology source should be a root-relative link in the body already; external list sources are on venue pages.
-    # Replace the self-referential source with a plain internal note. Rebuild sources as internal only.
-    body = '<article class="prose wide"><h1>%s</h1><p class="byline">By %s. Last verified %s.</p><p>%s</p><ul class="cards">%s</ul>%s<p>Each venue page lists the public list and the official page we checked. <a href="/methodology/">Sources and methods</a>.</p></article>' % (
-        E(h1), BRAND, config.VERIFIED, intro, "".join(card(v) for v in items), faq_html(pairs))
+    # Venue pages carry the external list sources. Hubs link back to those pages and to the guides.
+    body = '<article class="prose wide"><h1>%s</h1><p class="byline">By %s. Last verified %s.</p><p>%s</p><ul class="cards">%s</ul>%s%s<p>Each venue page lists the public list and the official page we checked. <a href="/methodology/">Sources and methods</a>.</p></article>' % (
+        E(h1), BRAND, config.VERIFIED, intro, "".join(card(v) for v in items), RELATED, faq_html(pairs))
     write(path, page(path, title, desc, body, crumbs, [article(h1, path), faq_ld(pairs)]))
 
 def build_hubs():
@@ -353,10 +386,12 @@ def build_hubs():
         bits.append('<li class="card"><h2><a href="/leagues/%s/">%s</a></h2><p>%d venues. %s</p></li>' % (
             lg, LEAGUE_NAME[lg], len(vs), E(", ".join(v["name"] for v in vs[:4])) + ("." if len(vs) <= 4 else "...")))
     intro = "League hubs group every venue in this guide. A shared arena can appear under both the NBA and the NHL."
-    body = '<article class="prose wide"><h1>Venues by league</h1><p>%s</p><ul class="cards">%s</ul></article>' % (intro, "".join(bits))
+    pairs = [("Which league list should I use?",
+              "Open the league for the game you are attending. A shared arena can appear under both the NBA and the NHL.")]
+    body = '<article class="prose wide"><h1>Venues by league</h1><p>%s</p><ul class="cards">%s</ul>%s%s</article>' % (intro, "".join(bits), RELATED, faq_html(pairs))
     write("/leagues/", page("/leagues/", "Venues by League | Which Seating",
-                            "NFL, MLB, NBA, NHL, and college football venue guides, grouped by league.",
-                            body, [("/", "Home"), ("/leagues/", "Leagues")], [article("Venues by league", "/leagues/")]))
+                            "Which seats to pick at NFL, MLB, NBA, NHL, and college football venues, grouped by league.",
+                            body, [("/", "Home"), ("/leagues/", "Leagues")], [article("Venues by league", "/leagues/"), faq_ld(pairs)]))
     for lg in LEAGUE_ORDER:
         vs = by_league(lg)
         path = "/leagues/%s/" % lg
@@ -368,7 +403,7 @@ def build_hubs():
         # fix grammar by hand in the question: "an NFL" is wrong. Use a simple question.
         pairs[1] = ("How do I choose seats for %s?" % LEAGUE_NAME[lg], pairs[1][1])
         hub_page(path, "%s Seat Guides | Which Seating" % LEAGUE_NAME[lg],
-                 "Seat guides for every %s venue we cover, with capacity and roof from the public list." % LEAGUE_NAME[lg],
+                 "Which seats to pick at %s venues. Capacity and roof come from the public list." % LEAGUE_NAME[lg],
                  h1, "There are %d %s venues in this guide. Facts on each page are tied to the sources at the bottom of that page." % (len(vs), LEAGUE_NAME[lg]),
                  vs, [("/", "Home"), ("/leagues/", "Leagues"), (path, LEAGUE_NAME[lg])], pairs)
     # states
@@ -377,13 +412,15 @@ def build_hubs():
     for v in VENUES:
         states.setdefault(v["state"], []).append(v)
         cities.setdefault((v["city"], v["state"]), []).append(v)
+    pairs = [("Which state should I open?",
+              "Open the state where the venue sits. Each state page links the stadium and arena guides there.")]
     body = '<article class="prose wide"><h1>Venues by state</h1><p>Pick a state to see every stadium and arena we cover there.</p><ul class="cols">'
     for st in sorted(states):
         body += '<li><a href="/states/%s/">%s</a> (%d)</li>' % (slug(st), E(st), len(states[st]))
-    body += "</ul></article>"
+    body += "</ul>%s%s</article>" % (RELATED, faq_html(pairs))
     write("/states/", page("/states/", "Venues by State | Which Seating",
-                           "US stadium and arena seat guides grouped by state.",
-                           body, [("/", "Home"), ("/states/", "States")], [article("Venues by state", "/states/")]))
+                           "Which seats to pick at US stadiums and arenas, grouped by state.",
+                           body, [("/", "Home"), ("/states/", "States")], [article("Venues by state", "/states/"), faq_ld(pairs)]))
     for st, vs in states.items():
         vs = sorted(vs, key=lambda v: v["name"].casefold())
         path = "/states/%s/" % slug(st)
@@ -391,16 +428,18 @@ def build_hubs():
         pairs = [("Which venues in %s have a seat guide?" % st,
                   "This page lists %d venues in %s. Open one for the seat guide." % (len(vs), st))]
         hub_page(path, "Best Seats in %s | Which Seating" % st,
-                 "Seat guides for stadiums and arenas in %s." % st,
+                 pick_desc(st, vs),
                  h1, "%s has %d venues in this guide." % (st, len(vs)),
                  vs, [("/", "Home"), ("/states/", "States"), (path, st)], pairs)
+    pairs = [("Which city page should I open?",
+              "Open the city named on the source list for that venue. A shared metro area can be split across more than one city page. The state page brings them back together.")]
     body = '<article class="prose wide"><h1>Venues by city</h1><p>Cities follow the place named on the source list. Shared metro areas can be split across more than one city page. The state page brings them back together.</p><ul class="cols">'
     for (city, st), vs in sorted(cities.items(), key=lambda kv: (kv[0][1], kv[0][0])):
         body += '<li><a href="/cities/%s/">%s, %s</a> (%d)</li>' % (slug(city) + "-" + STATE_CODE[st], E(city), E(st), len(vs))
-    body += "</ul></article>"
+    body += "</ul>%s%s</article>" % (RELATED, faq_html(pairs))
     write("/cities/", page("/cities/", "Venues by City | Which Seating",
-                           "Stadium and arena seat guides grouped by city.",
-                           body, [("/", "Home"), ("/cities/", "Cities")], [article("Venues by city", "/cities/")]))
+                           "Which seats to pick, grouped by the city named on the source list.",
+                           body, [("/", "Home"), ("/cities/", "Cities")], [article("Venues by city", "/cities/"), faq_ld(pairs)]))
     for (city, st), vs in cities.items():
         vs = sorted(vs, key=lambda v: v["name"].casefold())
         path = "/cities/%s/" % (slug(city) + "-" + STATE_CODE[st])
@@ -411,7 +450,7 @@ def build_hubs():
         pairs = [("Which venues in %s have a seat guide?" % where,
                   "This page covers %s." % names)]
         hub_page(path, "Best Seats in %s | Which Seating" % label,
-                 "Seat guides for %s." % where,
+                 pick_desc(where, vs),
                  h1, '<a href="/states/%s/">All %s venues</a>. This city page covers %d.' % (slug(st), E(st), len(vs)),
                  vs, [("/", "Home"), ("/cities/", "Cities"), (path, city)], pairs)
 
@@ -423,10 +462,13 @@ def venues_index():
         for v in vs:
             bits.append('<li><a href="/venues/%s/">%s</a></li>' % (v["slug"], E(v["name"])))
         bits.append("</ul>")
-    body = '<article class="prose wide"><h1>All venues</h1><p>%d stadium and arena guides. Pick one, or use the leagues, states, and cities.</p>%s</article>' % (len(VENUES), "".join(bits))
+    pairs = [("Which venue should I open?",
+              "Open the stadium or arena where you have tickets. Each page covers capacity, roof, and how to read the chart. Section numbers are printed only when a source prints them.")]
+    body = '<article class="prose wide"><h1>All venues</h1><p>%d stadium and arena guides. Pick one, or use the <a href="/leagues/">leagues</a>, <a href="/states/">states</a>, and <a href="/cities/">cities</a>.</p>%s%s%s</article>' % (
+        len(VENUES), "".join(bits), RELATED, faq_html(pairs))
     write("/venues/", page("/venues/", "All Stadium and Arena Seat Guides",
-                           "Every NFL, MLB, NBA, NHL, and college venue in the Which Seating guide.",
-                           body, [("/", "Home"), ("/venues/", "Venues")], [article("All venues", "/venues/")]))
+                           "Which seats to pick at every NFL, MLB, NBA, NHL, and college venue in this guide.",
+                           body, [("/", "Home"), ("/venues/", "Venues")], [article("All venues", "/venues/"), faq_ld(pairs)]))
 
 def picker_html():
     bits = ['<form id="picker-form" class="picker" action="/venues/" method="get">',
@@ -468,8 +510,16 @@ def home():
 <h2>How a page is built</h2>
 <p>We copy capacity, roof, year opened, and home teams from a public list, and we link the official page when a check on %s got a response. We do not invent section numbers, shade maps, or obstructed view lists. <a href="/methodology/">Sources and methods</a>.</p>''' % (
         len(VENUES), picker_html(), "".join(cards), config.VERIFIED)
+    pairs = [
+        ("Which seats should I pick?",
+         "Open the venue you are attending. The page tells you how to read that chart, and which seats to skip when the ticket says limited view, obstructed view, or partial view. Section numbers appear only when a source prints them."),
+        ("Which venues does this guide cover?",
+         "This guide covers %d major US stadiums and arenas in the NFL, MLB, NBA, NHL, and college football. A building used by two teams has one page." % len(VENUES)),
+    ]
+    body += faq_html(pairs)
     desc = "Which seats to pick at major US stadiums and arenas, and which to skip. Sourced guides for NFL, MLB, NBA, NHL, and college."
-    write("/", page("/", "Which Seating: Best Seats at US Stadiums and Arenas", desc, body))
+    write("/", page("/", "Which Seating: Best Seats at US Stadiums and Arenas", desc, body, extra_ld=[
+        article("Which seats should you pick?", "/"), faq_ld(pairs)]))
 
 def guide(path, title, h1, desc, body_html, pairs, sources):
     crumbs = [("/", "Home"), (path, h1)]
@@ -564,7 +614,7 @@ def guides():
 def legal_wrap(path, title, h1, desc, inner):
     crumbs = [("/", "Home"), (path, h1)]
     body = '<article class="prose"><h1>%s</h1>%s<p class="legal-line">%s</p></article>' % (E(h1), inner, config.LEGAL_LINE)
-    write(path, page(path, title, desc, body, crumbs, legal=True))
+    write(path, page(path, title, desc, body, crumbs, [article(h1, path)], legal=True))
 
 def static_pages():
     legal_wrap("/editorial-policy/", "Editorial Policy | Which Seating", "Editorial policy",
@@ -621,7 +671,7 @@ def static_pages():
                                 [article("Sources and methods", "/methodology/")]))
     img = '''<p>Last updated %s.</p>
 <h2>Diagrams</h2>
-<p>The bowl drawing on a venue page is an original diagram. It is not a copy of a seating chart, a broadcast graphic, or a team map.</p>
+<p>The bowl drawing on a venue page is an original diagram. It is not a copy of a seating chart, a broadcast graphic, or a team map. The caption on that drawing links to this page.</p>
 <h2>Photos</h2>
 <p>The site uses no venue photos and no team logos. The logo and the social card are simple seat drawings we made for the site. They are not photographs and they are not presented as pictures of a real building.</p>
 <h2>AI-generated images</h2>
@@ -631,7 +681,8 @@ def static_pages():
     write("/image-policy/", page("/image-policy/", "Image Policy | Which Seating",
                                  "How Which Seating handles diagrams, photos, and team marks.",
                                  '<article class="prose"><h1>Image policy</h1>%s</article>' % img,
-                                 [("/", "Home"), ("/image-policy/", "Image policy")]))
+                                 [("/", "Home"), ("/image-policy/", "Image policy")],
+                                 [article("Image policy", "/image-policy/")]))
     legal_wrap("/terms/", "Terms of Use | Which Seating", "Terms of use",
                "Terms of use for Which Seating (whichseating.com).",
                '''<p>Last updated %s. These terms govern your use of whichseating.com ("Which Seating", "we", "us"). Which Seating is a trade name of Joshua Israel Ventures LLC, a Florida limited liability company. By using the site you agree to these terms.</p>
@@ -656,14 +707,16 @@ def static_pages():
     legal_wrap("/privacy/", "Privacy Policy | Which Seating", "Privacy policy",
                "Privacy policy for Which Seating (whichseating.com).",
                '''<p>Last updated %s. This policy explains how Which Seating (whichseating.com), a trade name of Joshua Israel Ventures LLC, a Florida limited liability company, handles information.</p>
-<h2>Analytics</h2>
-<p>When the analytics beacon is enabled, we use Cloudflare Web Analytics to count page views. It does not use cookies or local storage and does not track you across sites. It records basic, aggregated information such as the page visited, referrer, browser type, and country. The preview of the site does not load that beacon.</p>
+<h2 id="analytics">Analytics</h2>
+<p>The public site measures visits with Cloudflare Web Analytics and Google Analytics 4 (GA4). The preview build loads neither tool.</p>
+<p>Cloudflare Web Analytics is the beacon at static.cloudflareinsights.com. It counts page views. It does not use cookies or local storage and does not track you across sites. It records aggregated information such as the page visited, referrer, browser, and country.</p>
+<p>Google Analytics 4 loads only after you accept the cookie banner. Until you choose, Consent Mode v2 defaults are denied for analytics storage, ad storage, ad user data, and ad personalization, and the Google tag is not requested. If you accept, the site loads gtag.js for the measurement ID in the build config, and Google may set analytics cookies. If you decline, the tag stays unloaded. The Cookie settings link in the footer opens that choice again. While the measurement ID is blank, accepting does not send data to Google.</p>
 <h2>Contact</h2>
 <p>If you email us, we use your address and message only to reply, and we keep them only as long as needed. The address is on the <a href="/contact/">contact page</a>.</p>
 <h2>Advertising</h2>
 <p>The site shows no ads today. If we add ads in future, for example through Google AdSense, third party vendors including Google may use cookies to serve ads based on your prior visits to this and other websites. You will be able to opt out of personalised advertising at <a href="https://www.google.com/settings/ads" rel="nofollow noopener" target="_blank">Google Ads Settings</a> and <a href="https://www.aboutads.info/choices/" rel="nofollow noopener" target="_blank">aboutads.info/choices</a>. Where the law requires it (for example in the EEA, the UK, and Switzerland), we will ask for consent through a certified consent management platform before any advertising cookies are set. We will update this policy before any ads go live.</p>
 <h2>Cookies</h2>
-<p>Which Seating itself sets no cookies. You can block or delete cookies in your browser settings. The site works without them.</p>
+<p>Which Seating's own pages do not set cookies. Cloudflare Web Analytics does not use cookies. Google Analytics 4 may set cookies only after you accept. You can decline, change that choice from Cookie settings, or block cookies in your browser. The guides work without them.</p>
 <h2>Hosting</h2>
 <p>The site is hosted on GitHub Pages, which may log IP addresses for security and operations.</p>
 <h2>Your rights</h2>
