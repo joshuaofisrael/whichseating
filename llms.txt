@@ -1,0 +1,133 @@
+# Which Seating
+
+> Which Seating (whichseating.com) tells readers which seats to pick at major US stadiums and arenas, and which to skip. Facts come from public lists and official pages. Section numbers appear only when a source prints them. Checked 16 Nov 2026.
+
+Independent. Not affiliated with any team, league, or venue.
+
+## Guides
+- [How to choose a seat](https://whichseating.com/guides/how-to-choose-a-seat/)
+- [Shade and sun](https://whichseating.com/guides/shade-and-sun/)
+- [Sections to skip](https://whichseating.com/guides/sections-to-skip/)
+- [Accessible seating](https://whichseating.com/guides/accessible-seating/)
+- [Sources and methods](https://whichseating.com/methodology/)
+- [Editorial policy](https://whichseating.com/editorial-policy/)
+
+## Venues
+- [AT&T Stadium](https://whichseating.com/venues/at-and-t-stadium/) (Dallas Cowboys): Listed capacity 80,000
+- [Acrisure Stadium](https://whichseating.com/venues/acrisure-stadium/) (Pittsburgh Steelers): Listed capacity 68,984
+- [Allegiant Stadium](https://whichseating.com/venues/allegiant-stadium/) (Las Vegas Raiders): Listed capacity 66,000
+- [Amerant Bank Arena](https://whichseating.com/venues/amerant-bank-arena/) (Florida Panthers): Hockey capacity 19,250
+- [American Airlines Center](https://whichseating.com/venues/american-airlines-center/) (Dallas Mavericks and Dallas Stars): Basketball capacity 19,200; Hockey capacity 18,532
+- [American Family Field](https://whichseating.com/venues/american-family-field/) (Milwaukee Brewers): Listed capacity 41,900
+- [Angel Stadium](https://whichseating.com/venues/angel-stadium/) (Los Angeles Angels): Listed capacity 45,517
+- [Arrowhead Stadium](https://whichseating.com/venues/arrowhead-stadium/) (Kansas City Chiefs): Listed capacity 73,426
+- [Ball Arena](https://whichseating.com/venues/ball-arena/) (Denver Nuggets and Colorado Avalanche): Basketball capacity 19,520; Hockey capacity 17,809
+- [Bank of America Stadium](https://whichseating.com/venues/bank-of-america-stadium/) (Carolina Panthers): Listed capacity 75,037
+- [Barclays Center](https://whichseating.com/venues/barclays-center/) (Brooklyn Nets): Basketball capacity 17,732
+- [Beaver Stadium](https://whichseating.com/venues/beaver-stadium/) (Penn State): Listed capacity 106,572
+- [Benchmark International Arena](https://whichseating.com/venues/benchmark-international-arena/) (Tampa Bay Lightning): Hockey capacity 19,092
+- [Bridgestone Arena](https://whichseating.com/venues/bridgestone-arena/) (Nashville Predators): Hockey capacity 17,159
+- [Busch Stadium](https://whichseating.com/venues/busch-stadium/) (St. Louis Cardinals): Listed capacity 44,383
+- [Caesars Superdome](https://whichseating.com/venues/caesars-superdome/) (New Orleans Saints): Listed capacity 73,208
+- [Capital One Arena](https://whichseating.com/venues/capital-one-arena/) (Washington Wizards and Washington Capitals): Basketball capacity 20,333; Hockey capacity 18,573
+- [Chase Center](https://whichseating.com/venues/chase-center/) (Golden State Warriors): Basketball capacity 18,064
+- [Chase Field](https://whichseating.com/venues/chase-field/) (Arizona Diamondbacks): Listed capacity 48,330
+- [Citi Field](https://whichseating.com/venues/citi-field/) (New York Mets): Listed capacity 41,922
+- [Citizens Bank Park](https://whichseating.com/venues/citizens-bank-park/) (Philadelphia Phillies): Listed capacity 42,901
+- [Climate Pledge Arena](https://whichseating.com/venues/climate-pledge-arena/) (Seattle Kraken): Hockey capacity 17,151
+- [Comerica Park](https://whichseating.com/venues/comerica-park/) (Detroit Tigers): Listed capacity 41,083
+- [Coors Field](https://whichseating.com/venues/coors-field/) (Colorado Rockies): Listed capacity 46,897
+- [Crypto.com Arena](https://whichseating.com/venues/crypto-com-arena/) (Los Angeles Lakers and Los Angeles Kings): Basketball capacity 18,997; Hockey capacity 18,230
+- [Daikin Park](https://whichseating.com/venues/daikin-park/) (Houston Astros): Listed capacity 41,168
+- [Darrell K Royal-Texas Memorial Stadium](https://whichseating.com/venues/darrell-k-royal-texas-memorial-stadium/) (Texas): Listed capacity 100,119
+- [Delta Center](https://whichseating.com/venues/delta-center/) (Utah Jazz and Utah Mammoth): Basketball capacity 18,306; Hockey capacity 16,020
+- [Dodger Stadium](https://whichseating.com/venues/dodger-stadium/) (Los Angeles Dodgers): Listed capacity 56,000
+- [Empower Field at Mile High](https://whichseating.com/venues/empower-field-at-mile-high/) (Denver Broncos): Listed capacity 76,125
+- [Enterprise Center](https://whichseating.com/venues/enterprise-center/) (St. Louis Blues): Hockey capacity 18,096
+- [EverBank Stadium](https://whichseating.com/venues/everbank-stadium/) (Jacksonville Jaguars): Listed capacity 69,132
+- [FedExForum](https://whichseating.com/venues/fedexforum/) (Memphis Grizzlies): Basketball capacity 17,794
+- [Fenway Park](https://whichseating.com/venues/fenway-park/) (Boston Red Sox): Listed capacity 37,755
+- [Fiserv Forum](https://whichseating.com/venues/fiserv-forum/) (Milwaukee Bucks): Basketball capacity 17,341
+- [Ford Field](https://whichseating.com/venues/ford-field/) (Detroit Lions): Listed capacity 65,000
+- [Frank Howard Field at Clemson Memorial Stadium](https://whichseating.com/venues/frank-howard-field-at-clemson-memorial-stadium/) (Clemson): Listed capacity 81,500
+- [Frost Bank Center](https://whichseating.com/venues/frost-bank-center/) (San Antonio Spurs): Basketball capacity 18,354
+- [Gainbridge Fieldhouse](https://whichseating.com/venues/gainbridge-fieldhouse/) (Indiana Pacers): Basketball capacity 17,923
+- [Gaylord Family Oklahoma Memorial Stadium](https://whichseating.com/venues/gaylord-family-oklahoma-memorial-stadium/) (Oklahoma): Listed capacity 80,126
+- [Gillette Stadium](https://whichseating.com/venues/gillette-stadium/) (New England Patriots): Listed capacity 66,829
+- [Globe Life Field](https://whichseating.com/venues/globe-life-field/) (Texas Rangers): Listed capacity 40,300
+- [Golden 1 Center](https://whichseating.com/venues/golden-1-center/) (Sacramento Kings): Basketball capacity 17,611
+- [Grand Casino Arena](https://whichseating.com/venues/grand-casino-arena/) (Minnesota Wild): Hockey capacity 17,954
+- [Great American Ball Park](https://whichseating.com/venues/great-american-ball-park/) (Cincinnati Reds): Listed capacity 43,500
+- [Hard Rock Stadium](https://whichseating.com/venues/hard-rock-stadium/) (Miami Dolphins): Listed capacity 65,326
+- [Highmark Stadium](https://whichseating.com/venues/highmark-stadium/) (Buffalo Bills): Listed capacity 60,108
+- [Honda Center](https://whichseating.com/venues/honda-center/) (Anaheim Ducks): Hockey capacity 17,174
+- [Huntington Bank Field](https://whichseating.com/venues/huntington-bank-field/) (Cleveland Browns): Listed capacity 67,895
+- [Intuit Dome](https://whichseating.com/venues/intuit-dome/) (Los Angeles Clippers): Basketball capacity 18,000
+- [Kaseya Center](https://whichseating.com/venues/kaseya-center/) (Miami Heat): Basketball capacity 19,600
+- [Kauffman Stadium](https://whichseating.com/venues/kauffman-stadium/) (Kansas City Royals): Listed capacity 37,903
+- [KeyBank Center](https://whichseating.com/venues/keybank-center/) (Buffalo Sabres): Hockey capacity 19,070
+- [Kia Center](https://whichseating.com/venues/kia-center/) (Orlando Magic): Basketball capacity 18,846
+- [Lambeau Field](https://whichseating.com/venues/lambeau-field/) (Green Bay Packers): Listed capacity 81,441
+- [Lenovo Center](https://whichseating.com/venues/lenovo-center/) (Carolina Hurricanes): Hockey capacity 18,547
+- [Levi's Stadium](https://whichseating.com/venues/levis-stadium/) (San Francisco 49ers): Listed capacity 68,500
+- [Lincoln Financial Field](https://whichseating.com/venues/lincoln-financial-field/) (Philadelphia Eagles): Listed capacity 69,596
+- [Little Caesars Arena](https://whichseating.com/venues/little-caesars-arena/) (Detroit Pistons and Detroit Red Wings): Basketball capacity 20,332; Hockey capacity 19,515
+- [LoanDepot Park](https://whichseating.com/venues/loandepot-park/) (Miami Marlins): Listed capacity 36,742
+- [Lucas Oil Stadium](https://whichseating.com/venues/lucas-oil-stadium/) (Indianapolis Colts): Listed capacity 67,000
+- [Lumen Field](https://whichseating.com/venues/lumen-field/) (Seattle Seahawks): Listed capacity 69,000
+- [M&T Bank Stadium](https://whichseating.com/venues/m-and-t-bank-stadium/) (Baltimore Ravens): Listed capacity 71,008
+- [Madison Square Garden](https://whichseating.com/venues/madison-square-garden/) (New York Knicks and New York Rangers): Basketball capacity 19,812; Hockey capacity 18,006
+- [Memorial Stadium, Tom Osborne Field](https://whichseating.com/venues/memorial-stadium-tom-osborne-field/) (Nebraska): Listed capacity 85,458
+- [Mercedes-Benz Stadium](https://whichseating.com/venues/mercedes-benz-stadium/) (Atlanta Falcons): Listed capacity 71,000
+- [MetLife Stadium](https://whichseating.com/venues/metlife-stadium/) (New York Giants and New York Jets): Listed capacity 82,500
+- [Michigan Stadium](https://whichseating.com/venues/michigan-stadium/) (Michigan): Listed capacity 107,601
+- [Moda Center](https://whichseating.com/venues/moda-center/) (Portland Trail Blazers): Basketball capacity 19,411
+- [Mortgage Matchup Center](https://whichseating.com/venues/mortgage-matchup-center/) (Phoenix Suns): Basketball capacity 17,071
+- [Nationals Park](https://whichseating.com/venues/nationals-park/) (Washington Nationals): Listed capacity 41,373
+- [Nationwide Arena](https://whichseating.com/venues/nationwide-arena/) (Columbus Blue Jackets): Hockey capacity 18,144
+- [Neyland Stadium](https://whichseating.com/venues/neyland-stadium/) (Tennessee): Listed capacity 101,915
+- [Nissan Stadium](https://whichseating.com/venues/nissan-stadium/) (Tennessee Titans): Listed capacity 69,143
+- [Northwest Stadium](https://whichseating.com/venues/northwest-stadium/) (Washington Commanders): Listed capacity 64,000
+- [Notre Dame Stadium](https://whichseating.com/venues/notre-dame-stadium/) (Notre Dame): Listed capacity 77,622
+- [Ohio Stadium](https://whichseating.com/venues/ohio-stadium/) (Ohio State): Listed capacity 102,780
+- [Oracle Park](https://whichseating.com/venues/oracle-park/) (San Francisco Giants): Listed capacity 41,331
+- [Oriole Park at Camden Yards](https://whichseating.com/venues/oriole-park-at-camden-yards/) (Baltimore Orioles): Listed capacity 42,455
+- [PNC Park](https://whichseating.com/venues/pnc-park/) (Pittsburgh Pirates): Listed capacity 38,747
+- [PPG Paints Arena](https://whichseating.com/venues/ppg-paints-arena/) (Pittsburgh Penguins): Hockey capacity 18,387
+- [Pat Dye Field at Jordan-Hare Stadium](https://whichseating.com/venues/pat-dye-field-at-jordan-hare-stadium/) (Auburn): Listed capacity 88,043
+- [Paycom Center](https://whichseating.com/venues/paycom-center/) (Oklahoma City Thunder): Basketball capacity 18,203
+- [Paycor Stadium](https://whichseating.com/venues/paycor-stadium/) (Cincinnati Bengals): Listed capacity 65,515
+- [Petco Park](https://whichseating.com/venues/petco-park/) (San Diego Padres): Listed capacity 39,860
+- [Progressive Field](https://whichseating.com/venues/progressive-field/) (Cleveland Guardians): Listed capacity 34,820
+- [Prudential Center](https://whichseating.com/venues/prudential-center/) (New Jersey Devils): Hockey capacity 16,514
+- [Rate Field](https://whichseating.com/venues/rate-field/) (Chicago White Sox): Listed capacity 40,615
+- [Raymond James Stadium](https://whichseating.com/venues/raymond-james-stadium/) (Tampa Bay Buccaneers): Listed capacity 65,890
+- [Reliant Stadium](https://whichseating.com/venues/reliant-stadium/) (Houston Texans): Listed capacity 72,220
+- [Rocket Arena](https://whichseating.com/venues/rocket-arena/) (Cleveland Cavaliers): Basketball capacity 19,432
+- [Rose Bowl Stadium](https://whichseating.com/venues/rose-bowl-stadium/) (UCLA): Listed capacity 89,702
+- [SAP Center](https://whichseating.com/venues/sap-center/) (San Jose Sharks): Hockey capacity 17,435
+- [Saban Field at Bryant-Denny Stadium](https://whichseating.com/venues/saban-field-at-bryant-denny-stadium/) (Alabama): Listed capacity 100,077
+- [Sanford Stadium](https://whichseating.com/venues/sanford-stadium/) (Georgia): Listed capacity 93,033
+- [Smoothie King Center](https://whichseating.com/venues/smoothie-king-center/) (New Orleans Pelicans): Basketball capacity 16,867
+- [SoFi Stadium](https://whichseating.com/venues/sofi-stadium/) (Los Angeles Rams and Los Angeles Chargers): Listed capacity 70,000
+- [Soldier Field](https://whichseating.com/venues/soldier-field/) (Chicago Bears): Listed capacity 62,500
+- [Spectrum Center](https://whichseating.com/venues/spectrum-center/) (Charlotte Hornets): Basketball capacity 19,077
+- [State Farm Arena](https://whichseating.com/venues/state-farm-arena/) (Atlanta Hawks): Basketball capacity 17,044
+- [State Farm Stadium](https://whichseating.com/venues/state-farm-stadium/) (Arizona Cardinals): Listed capacity 63,400
+- [Steve Spurrier-Florida Field at Ben Hill Griffin Stadium](https://whichseating.com/venues/steve-spurrier-florida-field-at-ben-hill-griffin-stadium/) (Florida): Listed capacity 88,548
+- [Sutter Health Park](https://whichseating.com/venues/sutter-health-park/) (Athletics): Listed capacity 13,416
+- [T-Mobile Arena](https://whichseating.com/venues/t-mobile-arena/) (Vegas Golden Knights): Hockey capacity 17,367
+- [T-Mobile Park](https://whichseating.com/venues/t-mobile-park/) (Seattle Mariners): Listed capacity 47,929
+- [TD Garden](https://whichseating.com/venues/td-garden/) (Boston Celtics and Boston Bruins): Basketball capacity 18,624; Hockey capacity 17,565
+- [Target Center](https://whichseating.com/venues/target-center/) (Minnesota Timberwolves): Basketball capacity 18,024
+- [Target Field](https://whichseating.com/venues/target-field/) (Minnesota Twins): Listed capacity 38,544
+- [Tiger Stadium](https://whichseating.com/venues/tiger-stadium/) (LSU): Listed capacity 102,321
+- [Toyota Center](https://whichseating.com/venues/toyota-center/) (Houston Rockets): Basketball capacity 18,055
+- [Tropicana Field](https://whichseating.com/venues/tropicana-field/) (Tampa Bay Rays): Listed capacity 25,000
+- [Truist Park](https://whichseating.com/venues/truist-park/) (Atlanta Braves): Listed capacity 41,084
+- [U.S. Bank Stadium](https://whichseating.com/venues/us-bank-stadium/) (Minnesota Vikings): Listed capacity 66,655
+- [UBS Arena](https://whichseating.com/venues/ubs-arena/) (New York Islanders): Hockey capacity 17,255
+- [United Center](https://whichseating.com/venues/united-center/) (Chicago Bulls and Chicago Blackhawks): Basketball capacity 20,917; Hockey capacity 19,717
+- [Wrigley Field](https://whichseating.com/venues/wrigley-field/) (Chicago Cubs): Listed capacity 41,649
+- [Xfinity Mobile Arena](https://whichseating.com/venues/xfinity-mobile-arena/) (Philadelphia 76ers and Philadelphia Flyers): Basketball capacity 20,007; Hockey capacity 19,538
+- [Yankee Stadium](https://whichseating.com/venues/yankee-stadium/) (New York Yankees): Listed capacity 46,537

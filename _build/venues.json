@@ -1,0 +1,4778 @@
+[
+  {
+    "name": "Acrisure Stadium",
+    "slug": "acrisure-stadium",
+    "city": "Pittsburgh",
+    "state": "Pennsylvania",
+    "opened": "2001",
+    "roof_label": "Open-air",
+    "teams": [
+      {
+        "league": "nfl",
+        "name": "Pittsburgh Steelers"
+      }
+    ],
+    "capacities": [
+      {
+        "label": "Listed capacity",
+        "value": "68,984"
+      }
+    ],
+    "surface": "Bermuda grass",
+    "ballpark_type": "",
+    "center_field": "",
+    "notes": [],
+    "sources": [
+      {
+        "title": "List of current NFL stadiums",
+        "url": "https://en.wikipedia.org/wiki/List_of_current_NFL_stadiums",
+        "publisher": "Wikipedia",
+        "role": "list"
+      }
+    ]
+  },
+  {
+    "name": "Allegiant Stadium",
+    "slug": "allegiant-stadium",
+    "city": "Paradise",
+    "state": "Nevada",
+    "opened": "2020",
+    "roof_label": "Skylight",
+    "teams": [
+      {
+        "league": "nfl",
+        "name": "Las Vegas Raiders"
+      }
+    ],
+    "capacities": [
+      {
+        "label": "Listed capacity",
+        "value": "66,000"
+      }
+    ],
+    "surface": "Bermuda grass",
+    "ballpark_type": "",
+    "center_field": "",
+    "notes": [],
+    "sources": [
+      {
+        "title": "List of current NFL stadiums",
+        "url": "https://en.wikipedia.org/wiki/List_of_current_NFL_stadiums",
+        "publisher": "Wikipedia",
+        "role": "list"
+      }
+    ]
+  },
+  {
+    "name": "Arrowhead Stadium",
+    "slug": "arrowhead-stadium",
+    "city": "Kansas City",
+    "state": "Missouri",
+    "opened": "1972",
+    "roof_label": "Open-air",
+    "teams": [
+      {
+        "league": "nfl",
+        "name": "Kansas City Chiefs"
+      }
+    ],
+    "capacities": [
+      {
+        "label": "Listed capacity",
+        "value": "73,426"
+      }
+    ],
+    "surface": "Bermuda grass",
+    "ballpark_type": "",
+    "center_field": "",
+    "notes": [
+      "The Wikipedia NFL list says the Chiefs sold naming rights for the field to GEHA from 2021 to 2026, then returned the stadium name to Arrowhead Stadium."
+    ],
+    "sources": [
+      {
+        "title": "List of current NFL stadiums",
+        "url": "https://en.wikipedia.org/wiki/List_of_current_NFL_stadiums",
+        "publisher": "Wikipedia",
+        "role": "list"
+      },
+      {
+        "title": "Chiefs stadium page",
+        "url": "https://www.chiefs.com/stadium/",
+        "publisher": "Kansas City Chiefs",
+        "role": "official"
+      }
+    ]
+  },
+  {
+    "name": "AT&T Stadium",
+    "slug": "at-and-t-stadium",
+    "city": "Arlington",
+    "state": "Texas",
+    "opened": "2009",
+    "roof_label": "Retractable",
+    "teams": [
+      {
+        "league": "nfl",
+        "name": "Dallas Cowboys"
+      }
+    ],
+    "capacities": [
+      {
+        "label": "Listed capacity",
+        "value": "80,000"
+      }
+    ],
+    "surface": "Artificial",
+    "ballpark_type": "",
+    "center_field": "",
+    "notes": [],
+    "sources": [
+      {
+        "title": "List of current NFL stadiums",
+        "url": "https://en.wikipedia.org/wiki/List_of_current_NFL_stadiums",
+        "publisher": "Wikipedia",
+        "role": "list"
+      },
+      {
+        "title": "Cowboys stadium page",
+        "url": "https://www.dallascowboys.com/stadium/",
+        "publisher": "Dallas Cowboys",
+        "role": "official"
+      }
+    ]
+  },
+  {
+    "name": "Bank of America Stadium",
+    "slug": "bank-of-america-stadium",
+    "city": "Charlotte",
+    "state": "North Carolina",
+    "opened": "1996",
+    "roof_label": "Open-air",
+    "teams": [
+      {
+        "league": "nfl",
+        "name": "Carolina Panthers"
+      }
+    ],
+    "capacities": [
+      {
+        "label": "Listed capacity",
+        "value": "75,037"
+      }
+    ],
+    "surface": "FieldTurf",
+    "ballpark_type": "",
+    "center_field": "",
+    "notes": [],
+    "sources": [
+      {
+        "title": "List of current NFL stadiums",
+        "url": "https://en.wikipedia.org/wiki/List_of_current_NFL_stadiums",
+        "publisher": "Wikipedia",
+        "role": "list"
+      }
+    ]
+  },
+  {
+    "name": "Caesars Superdome",
+    "slug": "caesars-superdome",
+    "city": "New Orleans",
+    "state": "Louisiana",
+    "opened": "1975",
+    "roof_label": "Dome",
+    "teams": [
+      {
+        "league": "nfl",
+        "name": "New Orleans Saints"
+      }
+    ],
+    "capacities": [
+      {
+        "label": "Listed capacity",
+        "value": "73,208"
+      }
+    ],
+    "surface": "Artificial",
+    "ballpark_type": "",
+    "center_field": "",
+    "notes": [],
+    "sources": [
+      {
+        "title": "List of current NFL stadiums",
+        "url": "https://en.wikipedia.org/wiki/List_of_current_NFL_stadiums",
+        "publisher": "Wikipedia",
+        "role": "list"
+      },
+      {
+        "title": "Saints stadium page",
+        "url": "https://www.neworleanssaints.com/stadium/",
+        "publisher": "New Orleans Saints",
+        "role": "official"
+      }
+    ]
+  },
+  {
+    "name": "Empower Field at Mile High",
+    "slug": "empower-field-at-mile-high",
+    "city": "Denver",
+    "state": "Colorado",
+    "opened": "2001",
+    "roof_label": "Open-air",
+    "teams": [
+      {
+        "league": "nfl",
+        "name": "Denver Broncos"
+      }
+    ],
+    "capacities": [
+      {
+        "label": "Listed capacity",
+        "value": "76,125"
+      }
+    ],
+    "surface": "Kentucky bluegrass",
+    "ballpark_type": "",
+    "center_field": "",
+    "notes": [],
+    "sources": [
+      {
+        "title": "List of current NFL stadiums",
+        "url": "https://en.wikipedia.org/wiki/List_of_current_NFL_stadiums",
+        "publisher": "Wikipedia",
+        "role": "list"
+      },
+      {
+        "title": "Empower Field at Mile High",
+        "url": "https://www.empowerfieldatmilehigh.com/",
+        "publisher": "Empower Field at Mile High",
+        "role": "official"
+      }
+    ]
+  },
+  {
+    "name": "EverBank Stadium",
+    "slug": "everbank-stadium",
+    "city": "Jacksonville",
+    "state": "Florida",
+    "opened": "1995",
+    "roof_label": "Open-air",
+    "teams": [
+      {
+        "league": "nfl",
+        "name": "Jacksonville Jaguars"
+      }
+    ],
+    "capacities": [
+      {
+        "label": "Listed capacity",
+        "value": "69,132"
+      }
+    ],
+    "surface": "Bermuda grass",
+    "ballpark_type": "",
+    "center_field": "",
+    "notes": [],
+    "sources": [
+      {
+        "title": "List of current NFL stadiums",
+        "url": "https://en.wikipedia.org/wiki/List_of_current_NFL_stadiums",
+        "publisher": "Wikipedia",
+        "role": "list"
+      },
+      {
+        "title": "Jaguars stadium page",
+        "url": "https://www.jaguars.com/stadium/",
+        "publisher": "Jacksonville Jaguars",
+        "role": "official"
+      }
+    ]
+  },
+  {
+    "name": "Ford Field",
+    "slug": "ford-field",
+    "city": "Detroit",
+    "state": "Michigan",
+    "opened": "2002",
+    "roof_label": "Dome",
+    "teams": [
+      {
+        "league": "nfl",
+        "name": "Detroit Lions"
+      }
+    ],
+    "capacities": [
+      {
+        "label": "Listed capacity",
+        "value": "65,000"
+      }
+    ],
+    "surface": "FieldTurf",
+    "ballpark_type": "",
+    "center_field": "",
+    "notes": [],
+    "sources": [
+      {
+        "title": "List of current NFL stadiums",
+        "url": "https://en.wikipedia.org/wiki/List_of_current_NFL_stadiums",
+        "publisher": "Wikipedia",
+        "role": "list"
+      },
+      {
+        "title": "Lions stadium page",
+        "url": "https://www.detroitlions.com/stadium/",
+        "publisher": "Detroit Lions",
+        "role": "official"
+      }
+    ]
+  },
+  {
+    "name": "Gillette Stadium",
+    "slug": "gillette-stadium",
+    "city": "Foxborough",
+    "state": "Massachusetts",
+    "opened": "2002",
+    "roof_label": "Open-air",
+    "teams": [
+      {
+        "league": "nfl",
+        "name": "New England Patriots"
+      }
+    ],
+    "capacities": [
+      {
+        "label": "Listed capacity",
+        "value": "66,829"
+      }
+    ],
+    "surface": "FieldTurf",
+    "ballpark_type": "",
+    "center_field": "",
+    "notes": [],
+    "sources": [
+      {
+        "title": "List of current NFL stadiums",
+        "url": "https://en.wikipedia.org/wiki/List_of_current_NFL_stadiums",
+        "publisher": "Wikipedia",
+        "role": "list"
+      }
+    ]
+  },
+  {
+    "name": "Hard Rock Stadium",
+    "slug": "hard-rock-stadium",
+    "city": "Miami Gardens",
+    "state": "Florida",
+    "opened": "1987",
+    "roof_label": "Open-air",
+    "teams": [
+      {
+        "league": "nfl",
+        "name": "Miami Dolphins"
+      }
+    ],
+    "capacities": [
+      {
+        "label": "Listed capacity",
+        "value": "65,326"
+      }
+    ],
+    "surface": "Bermuda grass",
+    "ballpark_type": "",
+    "center_field": "",
+    "notes": [],
+    "sources": [
+      {
+        "title": "List of current NFL stadiums",
+        "url": "https://en.wikipedia.org/wiki/List_of_current_NFL_stadiums",
+        "publisher": "Wikipedia",
+        "role": "list"
+      }
+    ]
+  },
+  {
+    "name": "Highmark Stadium",
+    "slug": "highmark-stadium",
+    "city": "Orchard Park",
+    "state": "New York",
+    "opened": "2026",
+    "roof_label": "Open-air",
+    "teams": [
+      {
+        "league": "nfl",
+        "name": "Buffalo Bills"
+      }
+    ],
+    "capacities": [
+      {
+        "label": "Listed capacity",
+        "value": "60,108"
+      }
+    ],
+    "surface": "Kentucky bluegrass",
+    "ballpark_type": "",
+    "center_field": "",
+    "notes": [
+      "The Wikipedia NFL list calls this the newest NFL stadium and the smallest listed capacity in the league, at 60,108, and gives the opened year as 2026.",
+      "The Highmark Stadium Wikipedia article describes the figure as 60,108 seats plus 2,892 standing room places, which it totals as 63,000."
+    ],
+    "sources": [
+      {
+        "title": "List of current NFL stadiums",
+        "url": "https://en.wikipedia.org/wiki/List_of_current_NFL_stadiums",
+        "publisher": "Wikipedia",
+        "role": "list"
+      },
+      {
+        "title": "Bills stadium page",
+        "url": "https://www.buffalobills.com/stadium/",
+        "publisher": "Buffalo Bills",
+        "role": "official"
+      },
+      {
+        "title": "Highmark Stadium",
+        "url": "https://en.wikipedia.org/wiki/Highmark_Stadium",
+        "publisher": "Wikipedia",
+        "role": "extra"
+      }
+    ]
+  },
+  {
+    "name": "Huntington Bank Field",
+    "slug": "huntington-bank-field",
+    "city": "Cleveland",
+    "state": "Ohio",
+    "opened": "1999",
+    "roof_label": "Open-air",
+    "teams": [
+      {
+        "league": "nfl",
+        "name": "Cleveland Browns"
+      }
+    ],
+    "capacities": [
+      {
+        "label": "Listed capacity",
+        "value": "67,895"
+      }
+    ],
+    "surface": "Kentucky bluegrass",
+    "ballpark_type": "",
+    "center_field": "",
+    "notes": [],
+    "sources": [
+      {
+        "title": "List of current NFL stadiums",
+        "url": "https://en.wikipedia.org/wiki/List_of_current_NFL_stadiums",
+        "publisher": "Wikipedia",
+        "role": "list"
+      }
+    ]
+  },
+  {
+    "name": "Lambeau Field",
+    "slug": "lambeau-field",
+    "city": "Green Bay",
+    "state": "Wisconsin",
+    "opened": "1957",
+    "roof_label": "Open-air",
+    "teams": [
+      {
+        "league": "nfl",
+        "name": "Green Bay Packers"
+      }
+    ],
+    "capacities": [
+      {
+        "label": "Listed capacity",
+        "value": "81,441"
+      }
+    ],
+    "surface": "Hybrid grass",
+    "ballpark_type": "",
+    "center_field": "",
+    "notes": [
+      "The Wikipedia NFL list calls Lambeau Field the oldest continuously operating NFL stadium, with the Packers as tenant since it opened in 1957."
+    ],
+    "sources": [
+      {
+        "title": "List of current NFL stadiums",
+        "url": "https://en.wikipedia.org/wiki/List_of_current_NFL_stadiums",
+        "publisher": "Wikipedia",
+        "role": "list"
+      },
+      {
+        "title": "Packers Lambeau Field page",
+        "url": "https://www.packers.com/lambeau-field/",
+        "publisher": "Green Bay Packers",
+        "role": "official"
+      }
+    ]
+  },
+  {
+    "name": "Levi's Stadium",
+    "slug": "levis-stadium",
+    "city": "Santa Clara",
+    "state": "California",
+    "opened": "2014",
+    "roof_label": "Open-air",
+    "teams": [
+      {
+        "league": "nfl",
+        "name": "San Francisco 49ers"
+      }
+    ],
+    "capacities": [
+      {
+        "label": "Listed capacity",
+        "value": "68,500"
+      }
+    ],
+    "surface": "Bermuda grass",
+    "ballpark_type": "",
+    "center_field": "",
+    "notes": [],
+    "sources": [
+      {
+        "title": "List of current NFL stadiums",
+        "url": "https://en.wikipedia.org/wiki/List_of_current_NFL_stadiums",
+        "publisher": "Wikipedia",
+        "role": "list"
+      }
+    ]
+  },
+  {
+    "name": "Lincoln Financial Field",
+    "slug": "lincoln-financial-field",
+    "city": "Philadelphia",
+    "state": "Pennsylvania",
+    "opened": "2003",
+    "roof_label": "Open-air",
+    "teams": [
+      {
+        "league": "nfl",
+        "name": "Philadelphia Eagles"
+      }
+    ],
+    "capacities": [
+      {
+        "label": "Listed capacity",
+        "value": "69,596"
+      }
+    ],
+    "surface": "GrassMaster",
+    "ballpark_type": "",
+    "center_field": "",
+    "notes": [],
+    "sources": [
+      {
+        "title": "List of current NFL stadiums",
+        "url": "https://en.wikipedia.org/wiki/List_of_current_NFL_stadiums",
+        "publisher": "Wikipedia",
+        "role": "list"
+      }
+    ]
+  },
+  {
+    "name": "Lucas Oil Stadium",
+    "slug": "lucas-oil-stadium",
+    "city": "Indianapolis",
+    "state": "Indiana",
+    "opened": "2008",
+    "roof_label": "Retractable",
+    "teams": [
+      {
+        "league": "nfl",
+        "name": "Indianapolis Colts"
+      }
+    ],
+    "capacities": [
+      {
+        "label": "Listed capacity",
+        "value": "67,000"
+      }
+    ],
+    "surface": "Artificial",
+    "ballpark_type": "",
+    "center_field": "",
+    "notes": [],
+    "sources": [
+      {
+        "title": "List of current NFL stadiums",
+        "url": "https://en.wikipedia.org/wiki/List_of_current_NFL_stadiums",
+        "publisher": "Wikipedia",
+        "role": "list"
+      }
+    ]
+  },
+  {
+    "name": "Lumen Field",
+    "slug": "lumen-field",
+    "city": "Seattle",
+    "state": "Washington",
+    "opened": "2002",
+    "roof_label": "Open-air",
+    "teams": [
+      {
+        "league": "nfl",
+        "name": "Seattle Seahawks"
+      }
+    ],
+    "capacities": [
+      {
+        "label": "Listed capacity",
+        "value": "69,000"
+      }
+    ],
+    "surface": "FieldTurf",
+    "ballpark_type": "",
+    "center_field": "",
+    "notes": [],
+    "sources": [
+      {
+        "title": "List of current NFL stadiums",
+        "url": "https://en.wikipedia.org/wiki/List_of_current_NFL_stadiums",
+        "publisher": "Wikipedia",
+        "role": "list"
+      }
+    ]
+  },
+  {
+    "name": "M&T Bank Stadium",
+    "slug": "m-and-t-bank-stadium",
+    "city": "Baltimore",
+    "state": "Maryland",
+    "opened": "1998",
+    "roof_label": "Open-air",
+    "teams": [
+      {
+        "league": "nfl",
+        "name": "Baltimore Ravens"
+      }
+    ],
+    "capacities": [
+      {
+        "label": "Listed capacity",
+        "value": "71,008"
+      }
+    ],
+    "surface": "Bermuda and ryegrass",
+    "ballpark_type": "",
+    "center_field": "",
+    "notes": [],
+    "sources": [
+      {
+        "title": "List of current NFL stadiums",
+        "url": "https://en.wikipedia.org/wiki/List_of_current_NFL_stadiums",
+        "publisher": "Wikipedia",
+        "role": "list"
+      },
+      {
+        "title": "Ravens stadium page",
+        "url": "https://www.baltimoreravens.com/stadium/",
+        "publisher": "Baltimore Ravens",
+        "role": "official"
+      }
+    ]
+  },
+  {
+    "name": "Mercedes-Benz Stadium",
+    "slug": "mercedes-benz-stadium",
+    "city": "Atlanta",
+    "state": "Georgia",
+    "opened": "2017",
+    "roof_label": "Retractable",
+    "teams": [
+      {
+        "league": "nfl",
+        "name": "Atlanta Falcons"
+      }
+    ],
+    "capacities": [
+      {
+        "label": "Listed capacity",
+        "value": "71,000"
+      }
+    ],
+    "surface": "FieldTurf",
+    "ballpark_type": "",
+    "center_field": "",
+    "notes": [],
+    "sources": [
+      {
+        "title": "List of current NFL stadiums",
+        "url": "https://en.wikipedia.org/wiki/List_of_current_NFL_stadiums",
+        "publisher": "Wikipedia",
+        "role": "list"
+      },
+      {
+        "title": "Falcons stadium page",
+        "url": "https://www.atlantafalcons.com/stadium/",
+        "publisher": "Atlanta Falcons",
+        "role": "official"
+      }
+    ]
+  },
+  {
+    "name": "MetLife Stadium",
+    "slug": "metlife-stadium",
+    "city": "East Rutherford",
+    "state": "New Jersey",
+    "opened": "2010",
+    "roof_label": "Open-air",
+    "teams": [
+      {
+        "league": "nfl",
+        "name": "New York Giants"
+      },
+      {
+        "league": "nfl",
+        "name": "New York Jets"
+      }
+    ],
+    "capacities": [
+      {
+        "label": "Listed capacity",
+        "value": "82,500"
+      }
+    ],
+    "surface": "FieldTurf",
+    "ballpark_type": "",
+    "center_field": "",
+    "notes": [
+      "The Wikipedia NFL list says MetLife Stadium has the highest listed seating capacity in the league, at 82,500. The Giants and the Jets share it."
+    ],
+    "sources": [
+      {
+        "title": "List of current NFL stadiums",
+        "url": "https://en.wikipedia.org/wiki/List_of_current_NFL_stadiums",
+        "publisher": "Wikipedia",
+        "role": "list"
+      }
+    ]
+  },
+  {
+    "name": "Nissan Stadium",
+    "slug": "nissan-stadium",
+    "city": "Nashville",
+    "state": "Tennessee",
+    "opened": "1999",
+    "roof_label": "Open-air",
+    "teams": [
+      {
+        "league": "nfl",
+        "name": "Tennessee Titans"
+      }
+    ],
+    "capacities": [
+      {
+        "label": "Listed capacity",
+        "value": "69,143"
+      }
+    ],
+    "surface": "Artificial",
+    "ballpark_type": "",
+    "center_field": "",
+    "notes": [
+      "The same Wikipedia page lists a new Titans stadium as under construction in Nashville, with an opening year of 2027. This guide is about the stadium in use now."
+    ],
+    "sources": [
+      {
+        "title": "List of current NFL stadiums",
+        "url": "https://en.wikipedia.org/wiki/List_of_current_NFL_stadiums",
+        "publisher": "Wikipedia",
+        "role": "list"
+      },
+      {
+        "title": "Titans stadium page",
+        "url": "https://www.tennesseetitans.com/stadium/",
+        "publisher": "Tennessee Titans",
+        "role": "official"
+      }
+    ]
+  },
+  {
+    "name": "Northwest Stadium",
+    "slug": "northwest-stadium",
+    "city": "Landover",
+    "state": "Maryland",
+    "opened": "1997",
+    "roof_label": "Open-air",
+    "teams": [
+      {
+        "league": "nfl",
+        "name": "Washington Commanders"
+      }
+    ],
+    "capacities": [
+      {
+        "label": "Listed capacity",
+        "value": "64,000"
+      }
+    ],
+    "surface": "Bermuda grass",
+    "ballpark_type": "",
+    "center_field": "",
+    "notes": [],
+    "sources": [
+      {
+        "title": "List of current NFL stadiums",
+        "url": "https://en.wikipedia.org/wiki/List_of_current_NFL_stadiums",
+        "publisher": "Wikipedia",
+        "role": "list"
+      },
+      {
+        "title": "Northwest Stadium",
+        "url": "https://northweststadium.com/",
+        "publisher": "Northwest Stadium",
+        "role": "official"
+      }
+    ]
+  },
+  {
+    "name": "Paycor Stadium",
+    "slug": "paycor-stadium",
+    "city": "Cincinnati",
+    "state": "Ohio",
+    "opened": "2000",
+    "roof_label": "Open-air",
+    "teams": [
+      {
+        "league": "nfl",
+        "name": "Cincinnati Bengals"
+      }
+    ],
+    "capacities": [
+      {
+        "label": "Listed capacity",
+        "value": "65,515"
+      }
+    ],
+    "surface": "Artificial",
+    "ballpark_type": "",
+    "center_field": "",
+    "notes": [],
+    "sources": [
+      {
+        "title": "List of current NFL stadiums",
+        "url": "https://en.wikipedia.org/wiki/List_of_current_NFL_stadiums",
+        "publisher": "Wikipedia",
+        "role": "list"
+      },
+      {
+        "title": "Bengals stadium page",
+        "url": "https://www.bengals.com/stadium/",
+        "publisher": "Cincinnati Bengals",
+        "role": "official"
+      }
+    ]
+  },
+  {
+    "name": "Raymond James Stadium",
+    "slug": "raymond-james-stadium",
+    "city": "Tampa",
+    "state": "Florida",
+    "opened": "1998",
+    "roof_label": "Open-air",
+    "teams": [
+      {
+        "league": "nfl",
+        "name": "Tampa Bay Buccaneers"
+      }
+    ],
+    "capacities": [
+      {
+        "label": "Listed capacity",
+        "value": "65,890"
+      }
+    ],
+    "surface": "Bermuda grass",
+    "ballpark_type": "",
+    "center_field": "",
+    "notes": [],
+    "sources": [
+      {
+        "title": "List of current NFL stadiums",
+        "url": "https://en.wikipedia.org/wiki/List_of_current_NFL_stadiums",
+        "publisher": "Wikipedia",
+        "role": "list"
+      },
+      {
+        "title": "Buccaneers stadium page",
+        "url": "https://www.buccaneers.com/stadium/",
+        "publisher": "Tampa Bay Buccaneers",
+        "role": "official"
+      }
+    ]
+  },
+  {
+    "name": "Reliant Stadium",
+    "slug": "reliant-stadium",
+    "city": "Houston",
+    "state": "Texas",
+    "opened": "2002",
+    "roof_label": "Retractable",
+    "teams": [
+      {
+        "league": "nfl",
+        "name": "Houston Texans"
+      }
+    ],
+    "capacities": [
+      {
+        "label": "Listed capacity",
+        "value": "72,220"
+      }
+    ],
+    "surface": "Artificial",
+    "ballpark_type": "",
+    "center_field": "",
+    "notes": [
+      "The Texans official stadium page calls the building Reliant Stadium, previously NRG Stadium, and says the Reliant name returned in August 2026. The Wikipedia NFL list uses Reliant Stadium and a retractable roof."
+    ],
+    "sources": [
+      {
+        "title": "List of current NFL stadiums",
+        "url": "https://en.wikipedia.org/wiki/List_of_current_NFL_stadiums",
+        "publisher": "Wikipedia",
+        "role": "list"
+      },
+      {
+        "title": "Texans stadium page",
+        "url": "https://www.houstontexans.com/stadium/",
+        "publisher": "Houston Texans",
+        "role": "official"
+      }
+    ]
+  },
+  {
+    "name": "SoFi Stadium",
+    "slug": "sofi-stadium",
+    "city": "Inglewood",
+    "state": "California",
+    "opened": "2020",
+    "roof_label": "Skylight",
+    "teams": [
+      {
+        "league": "nfl",
+        "name": "Los Angeles Rams"
+      },
+      {
+        "league": "nfl",
+        "name": "Los Angeles Chargers"
+      }
+    ],
+    "capacities": [
+      {
+        "label": "Listed capacity",
+        "value": "70,000"
+      }
+    ],
+    "surface": "Artificial",
+    "ballpark_type": "",
+    "center_field": "",
+    "notes": [
+      "The Rams and the Chargers share SoFi Stadium. The Wikipedia NFL list classifies the roof as a skylight."
+    ],
+    "sources": [
+      {
+        "title": "List of current NFL stadiums",
+        "url": "https://en.wikipedia.org/wiki/List_of_current_NFL_stadiums",
+        "publisher": "Wikipedia",
+        "role": "list"
+      },
+      {
+        "title": "SoFi Stadium",
+        "url": "https://www.sofistadium.com/",
+        "publisher": "SoFi Stadium",
+        "role": "official"
+      },
+      {
+        "title": "Chargers SoFi Stadium page",
+        "url": "https://www.chargers.com/sofi-stadium/",
+        "publisher": "Los Angeles Chargers",
+        "role": "extra"
+      }
+    ]
+  },
+  {
+    "name": "Soldier Field",
+    "slug": "soldier-field",
+    "city": "Chicago",
+    "state": "Illinois",
+    "opened": "1924",
+    "roof_label": "Open-air",
+    "teams": [
+      {
+        "league": "nfl",
+        "name": "Chicago Bears"
+      }
+    ],
+    "capacities": [
+      {
+        "label": "Listed capacity",
+        "value": "62,500"
+      }
+    ],
+    "surface": "Bermuda grass",
+    "ballpark_type": "",
+    "center_field": "",
+    "notes": [
+      "The Wikipedia NFL list says Soldier Field opened in 1924. A note on that page says the playing field and seating bowl were renovated in 2003."
+    ],
+    "sources": [
+      {
+        "title": "List of current NFL stadiums",
+        "url": "https://en.wikipedia.org/wiki/List_of_current_NFL_stadiums",
+        "publisher": "Wikipedia",
+        "role": "list"
+      },
+      {
+        "title": "Bears stadium page",
+        "url": "https://stadium.chicagobears.com/",
+        "publisher": "Chicago Bears",
+        "role": "official"
+      }
+    ]
+  },
+  {
+    "name": "State Farm Stadium",
+    "slug": "state-farm-stadium",
+    "city": "Glendale",
+    "state": "Arizona",
+    "opened": "2006",
+    "roof_label": "Retractable",
+    "teams": [
+      {
+        "league": "nfl",
+        "name": "Arizona Cardinals"
+      }
+    ],
+    "capacities": [
+      {
+        "label": "Listed capacity",
+        "value": "63,400"
+      }
+    ],
+    "surface": "Bermuda grass",
+    "ballpark_type": "",
+    "center_field": "",
+    "notes": [],
+    "sources": [
+      {
+        "title": "List of current NFL stadiums",
+        "url": "https://en.wikipedia.org/wiki/List_of_current_NFL_stadiums",
+        "publisher": "Wikipedia",
+        "role": "list"
+      },
+      {
+        "title": "Cardinals stadium page",
+        "url": "https://www.azcardinals.com/stadium/",
+        "publisher": "Arizona Cardinals",
+        "role": "official"
+      }
+    ]
+  },
+  {
+    "name": "U.S. Bank Stadium",
+    "slug": "us-bank-stadium",
+    "city": "Minneapolis",
+    "state": "Minnesota",
+    "opened": "2016",
+    "roof_label": "Skylight",
+    "teams": [
+      {
+        "league": "nfl",
+        "name": "Minnesota Vikings"
+      }
+    ],
+    "capacities": [
+      {
+        "label": "Listed capacity",
+        "value": "66,655"
+      }
+    ],
+    "surface": "Artificial",
+    "ballpark_type": "",
+    "center_field": "",
+    "notes": [],
+    "sources": [
+      {
+        "title": "List of current NFL stadiums",
+        "url": "https://en.wikipedia.org/wiki/List_of_current_NFL_stadiums",
+        "publisher": "Wikipedia",
+        "role": "list"
+      },
+      {
+        "title": "Vikings stadium page",
+        "url": "https://www.vikings.com/stadium/",
+        "publisher": "Minnesota Vikings",
+        "role": "official"
+      }
+    ]
+  },
+  {
+    "name": "American Family Field",
+    "slug": "american-family-field",
+    "city": "Milwaukee",
+    "state": "Wisconsin",
+    "opened": "2001",
+    "roof_label": "Retractable",
+    "teams": [
+      {
+        "league": "mlb",
+        "name": "Milwaukee Brewers"
+      }
+    ],
+    "capacities": [
+      {
+        "label": "Listed capacity",
+        "value": "41,900"
+      }
+    ],
+    "surface": "Grass",
+    "ballpark_type": "Retro-modern",
+    "center_field": "400 feet",
+    "notes": [],
+    "sources": [
+      {
+        "title": "List of current Major League Baseball stadiums",
+        "url": "https://en.wikipedia.org/wiki/List_of_current_Major_League_Baseball_stadiums",
+        "publisher": "Wikipedia",
+        "role": "list"
+      },
+      {
+        "title": "Milwaukee Brewers ballpark page on MLB.com",
+        "url": "https://www.mlb.com/brewers/ballpark",
+        "publisher": "MLB.com",
+        "role": "official"
+      },
+      {
+        "title": "MLB.com ballpark guide directory",
+        "url": "https://www.mlb.com/fans/ballpark-guides/mlb",
+        "publisher": "MLB.com",
+        "role": "extra"
+      }
+    ]
+  },
+  {
+    "name": "Angel Stadium",
+    "slug": "angel-stadium",
+    "city": "Anaheim",
+    "state": "California",
+    "opened": "1966",
+    "roof_label": "Open",
+    "teams": [
+      {
+        "league": "mlb",
+        "name": "Los Angeles Angels"
+      }
+    ],
+    "capacities": [
+      {
+        "label": "Listed capacity",
+        "value": "45,517"
+      }
+    ],
+    "surface": "Grass",
+    "ballpark_type": "Modern and retro-modern",
+    "center_field": "396 feet",
+    "notes": [],
+    "sources": [
+      {
+        "title": "List of current Major League Baseball stadiums",
+        "url": "https://en.wikipedia.org/wiki/List_of_current_Major_League_Baseball_stadiums",
+        "publisher": "Wikipedia",
+        "role": "list"
+      },
+      {
+        "title": "Los Angeles Angels ballpark page on MLB.com",
+        "url": "https://www.mlb.com/angels/ballpark",
+        "publisher": "MLB.com",
+        "role": "official"
+      },
+      {
+        "title": "MLB.com ballpark guide directory",
+        "url": "https://www.mlb.com/fans/ballpark-guides/mlb",
+        "publisher": "MLB.com",
+        "role": "extra"
+      }
+    ]
+  },
+  {
+    "name": "Busch Stadium",
+    "slug": "busch-stadium",
+    "city": "St. Louis",
+    "state": "Missouri",
+    "opened": "2006",
+    "roof_label": "Open",
+    "teams": [
+      {
+        "league": "mlb",
+        "name": "St. Louis Cardinals"
+      }
+    ],
+    "capacities": [
+      {
+        "label": "Listed capacity",
+        "value": "44,383"
+      }
+    ],
+    "surface": "Grass",
+    "ballpark_type": "Retro-classic",
+    "center_field": "400 feet",
+    "notes": [],
+    "sources": [
+      {
+        "title": "List of current Major League Baseball stadiums",
+        "url": "https://en.wikipedia.org/wiki/List_of_current_Major_League_Baseball_stadiums",
+        "publisher": "Wikipedia",
+        "role": "list"
+      },
+      {
+        "title": "St. Louis Cardinals ballpark page on MLB.com",
+        "url": "https://www.mlb.com/cardinals/ballpark",
+        "publisher": "MLB.com",
+        "role": "official"
+      },
+      {
+        "title": "MLB.com ballpark guide directory",
+        "url": "https://www.mlb.com/fans/ballpark-guides/mlb",
+        "publisher": "MLB.com",
+        "role": "extra"
+      }
+    ]
+  },
+  {
+    "name": "Chase Field",
+    "slug": "chase-field",
+    "city": "Phoenix",
+    "state": "Arizona",
+    "opened": "1998",
+    "roof_label": "Retractable",
+    "teams": [
+      {
+        "league": "mlb",
+        "name": "Arizona Diamondbacks"
+      }
+    ],
+    "capacities": [
+      {
+        "label": "Listed capacity",
+        "value": "48,330"
+      }
+    ],
+    "surface": "Artificial turf",
+    "ballpark_type": "Retro-modern",
+    "center_field": "407 feet",
+    "notes": [],
+    "sources": [
+      {
+        "title": "List of current Major League Baseball stadiums",
+        "url": "https://en.wikipedia.org/wiki/List_of_current_Major_League_Baseball_stadiums",
+        "publisher": "Wikipedia",
+        "role": "list"
+      },
+      {
+        "title": "Arizona Diamondbacks ballpark page on MLB.com",
+        "url": "https://www.mlb.com/dbacks/ballpark",
+        "publisher": "MLB.com",
+        "role": "official"
+      },
+      {
+        "title": "MLB.com ballpark guide directory",
+        "url": "https://www.mlb.com/fans/ballpark-guides/mlb",
+        "publisher": "MLB.com",
+        "role": "extra"
+      }
+    ]
+  },
+  {
+    "name": "Citi Field",
+    "slug": "citi-field",
+    "city": "Queens",
+    "state": "New York",
+    "opened": "2009",
+    "roof_label": "Open",
+    "teams": [
+      {
+        "league": "mlb",
+        "name": "New York Mets"
+      }
+    ],
+    "capacities": [
+      {
+        "label": "Listed capacity",
+        "value": "41,922"
+      }
+    ],
+    "surface": "Grass",
+    "ballpark_type": "Retro-classic",
+    "center_field": "408 feet",
+    "notes": [],
+    "sources": [
+      {
+        "title": "List of current Major League Baseball stadiums",
+        "url": "https://en.wikipedia.org/wiki/List_of_current_Major_League_Baseball_stadiums",
+        "publisher": "Wikipedia",
+        "role": "list"
+      },
+      {
+        "title": "New York Mets ballpark page on MLB.com",
+        "url": "https://www.mlb.com/mets/ballpark",
+        "publisher": "MLB.com",
+        "role": "official"
+      },
+      {
+        "title": "MLB.com ballpark guide directory",
+        "url": "https://www.mlb.com/fans/ballpark-guides/mlb",
+        "publisher": "MLB.com",
+        "role": "extra"
+      }
+    ]
+  },
+  {
+    "name": "Citizens Bank Park",
+    "slug": "citizens-bank-park",
+    "city": "Philadelphia",
+    "state": "Pennsylvania",
+    "opened": "2004",
+    "roof_label": "Open",
+    "teams": [
+      {
+        "league": "mlb",
+        "name": "Philadelphia Phillies"
+      }
+    ],
+    "capacities": [
+      {
+        "label": "Listed capacity",
+        "value": "42,901"
+      }
+    ],
+    "surface": "Grass",
+    "ballpark_type": "Retro-classic",
+    "center_field": "401 feet",
+    "notes": [],
+    "sources": [
+      {
+        "title": "List of current Major League Baseball stadiums",
+        "url": "https://en.wikipedia.org/wiki/List_of_current_Major_League_Baseball_stadiums",
+        "publisher": "Wikipedia",
+        "role": "list"
+      },
+      {
+        "title": "Philadelphia Phillies ballpark page on MLB.com",
+        "url": "https://www.mlb.com/phillies/ballpark",
+        "publisher": "MLB.com",
+        "role": "official"
+      },
+      {
+        "title": "MLB.com ballpark guide directory",
+        "url": "https://www.mlb.com/fans/ballpark-guides/mlb",
+        "publisher": "MLB.com",
+        "role": "extra"
+      }
+    ]
+  },
+  {
+    "name": "Comerica Park",
+    "slug": "comerica-park",
+    "city": "Detroit",
+    "state": "Michigan",
+    "opened": "2000",
+    "roof_label": "Open",
+    "teams": [
+      {
+        "league": "mlb",
+        "name": "Detroit Tigers"
+      }
+    ],
+    "capacities": [
+      {
+        "label": "Listed capacity",
+        "value": "41,083"
+      }
+    ],
+    "surface": "Grass",
+    "ballpark_type": "Retro-classic",
+    "center_field": "412 feet",
+    "notes": [],
+    "sources": [
+      {
+        "title": "List of current Major League Baseball stadiums",
+        "url": "https://en.wikipedia.org/wiki/List_of_current_Major_League_Baseball_stadiums",
+        "publisher": "Wikipedia",
+        "role": "list"
+      },
+      {
+        "title": "Detroit Tigers ballpark page on MLB.com",
+        "url": "https://www.mlb.com/tigers/ballpark",
+        "publisher": "MLB.com",
+        "role": "official"
+      },
+      {
+        "title": "MLB.com ballpark guide directory",
+        "url": "https://www.mlb.com/fans/ballpark-guides/mlb",
+        "publisher": "MLB.com",
+        "role": "extra"
+      }
+    ]
+  },
+  {
+    "name": "Coors Field",
+    "slug": "coors-field",
+    "city": "Denver",
+    "state": "Colorado",
+    "opened": "1995",
+    "roof_label": "Open",
+    "teams": [
+      {
+        "league": "mlb",
+        "name": "Colorado Rockies"
+      }
+    ],
+    "capacities": [
+      {
+        "label": "Listed capacity",
+        "value": "46,897"
+      }
+    ],
+    "surface": "Grass",
+    "ballpark_type": "Retro-classic",
+    "center_field": "415 feet",
+    "notes": [],
+    "sources": [
+      {
+        "title": "List of current Major League Baseball stadiums",
+        "url": "https://en.wikipedia.org/wiki/List_of_current_Major_League_Baseball_stadiums",
+        "publisher": "Wikipedia",
+        "role": "list"
+      },
+      {
+        "title": "Colorado Rockies ballpark page on MLB.com",
+        "url": "https://www.mlb.com/rockies/ballpark",
+        "publisher": "MLB.com",
+        "role": "official"
+      },
+      {
+        "title": "MLB.com ballpark guide directory",
+        "url": "https://www.mlb.com/fans/ballpark-guides/mlb",
+        "publisher": "MLB.com",
+        "role": "extra"
+      }
+    ]
+  },
+  {
+    "name": "Daikin Park",
+    "slug": "daikin-park",
+    "city": "Houston",
+    "state": "Texas",
+    "opened": "2000",
+    "roof_label": "Retractable",
+    "teams": [
+      {
+        "league": "mlb",
+        "name": "Houston Astros"
+      }
+    ],
+    "capacities": [
+      {
+        "label": "Listed capacity",
+        "value": "41,168"
+      }
+    ],
+    "surface": "Grass",
+    "ballpark_type": "Retro-modern",
+    "center_field": "409 feet",
+    "notes": [],
+    "sources": [
+      {
+        "title": "List of current Major League Baseball stadiums",
+        "url": "https://en.wikipedia.org/wiki/List_of_current_Major_League_Baseball_stadiums",
+        "publisher": "Wikipedia",
+        "role": "list"
+      },
+      {
+        "title": "Houston Astros ballpark page on MLB.com",
+        "url": "https://www.mlb.com/astros/ballpark",
+        "publisher": "MLB.com",
+        "role": "official"
+      },
+      {
+        "title": "MLB.com ballpark guide directory",
+        "url": "https://www.mlb.com/fans/ballpark-guides/mlb",
+        "publisher": "MLB.com",
+        "role": "extra"
+      }
+    ]
+  },
+  {
+    "name": "Dodger Stadium",
+    "slug": "dodger-stadium",
+    "city": "Los Angeles",
+    "state": "California",
+    "opened": "1962",
+    "roof_label": "Open",
+    "teams": [
+      {
+        "league": "mlb",
+        "name": "Los Angeles Dodgers"
+      }
+    ],
+    "capacities": [
+      {
+        "label": "Listed capacity",
+        "value": "56,000"
+      }
+    ],
+    "surface": "Grass",
+    "ballpark_type": "Modern",
+    "center_field": "395 feet",
+    "notes": [
+      "The Wikipedia MLB list introduction says the Dodgers sold naming rights for the field to Uniqlo and kept the stadium name Dodger Stadium."
+    ],
+    "sources": [
+      {
+        "title": "List of current Major League Baseball stadiums",
+        "url": "https://en.wikipedia.org/wiki/List_of_current_Major_League_Baseball_stadiums",
+        "publisher": "Wikipedia",
+        "role": "list"
+      },
+      {
+        "title": "Los Angeles Dodgers ballpark page on MLB.com",
+        "url": "https://www.mlb.com/dodgers/ballpark",
+        "publisher": "MLB.com",
+        "role": "official"
+      },
+      {
+        "title": "MLB.com ballpark guide directory",
+        "url": "https://www.mlb.com/fans/ballpark-guides/mlb",
+        "publisher": "MLB.com",
+        "role": "extra"
+      }
+    ]
+  },
+  {
+    "name": "Fenway Park",
+    "slug": "fenway-park",
+    "city": "Boston",
+    "state": "Massachusetts",
+    "opened": "1912",
+    "roof_label": "Open",
+    "teams": [
+      {
+        "league": "mlb",
+        "name": "Boston Red Sox"
+      }
+    ],
+    "capacities": [
+      {
+        "label": "Listed capacity",
+        "value": "37,755"
+      }
+    ],
+    "surface": "Grass",
+    "ballpark_type": "Jewel box",
+    "center_field": "390 feet",
+    "notes": [],
+    "sources": [
+      {
+        "title": "List of current Major League Baseball stadiums",
+        "url": "https://en.wikipedia.org/wiki/List_of_current_Major_League_Baseball_stadiums",
+        "publisher": "Wikipedia",
+        "role": "list"
+      },
+      {
+        "title": "Boston Red Sox ballpark page on MLB.com",
+        "url": "https://www.mlb.com/redsox/ballpark",
+        "publisher": "MLB.com",
+        "role": "official"
+      },
+      {
+        "title": "MLB.com ballpark guide directory",
+        "url": "https://www.mlb.com/fans/ballpark-guides/mlb",
+        "publisher": "MLB.com",
+        "role": "extra"
+      }
+    ]
+  },
+  {
+    "name": "Globe Life Field",
+    "slug": "globe-life-field",
+    "city": "Arlington",
+    "state": "Texas",
+    "opened": "2020",
+    "roof_label": "Retractable",
+    "teams": [
+      {
+        "league": "mlb",
+        "name": "Texas Rangers"
+      }
+    ],
+    "capacities": [
+      {
+        "label": "Listed capacity",
+        "value": "40,300"
+      }
+    ],
+    "surface": "Artificial turf",
+    "ballpark_type": "Retro-modern",
+    "center_field": "407 feet",
+    "notes": [],
+    "sources": [
+      {
+        "title": "List of current Major League Baseball stadiums",
+        "url": "https://en.wikipedia.org/wiki/List_of_current_Major_League_Baseball_stadiums",
+        "publisher": "Wikipedia",
+        "role": "list"
+      },
+      {
+        "title": "Texas Rangers ballpark page on MLB.com",
+        "url": "https://www.mlb.com/rangers/ballpark",
+        "publisher": "MLB.com",
+        "role": "official"
+      },
+      {
+        "title": "MLB.com ballpark guide directory",
+        "url": "https://www.mlb.com/fans/ballpark-guides/mlb",
+        "publisher": "MLB.com",
+        "role": "extra"
+      }
+    ]
+  },
+  {
+    "name": "Great American Ball Park",
+    "slug": "great-american-ball-park",
+    "city": "Cincinnati",
+    "state": "Ohio",
+    "opened": "2003",
+    "roof_label": "Open",
+    "teams": [
+      {
+        "league": "mlb",
+        "name": "Cincinnati Reds"
+      }
+    ],
+    "capacities": [
+      {
+        "label": "Listed capacity",
+        "value": "43,500"
+      }
+    ],
+    "surface": "Grass",
+    "ballpark_type": "Retro-modern",
+    "center_field": "404 feet",
+    "notes": [],
+    "sources": [
+      {
+        "title": "List of current Major League Baseball stadiums",
+        "url": "https://en.wikipedia.org/wiki/List_of_current_Major_League_Baseball_stadiums",
+        "publisher": "Wikipedia",
+        "role": "list"
+      },
+      {
+        "title": "Cincinnati Reds ballpark page on MLB.com",
+        "url": "https://www.mlb.com/reds/ballpark",
+        "publisher": "MLB.com",
+        "role": "official"
+      },
+      {
+        "title": "MLB.com ballpark guide directory",
+        "url": "https://www.mlb.com/fans/ballpark-guides/mlb",
+        "publisher": "MLB.com",
+        "role": "extra"
+      }
+    ]
+  },
+  {
+    "name": "Kauffman Stadium",
+    "slug": "kauffman-stadium",
+    "city": "Kansas City",
+    "state": "Missouri",
+    "opened": "1973",
+    "roof_label": "Open",
+    "teams": [
+      {
+        "league": "mlb",
+        "name": "Kansas City Royals"
+      }
+    ],
+    "capacities": [
+      {
+        "label": "Listed capacity",
+        "value": "37,903"
+      }
+    ],
+    "surface": "Grass",
+    "ballpark_type": "Modern and retro-modern",
+    "center_field": "410 feet",
+    "notes": [],
+    "sources": [
+      {
+        "title": "List of current Major League Baseball stadiums",
+        "url": "https://en.wikipedia.org/wiki/List_of_current_Major_League_Baseball_stadiums",
+        "publisher": "Wikipedia",
+        "role": "list"
+      },
+      {
+        "title": "Kansas City Royals ballpark page on MLB.com",
+        "url": "https://www.mlb.com/royals/ballpark",
+        "publisher": "MLB.com",
+        "role": "official"
+      },
+      {
+        "title": "MLB.com ballpark guide directory",
+        "url": "https://www.mlb.com/fans/ballpark-guides/mlb",
+        "publisher": "MLB.com",
+        "role": "extra"
+      }
+    ]
+  },
+  {
+    "name": "LoanDepot Park",
+    "slug": "loandepot-park",
+    "city": "Miami",
+    "state": "Florida",
+    "opened": "2012",
+    "roof_label": "Retractable",
+    "teams": [
+      {
+        "league": "mlb",
+        "name": "Miami Marlins"
+      }
+    ],
+    "capacities": [
+      {
+        "label": "Listed capacity",
+        "value": "36,742"
+      }
+    ],
+    "surface": "Artificial turf",
+    "ballpark_type": "Contemporary",
+    "center_field": "407 feet",
+    "notes": [],
+    "sources": [
+      {
+        "title": "List of current Major League Baseball stadiums",
+        "url": "https://en.wikipedia.org/wiki/List_of_current_Major_League_Baseball_stadiums",
+        "publisher": "Wikipedia",
+        "role": "list"
+      },
+      {
+        "title": "Miami Marlins ballpark page on MLB.com",
+        "url": "https://www.mlb.com/marlins/ballpark",
+        "publisher": "MLB.com",
+        "role": "official"
+      },
+      {
+        "title": "MLB.com ballpark guide directory",
+        "url": "https://www.mlb.com/fans/ballpark-guides/mlb",
+        "publisher": "MLB.com",
+        "role": "extra"
+      }
+    ]
+  },
+  {
+    "name": "Nationals Park",
+    "slug": "nationals-park",
+    "city": "Washington",
+    "state": "District of Columbia",
+    "opened": "2008",
+    "roof_label": "Open",
+    "teams": [
+      {
+        "league": "mlb",
+        "name": "Washington Nationals"
+      }
+    ],
+    "capacities": [
+      {
+        "label": "Listed capacity",
+        "value": "41,373"
+      }
+    ],
+    "surface": "Grass",
+    "ballpark_type": "Retro-modern",
+    "center_field": "402 feet",
+    "notes": [],
+    "sources": [
+      {
+        "title": "List of current Major League Baseball stadiums",
+        "url": "https://en.wikipedia.org/wiki/List_of_current_Major_League_Baseball_stadiums",
+        "publisher": "Wikipedia",
+        "role": "list"
+      },
+      {
+        "title": "Washington Nationals ballpark page on MLB.com",
+        "url": "https://www.mlb.com/nationals/ballpark",
+        "publisher": "MLB.com",
+        "role": "official"
+      },
+      {
+        "title": "MLB.com ballpark guide directory",
+        "url": "https://www.mlb.com/fans/ballpark-guides/mlb",
+        "publisher": "MLB.com",
+        "role": "extra"
+      }
+    ]
+  },
+  {
+    "name": "Oracle Park",
+    "slug": "oracle-park",
+    "city": "San Francisco",
+    "state": "California",
+    "opened": "2000",
+    "roof_label": "Open",
+    "teams": [
+      {
+        "league": "mlb",
+        "name": "San Francisco Giants"
+      }
+    ],
+    "capacities": [
+      {
+        "label": "Listed capacity",
+        "value": "41,331"
+      }
+    ],
+    "surface": "Grass",
+    "ballpark_type": "Retro-classic",
+    "center_field": "391 feet",
+    "notes": [],
+    "sources": [
+      {
+        "title": "List of current Major League Baseball stadiums",
+        "url": "https://en.wikipedia.org/wiki/List_of_current_Major_League_Baseball_stadiums",
+        "publisher": "Wikipedia",
+        "role": "list"
+      },
+      {
+        "title": "San Francisco Giants ballpark page on MLB.com",
+        "url": "https://www.mlb.com/giants/ballpark",
+        "publisher": "MLB.com",
+        "role": "official"
+      },
+      {
+        "title": "MLB.com ballpark guide directory",
+        "url": "https://www.mlb.com/fans/ballpark-guides/mlb",
+        "publisher": "MLB.com",
+        "role": "extra"
+      }
+    ]
+  },
+  {
+    "name": "Oriole Park at Camden Yards",
+    "slug": "oriole-park-at-camden-yards",
+    "city": "Baltimore",
+    "state": "Maryland",
+    "opened": "1992",
+    "roof_label": "Open",
+    "teams": [
+      {
+        "league": "mlb",
+        "name": "Baltimore Orioles"
+      }
+    ],
+    "capacities": [
+      {
+        "label": "Listed capacity",
+        "value": "42,455"
+      }
+    ],
+    "surface": "Grass",
+    "ballpark_type": "Retro-classic",
+    "center_field": "410 feet",
+    "notes": [],
+    "sources": [
+      {
+        "title": "List of current Major League Baseball stadiums",
+        "url": "https://en.wikipedia.org/wiki/List_of_current_Major_League_Baseball_stadiums",
+        "publisher": "Wikipedia",
+        "role": "list"
+      },
+      {
+        "title": "Baltimore Orioles ballpark page on MLB.com",
+        "url": "https://www.mlb.com/orioles/ballpark",
+        "publisher": "MLB.com",
+        "role": "official"
+      },
+      {
+        "title": "MLB.com ballpark guide directory",
+        "url": "https://www.mlb.com/fans/ballpark-guides/mlb",
+        "publisher": "MLB.com",
+        "role": "extra"
+      }
+    ]
+  },
+  {
+    "name": "Petco Park",
+    "slug": "petco-park",
+    "city": "San Diego",
+    "state": "California",
+    "opened": "2004",
+    "roof_label": "Open",
+    "teams": [
+      {
+        "league": "mlb",
+        "name": "San Diego Padres"
+      }
+    ],
+    "capacities": [
+      {
+        "label": "Listed capacity",
+        "value": "39,860"
+      }
+    ],
+    "surface": "Grass",
+    "ballpark_type": "Retro-modern",
+    "center_field": "396 feet",
+    "notes": [],
+    "sources": [
+      {
+        "title": "List of current Major League Baseball stadiums",
+        "url": "https://en.wikipedia.org/wiki/List_of_current_Major_League_Baseball_stadiums",
+        "publisher": "Wikipedia",
+        "role": "list"
+      },
+      {
+        "title": "San Diego Padres ballpark page on MLB.com",
+        "url": "https://www.mlb.com/padres/ballpark",
+        "publisher": "MLB.com",
+        "role": "official"
+      },
+      {
+        "title": "MLB.com ballpark guide directory",
+        "url": "https://www.mlb.com/fans/ballpark-guides/mlb",
+        "publisher": "MLB.com",
+        "role": "extra"
+      }
+    ]
+  },
+  {
+    "name": "PNC Park",
+    "slug": "pnc-park",
+    "city": "Pittsburgh",
+    "state": "Pennsylvania",
+    "opened": "2001",
+    "roof_label": "Open",
+    "teams": [
+      {
+        "league": "mlb",
+        "name": "Pittsburgh Pirates"
+      }
+    ],
+    "capacities": [
+      {
+        "label": "Listed capacity",
+        "value": "38,747"
+      }
+    ],
+    "surface": "Grass",
+    "ballpark_type": "Retro-classic",
+    "center_field": "399 feet",
+    "notes": [],
+    "sources": [
+      {
+        "title": "List of current Major League Baseball stadiums",
+        "url": "https://en.wikipedia.org/wiki/List_of_current_Major_League_Baseball_stadiums",
+        "publisher": "Wikipedia",
+        "role": "list"
+      },
+      {
+        "title": "Pittsburgh Pirates ballpark page on MLB.com",
+        "url": "https://www.mlb.com/pirates/ballpark",
+        "publisher": "MLB.com",
+        "role": "official"
+      },
+      {
+        "title": "MLB.com ballpark guide directory",
+        "url": "https://www.mlb.com/fans/ballpark-guides/mlb",
+        "publisher": "MLB.com",
+        "role": "extra"
+      }
+    ]
+  },
+  {
+    "name": "Progressive Field",
+    "slug": "progressive-field",
+    "city": "Cleveland",
+    "state": "Ohio",
+    "opened": "1994",
+    "roof_label": "Open",
+    "teams": [
+      {
+        "league": "mlb",
+        "name": "Cleveland Guardians"
+      }
+    ],
+    "capacities": [
+      {
+        "label": "Listed capacity",
+        "value": "34,820"
+      }
+    ],
+    "surface": "Grass",
+    "ballpark_type": "Retro-modern",
+    "center_field": "410 feet",
+    "notes": [],
+    "sources": [
+      {
+        "title": "List of current Major League Baseball stadiums",
+        "url": "https://en.wikipedia.org/wiki/List_of_current_Major_League_Baseball_stadiums",
+        "publisher": "Wikipedia",
+        "role": "list"
+      },
+      {
+        "title": "Cleveland Guardians ballpark page on MLB.com",
+        "url": "https://www.mlb.com/guardians/ballpark",
+        "publisher": "MLB.com",
+        "role": "official"
+      },
+      {
+        "title": "MLB.com ballpark guide directory",
+        "url": "https://www.mlb.com/fans/ballpark-guides/mlb",
+        "publisher": "MLB.com",
+        "role": "extra"
+      }
+    ]
+  },
+  {
+    "name": "Rate Field",
+    "slug": "rate-field",
+    "city": "Chicago",
+    "state": "Illinois",
+    "opened": "1991",
+    "roof_label": "Open",
+    "teams": [
+      {
+        "league": "mlb",
+        "name": "Chicago White Sox"
+      }
+    ],
+    "capacities": [
+      {
+        "label": "Listed capacity",
+        "value": "40,615"
+      }
+    ],
+    "surface": "Grass",
+    "ballpark_type": "Modern and retro-classic",
+    "center_field": "400 feet",
+    "notes": [],
+    "sources": [
+      {
+        "title": "List of current Major League Baseball stadiums",
+        "url": "https://en.wikipedia.org/wiki/List_of_current_Major_League_Baseball_stadiums",
+        "publisher": "Wikipedia",
+        "role": "list"
+      },
+      {
+        "title": "Chicago White Sox ballpark page on MLB.com",
+        "url": "https://www.mlb.com/whitesox/ballpark",
+        "publisher": "MLB.com",
+        "role": "official"
+      },
+      {
+        "title": "MLB.com ballpark guide directory",
+        "url": "https://www.mlb.com/fans/ballpark-guides/mlb",
+        "publisher": "MLB.com",
+        "role": "extra"
+      }
+    ]
+  },
+  {
+    "name": "Sutter Health Park",
+    "slug": "sutter-health-park",
+    "city": "West Sacramento",
+    "state": "California",
+    "opened": "2000",
+    "roof_label": "Open",
+    "teams": [
+      {
+        "league": "mlb",
+        "name": "Athletics"
+      }
+    ],
+    "capacities": [
+      {
+        "label": "Listed capacity",
+        "value": "13,416"
+      }
+    ],
+    "surface": "Grass",
+    "ballpark_type": "Retro-modern",
+    "center_field": "403 feet",
+    "notes": [
+      "The Wikipedia MLB list says Sutter Health Park is a temporary home for the Athletics until a new stadium in Las Vegas is completed in 2028. The listed capacity, 13,416, is far smaller than a typical MLB park."
+    ],
+    "sources": [
+      {
+        "title": "List of current Major League Baseball stadiums",
+        "url": "https://en.wikipedia.org/wiki/List_of_current_Major_League_Baseball_stadiums",
+        "publisher": "Wikipedia",
+        "role": "list"
+      },
+      {
+        "title": "Athletics ballpark page on MLB.com",
+        "url": "https://www.mlb.com/athletics/ballpark",
+        "publisher": "MLB.com",
+        "role": "official"
+      },
+      {
+        "title": "MLB.com ballpark guide directory",
+        "url": "https://www.mlb.com/fans/ballpark-guides/mlb",
+        "publisher": "MLB.com",
+        "role": "extra"
+      }
+    ]
+  },
+  {
+    "name": "T-Mobile Park",
+    "slug": "t-mobile-park",
+    "city": "Seattle",
+    "state": "Washington",
+    "opened": "1999",
+    "roof_label": "Retractable",
+    "teams": [
+      {
+        "league": "mlb",
+        "name": "Seattle Mariners"
+      }
+    ],
+    "capacities": [
+      {
+        "label": "Listed capacity",
+        "value": "47,929"
+      }
+    ],
+    "surface": "Grass",
+    "ballpark_type": "Retro-modern",
+    "center_field": "401 feet",
+    "notes": [],
+    "sources": [
+      {
+        "title": "List of current Major League Baseball stadiums",
+        "url": "https://en.wikipedia.org/wiki/List_of_current_Major_League_Baseball_stadiums",
+        "publisher": "Wikipedia",
+        "role": "list"
+      },
+      {
+        "title": "Seattle Mariners ballpark page on MLB.com",
+        "url": "https://www.mlb.com/mariners/ballpark",
+        "publisher": "MLB.com",
+        "role": "official"
+      },
+      {
+        "title": "MLB.com ballpark guide directory",
+        "url": "https://www.mlb.com/fans/ballpark-guides/mlb",
+        "publisher": "MLB.com",
+        "role": "extra"
+      }
+    ]
+  },
+  {
+    "name": "Target Field",
+    "slug": "target-field",
+    "city": "Minneapolis",
+    "state": "Minnesota",
+    "opened": "2010",
+    "roof_label": "Open",
+    "teams": [
+      {
+        "league": "mlb",
+        "name": "Minnesota Twins"
+      }
+    ],
+    "capacities": [
+      {
+        "label": "Listed capacity",
+        "value": "38,544"
+      }
+    ],
+    "surface": "Grass",
+    "ballpark_type": "Retro-modern",
+    "center_field": "404 feet",
+    "notes": [],
+    "sources": [
+      {
+        "title": "List of current Major League Baseball stadiums",
+        "url": "https://en.wikipedia.org/wiki/List_of_current_Major_League_Baseball_stadiums",
+        "publisher": "Wikipedia",
+        "role": "list"
+      },
+      {
+        "title": "Minnesota Twins ballpark page on MLB.com",
+        "url": "https://www.mlb.com/twins/ballpark",
+        "publisher": "MLB.com",
+        "role": "official"
+      },
+      {
+        "title": "MLB.com ballpark guide directory",
+        "url": "https://www.mlb.com/fans/ballpark-guides/mlb",
+        "publisher": "MLB.com",
+        "role": "extra"
+      }
+    ]
+  },
+  {
+    "name": "Tropicana Field",
+    "slug": "tropicana-field",
+    "city": "St. Petersburg",
+    "state": "Florida",
+    "opened": "1990",
+    "roof_label": "Fixed",
+    "teams": [
+      {
+        "league": "mlb",
+        "name": "Tampa Bay Rays"
+      }
+    ],
+    "capacities": [
+      {
+        "label": "Listed capacity",
+        "value": "25,000"
+      }
+    ],
+    "surface": "Artificial turf",
+    "ballpark_type": "Modern",
+    "center_field": "404 feet",
+    "notes": [
+      "The list gives a fixed roof and a listed capacity of 25,000. The citation on that row is a January 2019 USA Today report that the Rays closed the upper deck to shrink the bowl. The list also notes that the building opened in 1990 and the Rays have played there since 1998. Treat the upper deck as closed unless the current official page says it is open."
+    ],
+    "sources": [
+      {
+        "title": "List of current Major League Baseball stadiums",
+        "url": "https://en.wikipedia.org/wiki/List_of_current_Major_League_Baseball_stadiums",
+        "publisher": "Wikipedia",
+        "role": "list"
+      },
+      {
+        "title": "Tampa Bay Rays ballpark page on MLB.com",
+        "url": "https://www.mlb.com/rays/ballpark",
+        "publisher": "MLB.com",
+        "role": "official"
+      },
+      {
+        "title": "MLB.com ballpark guide directory",
+        "url": "https://www.mlb.com/fans/ballpark-guides/mlb",
+        "publisher": "MLB.com",
+        "role": "extra"
+      },
+      {
+        "title": "Tampa Bay Rays reduce seating capacity at Tropicana Field",
+        "url": "https://www.usatoday.com/story/sports/mlb/rays/2019/01/04/rays-tropicana-field-close-upper-deck-reduce-capacity/2481217002/",
+        "publisher": "USA Today",
+        "role": "extra"
+      }
+    ]
+  },
+  {
+    "name": "Truist Park",
+    "slug": "truist-park",
+    "city": "Cumberland",
+    "state": "Georgia",
+    "opened": "2017",
+    "roof_label": "Open",
+    "teams": [
+      {
+        "league": "mlb",
+        "name": "Atlanta Braves"
+      }
+    ],
+    "capacities": [
+      {
+        "label": "Listed capacity",
+        "value": "41,084"
+      }
+    ],
+    "surface": "Grass",
+    "ballpark_type": "Retro-modern",
+    "center_field": "400 feet",
+    "notes": [],
+    "sources": [
+      {
+        "title": "List of current Major League Baseball stadiums",
+        "url": "https://en.wikipedia.org/wiki/List_of_current_Major_League_Baseball_stadiums",
+        "publisher": "Wikipedia",
+        "role": "list"
+      },
+      {
+        "title": "Atlanta Braves ballpark page on MLB.com",
+        "url": "https://www.mlb.com/braves/ballpark",
+        "publisher": "MLB.com",
+        "role": "official"
+      },
+      {
+        "title": "MLB.com ballpark guide directory",
+        "url": "https://www.mlb.com/fans/ballpark-guides/mlb",
+        "publisher": "MLB.com",
+        "role": "extra"
+      }
+    ]
+  },
+  {
+    "name": "Wrigley Field",
+    "slug": "wrigley-field",
+    "city": "Chicago",
+    "state": "Illinois",
+    "opened": "1914",
+    "roof_label": "Open",
+    "teams": [
+      {
+        "league": "mlb",
+        "name": "Chicago Cubs"
+      }
+    ],
+    "capacities": [
+      {
+        "label": "Listed capacity",
+        "value": "41,649"
+      }
+    ],
+    "surface": "Grass",
+    "ballpark_type": "Jewel box",
+    "center_field": "400 feet",
+    "notes": [],
+    "sources": [
+      {
+        "title": "List of current Major League Baseball stadiums",
+        "url": "https://en.wikipedia.org/wiki/List_of_current_Major_League_Baseball_stadiums",
+        "publisher": "Wikipedia",
+        "role": "list"
+      },
+      {
+        "title": "Chicago Cubs ballpark page on MLB.com",
+        "url": "https://www.mlb.com/cubs/ballpark",
+        "publisher": "MLB.com",
+        "role": "official"
+      },
+      {
+        "title": "MLB.com ballpark guide directory",
+        "url": "https://www.mlb.com/fans/ballpark-guides/mlb",
+        "publisher": "MLB.com",
+        "role": "extra"
+      }
+    ]
+  },
+  {
+    "name": "Yankee Stadium",
+    "slug": "yankee-stadium",
+    "city": "Bronx",
+    "state": "New York",
+    "opened": "2009",
+    "roof_label": "Open",
+    "teams": [
+      {
+        "league": "mlb",
+        "name": "New York Yankees"
+      }
+    ],
+    "capacities": [
+      {
+        "label": "Listed capacity",
+        "value": "46,537"
+      }
+    ],
+    "surface": "Grass",
+    "ballpark_type": "Retro-classic",
+    "center_field": "408 feet",
+    "notes": [],
+    "sources": [
+      {
+        "title": "List of current Major League Baseball stadiums",
+        "url": "https://en.wikipedia.org/wiki/List_of_current_Major_League_Baseball_stadiums",
+        "publisher": "Wikipedia",
+        "role": "list"
+      },
+      {
+        "title": "New York Yankees ballpark page on MLB.com",
+        "url": "https://www.mlb.com/yankees/ballpark",
+        "publisher": "MLB.com",
+        "role": "official"
+      },
+      {
+        "title": "MLB.com ballpark guide directory",
+        "url": "https://www.mlb.com/fans/ballpark-guides/mlb",
+        "publisher": "MLB.com",
+        "role": "extra"
+      }
+    ]
+  },
+  {
+    "name": "American Airlines Center",
+    "slug": "american-airlines-center",
+    "city": "Dallas",
+    "state": "Texas",
+    "opened": "2001",
+    "roof_label": "Indoor",
+    "teams": [
+      {
+        "league": "nba",
+        "name": "Dallas Mavericks"
+      },
+      {
+        "league": "nhl",
+        "name": "Dallas Stars"
+      }
+    ],
+    "capacities": [
+      {
+        "label": "Basketball capacity listed",
+        "value": "19,200"
+      },
+      {
+        "label": "Hockey capacity listed",
+        "value": "18,532"
+      }
+    ],
+    "surface": "",
+    "ballpark_type": "",
+    "center_field": "",
+    "notes": [],
+    "sources": [
+      {
+        "title": "List of NBA arenas",
+        "url": "https://en.wikipedia.org/wiki/List_of_NBA_arenas",
+        "publisher": "Wikipedia",
+        "role": "list"
+      },
+      {
+        "title": "List of National Hockey League arenas",
+        "url": "https://en.wikipedia.org/wiki/List_of_National_Hockey_League_arenas",
+        "publisher": "Wikipedia",
+        "role": "list"
+      },
+      {
+        "title": "American Airlines Center",
+        "url": "https://www.americanairlinescenter.com/",
+        "publisher": "American Airlines Center",
+        "role": "official"
+      },
+      {
+        "title": "All 30 NBA team arenas",
+        "url": "https://www.nba.com/news/all-30-nba-arenas-by-team",
+        "publisher": "NBA.com",
+        "role": "extra"
+      }
+    ]
+  },
+  {
+    "name": "Ball Arena",
+    "slug": "ball-arena",
+    "city": "Denver",
+    "state": "Colorado",
+    "opened": "1999",
+    "roof_label": "Indoor",
+    "teams": [
+      {
+        "league": "nba",
+        "name": "Denver Nuggets"
+      },
+      {
+        "league": "nhl",
+        "name": "Colorado Avalanche"
+      }
+    ],
+    "capacities": [
+      {
+        "label": "Basketball capacity listed",
+        "value": "19,520"
+      },
+      {
+        "label": "Hockey capacity listed",
+        "value": "17,809"
+      }
+    ],
+    "surface": "",
+    "ballpark_type": "",
+    "center_field": "",
+    "notes": [],
+    "sources": [
+      {
+        "title": "List of NBA arenas",
+        "url": "https://en.wikipedia.org/wiki/List_of_NBA_arenas",
+        "publisher": "Wikipedia",
+        "role": "list"
+      },
+      {
+        "title": "List of National Hockey League arenas",
+        "url": "https://en.wikipedia.org/wiki/List_of_National_Hockey_League_arenas",
+        "publisher": "Wikipedia",
+        "role": "list"
+      },
+      {
+        "title": "Ball Arena",
+        "url": "https://www.ballarena.com/",
+        "publisher": "Ball Arena",
+        "role": "official"
+      },
+      {
+        "title": "All 30 NBA team arenas",
+        "url": "https://www.nba.com/news/all-30-nba-arenas-by-team",
+        "publisher": "NBA.com",
+        "role": "extra"
+      }
+    ]
+  },
+  {
+    "name": "Barclays Center",
+    "slug": "barclays-center",
+    "city": "Brooklyn",
+    "state": "New York",
+    "opened": "2012",
+    "roof_label": "Indoor",
+    "teams": [
+      {
+        "league": "nba",
+        "name": "Brooklyn Nets"
+      }
+    ],
+    "capacities": [
+      {
+        "label": "Basketball capacity listed",
+        "value": "17,732"
+      }
+    ],
+    "surface": "",
+    "ballpark_type": "",
+    "center_field": "",
+    "notes": [],
+    "sources": [
+      {
+        "title": "List of NBA arenas",
+        "url": "https://en.wikipedia.org/wiki/List_of_NBA_arenas",
+        "publisher": "Wikipedia",
+        "role": "list"
+      },
+      {
+        "title": "Barclays Center",
+        "url": "https://www.barclayscenter.com/",
+        "publisher": "Barclays Center",
+        "role": "official"
+      },
+      {
+        "title": "All 30 NBA team arenas",
+        "url": "https://www.nba.com/news/all-30-nba-arenas-by-team",
+        "publisher": "NBA.com",
+        "role": "extra"
+      }
+    ]
+  },
+  {
+    "name": "Capital One Arena",
+    "slug": "capital-one-arena",
+    "city": "Washington",
+    "state": "District of Columbia",
+    "opened": "1997",
+    "roof_label": "Indoor",
+    "teams": [
+      {
+        "league": "nba",
+        "name": "Washington Wizards"
+      },
+      {
+        "league": "nhl",
+        "name": "Washington Capitals"
+      }
+    ],
+    "capacities": [
+      {
+        "label": "Basketball capacity listed",
+        "value": "20,333"
+      },
+      {
+        "label": "Hockey capacity listed",
+        "value": "18,573"
+      }
+    ],
+    "surface": "",
+    "ballpark_type": "",
+    "center_field": "",
+    "notes": [],
+    "sources": [
+      {
+        "title": "List of NBA arenas",
+        "url": "https://en.wikipedia.org/wiki/List_of_NBA_arenas",
+        "publisher": "Wikipedia",
+        "role": "list"
+      },
+      {
+        "title": "List of National Hockey League arenas",
+        "url": "https://en.wikipedia.org/wiki/List_of_National_Hockey_League_arenas",
+        "publisher": "Wikipedia",
+        "role": "list"
+      },
+      {
+        "title": "Capital One Arena",
+        "url": "https://www.capitalonearena.com/",
+        "publisher": "Capital One Arena",
+        "role": "official"
+      },
+      {
+        "title": "All 30 NBA team arenas",
+        "url": "https://www.nba.com/news/all-30-nba-arenas-by-team",
+        "publisher": "NBA.com",
+        "role": "extra"
+      }
+    ]
+  },
+  {
+    "name": "Chase Center",
+    "slug": "chase-center",
+    "city": "San Francisco",
+    "state": "California",
+    "opened": "2019",
+    "roof_label": "Indoor",
+    "teams": [
+      {
+        "league": "nba",
+        "name": "Golden State Warriors"
+      }
+    ],
+    "capacities": [
+      {
+        "label": "Basketball capacity listed",
+        "value": "18,064"
+      }
+    ],
+    "surface": "",
+    "ballpark_type": "",
+    "center_field": "",
+    "notes": [],
+    "sources": [
+      {
+        "title": "List of NBA arenas",
+        "url": "https://en.wikipedia.org/wiki/List_of_NBA_arenas",
+        "publisher": "Wikipedia",
+        "role": "list"
+      },
+      {
+        "title": "Chase Center",
+        "url": "https://www.chasecenter.com/",
+        "publisher": "Chase Center",
+        "role": "official"
+      },
+      {
+        "title": "All 30 NBA team arenas",
+        "url": "https://www.nba.com/news/all-30-nba-arenas-by-team",
+        "publisher": "NBA.com",
+        "role": "extra"
+      }
+    ]
+  },
+  {
+    "name": "Crypto.com Arena",
+    "slug": "crypto-com-arena",
+    "city": "Los Angeles",
+    "state": "California",
+    "opened": "1999",
+    "roof_label": "Indoor",
+    "teams": [
+      {
+        "league": "nba",
+        "name": "Los Angeles Lakers"
+      },
+      {
+        "league": "nhl",
+        "name": "Los Angeles Kings"
+      }
+    ],
+    "capacities": [
+      {
+        "label": "Basketball capacity listed",
+        "value": "18,997"
+      },
+      {
+        "label": "Hockey capacity listed",
+        "value": "18,230"
+      }
+    ],
+    "surface": "",
+    "ballpark_type": "",
+    "center_field": "",
+    "notes": [],
+    "sources": [
+      {
+        "title": "List of NBA arenas",
+        "url": "https://en.wikipedia.org/wiki/List_of_NBA_arenas",
+        "publisher": "Wikipedia",
+        "role": "list"
+      },
+      {
+        "title": "List of National Hockey League arenas",
+        "url": "https://en.wikipedia.org/wiki/List_of_National_Hockey_League_arenas",
+        "publisher": "Wikipedia",
+        "role": "list"
+      },
+      {
+        "title": "Crypto.com Arena",
+        "url": "https://www.cryptoarena.com/",
+        "publisher": "Crypto.com Arena",
+        "role": "official"
+      },
+      {
+        "title": "All 30 NBA team arenas",
+        "url": "https://www.nba.com/news/all-30-nba-arenas-by-team",
+        "publisher": "NBA.com",
+        "role": "extra"
+      }
+    ]
+  },
+  {
+    "name": "Delta Center",
+    "slug": "delta-center",
+    "city": "Salt Lake City",
+    "state": "Utah",
+    "opened": "1991",
+    "roof_label": "Indoor",
+    "teams": [
+      {
+        "league": "nba",
+        "name": "Utah Jazz"
+      },
+      {
+        "league": "nhl",
+        "name": "Utah Mammoth"
+      }
+    ],
+    "capacities": [
+      {
+        "label": "Basketball capacity listed",
+        "value": "18,306"
+      },
+      {
+        "label": "Hockey capacity listed",
+        "value": "16,020"
+      }
+    ],
+    "surface": "",
+    "ballpark_type": "",
+    "center_field": "",
+    "notes": [
+      "The NHL arena list names the hockey tenant as the Utah Mammoth. The official team site uses that name. The list gives 2024 to 2025 as the first NHL season there."
+    ],
+    "sources": [
+      {
+        "title": "List of NBA arenas",
+        "url": "https://en.wikipedia.org/wiki/List_of_NBA_arenas",
+        "publisher": "Wikipedia",
+        "role": "list"
+      },
+      {
+        "title": "List of National Hockey League arenas",
+        "url": "https://en.wikipedia.org/wiki/List_of_National_Hockey_League_arenas",
+        "publisher": "Wikipedia",
+        "role": "list"
+      },
+      {
+        "title": "All 30 NBA team arenas",
+        "url": "https://www.nba.com/news/all-30-nba-arenas-by-team",
+        "publisher": "NBA.com",
+        "role": "extra"
+      },
+      {
+        "title": "Official Utah Mammoth website",
+        "url": "https://www.nhl.com/utah/",
+        "publisher": "NHL.com",
+        "role": "extra"
+      }
+    ]
+  },
+  {
+    "name": "FedExForum",
+    "slug": "fedexforum",
+    "city": "Memphis",
+    "state": "Tennessee",
+    "opened": "2004",
+    "roof_label": "Indoor",
+    "teams": [
+      {
+        "league": "nba",
+        "name": "Memphis Grizzlies"
+      }
+    ],
+    "capacities": [
+      {
+        "label": "Basketball capacity listed",
+        "value": "17,794"
+      }
+    ],
+    "surface": "",
+    "ballpark_type": "",
+    "center_field": "",
+    "notes": [],
+    "sources": [
+      {
+        "title": "List of NBA arenas",
+        "url": "https://en.wikipedia.org/wiki/List_of_NBA_arenas",
+        "publisher": "Wikipedia",
+        "role": "list"
+      },
+      {
+        "title": "All 30 NBA team arenas",
+        "url": "https://www.nba.com/news/all-30-nba-arenas-by-team",
+        "publisher": "NBA.com",
+        "role": "extra"
+      }
+    ]
+  },
+  {
+    "name": "Fiserv Forum",
+    "slug": "fiserv-forum",
+    "city": "Milwaukee",
+    "state": "Wisconsin",
+    "opened": "2018",
+    "roof_label": "Indoor",
+    "teams": [
+      {
+        "league": "nba",
+        "name": "Milwaukee Bucks"
+      }
+    ],
+    "capacities": [
+      {
+        "label": "Basketball capacity listed",
+        "value": "17,341"
+      }
+    ],
+    "surface": "",
+    "ballpark_type": "",
+    "center_field": "",
+    "notes": [],
+    "sources": [
+      {
+        "title": "List of NBA arenas",
+        "url": "https://en.wikipedia.org/wiki/List_of_NBA_arenas",
+        "publisher": "Wikipedia",
+        "role": "list"
+      },
+      {
+        "title": "Fiserv Forum",
+        "url": "https://www.fiservforum.com/",
+        "publisher": "Fiserv Forum",
+        "role": "official"
+      },
+      {
+        "title": "All 30 NBA team arenas",
+        "url": "https://www.nba.com/news/all-30-nba-arenas-by-team",
+        "publisher": "NBA.com",
+        "role": "extra"
+      }
+    ]
+  },
+  {
+    "name": "Frost Bank Center",
+    "slug": "frost-bank-center",
+    "city": "San Antonio",
+    "state": "Texas",
+    "opened": "2002",
+    "roof_label": "Indoor",
+    "teams": [
+      {
+        "league": "nba",
+        "name": "San Antonio Spurs"
+      }
+    ],
+    "capacities": [
+      {
+        "label": "Basketball capacity listed",
+        "value": "18,354"
+      }
+    ],
+    "surface": "",
+    "ballpark_type": "",
+    "center_field": "",
+    "notes": [],
+    "sources": [
+      {
+        "title": "List of NBA arenas",
+        "url": "https://en.wikipedia.org/wiki/List_of_NBA_arenas",
+        "publisher": "Wikipedia",
+        "role": "list"
+      },
+      {
+        "title": "All 30 NBA team arenas",
+        "url": "https://www.nba.com/news/all-30-nba-arenas-by-team",
+        "publisher": "NBA.com",
+        "role": "extra"
+      }
+    ]
+  },
+  {
+    "name": "Gainbridge Fieldhouse",
+    "slug": "gainbridge-fieldhouse",
+    "city": "Indianapolis",
+    "state": "Indiana",
+    "opened": "1999",
+    "roof_label": "Indoor",
+    "teams": [
+      {
+        "league": "nba",
+        "name": "Indiana Pacers"
+      }
+    ],
+    "capacities": [
+      {
+        "label": "Basketball capacity listed",
+        "value": "17,923"
+      }
+    ],
+    "surface": "",
+    "ballpark_type": "",
+    "center_field": "",
+    "notes": [],
+    "sources": [
+      {
+        "title": "List of NBA arenas",
+        "url": "https://en.wikipedia.org/wiki/List_of_NBA_arenas",
+        "publisher": "Wikipedia",
+        "role": "list"
+      },
+      {
+        "title": "Gainbridge Fieldhouse",
+        "url": "https://www.gainbridgefieldhouse.com/",
+        "publisher": "Gainbridge Fieldhouse",
+        "role": "official"
+      },
+      {
+        "title": "All 30 NBA team arenas",
+        "url": "https://www.nba.com/news/all-30-nba-arenas-by-team",
+        "publisher": "NBA.com",
+        "role": "extra"
+      }
+    ]
+  },
+  {
+    "name": "Golden 1 Center",
+    "slug": "golden-1-center",
+    "city": "Sacramento",
+    "state": "California",
+    "opened": "2016",
+    "roof_label": "Indoor",
+    "teams": [
+      {
+        "league": "nba",
+        "name": "Sacramento Kings"
+      }
+    ],
+    "capacities": [
+      {
+        "label": "Basketball capacity listed",
+        "value": "17,611"
+      }
+    ],
+    "surface": "",
+    "ballpark_type": "",
+    "center_field": "",
+    "notes": [],
+    "sources": [
+      {
+        "title": "List of NBA arenas",
+        "url": "https://en.wikipedia.org/wiki/List_of_NBA_arenas",
+        "publisher": "Wikipedia",
+        "role": "list"
+      },
+      {
+        "title": "All 30 NBA team arenas",
+        "url": "https://www.nba.com/news/all-30-nba-arenas-by-team",
+        "publisher": "NBA.com",
+        "role": "extra"
+      }
+    ]
+  },
+  {
+    "name": "Intuit Dome",
+    "slug": "intuit-dome",
+    "city": "Inglewood",
+    "state": "California",
+    "opened": "2024",
+    "roof_label": "Indoor",
+    "teams": [
+      {
+        "league": "nba",
+        "name": "Los Angeles Clippers"
+      }
+    ],
+    "capacities": [
+      {
+        "label": "Basketball capacity listed",
+        "value": "18,000"
+      }
+    ],
+    "surface": "",
+    "ballpark_type": "",
+    "center_field": "",
+    "notes": [],
+    "sources": [
+      {
+        "title": "List of NBA arenas",
+        "url": "https://en.wikipedia.org/wiki/List_of_NBA_arenas",
+        "publisher": "Wikipedia",
+        "role": "list"
+      },
+      {
+        "title": "Intuit Dome",
+        "url": "https://www.intuitdome.com/",
+        "publisher": "Intuit Dome",
+        "role": "official"
+      },
+      {
+        "title": "All 30 NBA team arenas",
+        "url": "https://www.nba.com/news/all-30-nba-arenas-by-team",
+        "publisher": "NBA.com",
+        "role": "extra"
+      }
+    ]
+  },
+  {
+    "name": "Kaseya Center",
+    "slug": "kaseya-center",
+    "city": "Miami",
+    "state": "Florida",
+    "opened": "1999",
+    "roof_label": "Indoor",
+    "teams": [
+      {
+        "league": "nba",
+        "name": "Miami Heat"
+      }
+    ],
+    "capacities": [
+      {
+        "label": "Basketball capacity listed",
+        "value": "19,600"
+      }
+    ],
+    "surface": "",
+    "ballpark_type": "",
+    "center_field": "",
+    "notes": [],
+    "sources": [
+      {
+        "title": "List of NBA arenas",
+        "url": "https://en.wikipedia.org/wiki/List_of_NBA_arenas",
+        "publisher": "Wikipedia",
+        "role": "list"
+      },
+      {
+        "title": "Kaseya Center",
+        "url": "https://www.kaseyacenter.com/",
+        "publisher": "Kaseya Center",
+        "role": "official"
+      },
+      {
+        "title": "All 30 NBA team arenas",
+        "url": "https://www.nba.com/news/all-30-nba-arenas-by-team",
+        "publisher": "NBA.com",
+        "role": "extra"
+      }
+    ]
+  },
+  {
+    "name": "Kia Center",
+    "slug": "kia-center",
+    "city": "Orlando",
+    "state": "Florida",
+    "opened": "2010",
+    "roof_label": "Indoor",
+    "teams": [
+      {
+        "league": "nba",
+        "name": "Orlando Magic"
+      }
+    ],
+    "capacities": [
+      {
+        "label": "Basketball capacity listed",
+        "value": "18,846"
+      }
+    ],
+    "surface": "",
+    "ballpark_type": "",
+    "center_field": "",
+    "notes": [],
+    "sources": [
+      {
+        "title": "List of NBA arenas",
+        "url": "https://en.wikipedia.org/wiki/List_of_NBA_arenas",
+        "publisher": "Wikipedia",
+        "role": "list"
+      },
+      {
+        "title": "All 30 NBA team arenas",
+        "url": "https://www.nba.com/news/all-30-nba-arenas-by-team",
+        "publisher": "NBA.com",
+        "role": "extra"
+      }
+    ]
+  },
+  {
+    "name": "Little Caesars Arena",
+    "slug": "little-caesars-arena",
+    "city": "Detroit",
+    "state": "Michigan",
+    "opened": "2017",
+    "roof_label": "Indoor",
+    "teams": [
+      {
+        "league": "nba",
+        "name": "Detroit Pistons"
+      },
+      {
+        "league": "nhl",
+        "name": "Detroit Red Wings"
+      }
+    ],
+    "capacities": [
+      {
+        "label": "Basketball capacity listed",
+        "value": "20,332"
+      },
+      {
+        "label": "Hockey capacity listed",
+        "value": "19,515"
+      }
+    ],
+    "surface": "",
+    "ballpark_type": "",
+    "center_field": "",
+    "notes": [],
+    "sources": [
+      {
+        "title": "List of NBA arenas",
+        "url": "https://en.wikipedia.org/wiki/List_of_NBA_arenas",
+        "publisher": "Wikipedia",
+        "role": "list"
+      },
+      {
+        "title": "List of National Hockey League arenas",
+        "url": "https://en.wikipedia.org/wiki/List_of_National_Hockey_League_arenas",
+        "publisher": "Wikipedia",
+        "role": "list"
+      },
+      {
+        "title": "All 30 NBA team arenas",
+        "url": "https://www.nba.com/news/all-30-nba-arenas-by-team",
+        "publisher": "NBA.com",
+        "role": "extra"
+      }
+    ]
+  },
+  {
+    "name": "Madison Square Garden",
+    "slug": "madison-square-garden",
+    "city": "New York City",
+    "state": "New York",
+    "opened": "1968",
+    "roof_label": "Indoor",
+    "teams": [
+      {
+        "league": "nba",
+        "name": "New York Knicks"
+      },
+      {
+        "league": "nhl",
+        "name": "New York Rangers"
+      }
+    ],
+    "capacities": [
+      {
+        "label": "Basketball capacity listed",
+        "value": "19,812"
+      },
+      {
+        "label": "Hockey capacity listed",
+        "value": "18,006"
+      }
+    ],
+    "surface": "",
+    "ballpark_type": "",
+    "center_field": "",
+    "notes": [
+      "The NBA arena list locates Madison Square Garden in New York, New York. This page files the city as New York City.",
+      "The NBA arena list says the building opened in 1968 and was renovated from 2010 to 2013, with a new bowl and concourses inside the original structure."
+    ],
+    "sources": [
+      {
+        "title": "List of NBA arenas",
+        "url": "https://en.wikipedia.org/wiki/List_of_NBA_arenas",
+        "publisher": "Wikipedia",
+        "role": "list"
+      },
+      {
+        "title": "List of National Hockey League arenas",
+        "url": "https://en.wikipedia.org/wiki/List_of_National_Hockey_League_arenas",
+        "publisher": "Wikipedia",
+        "role": "list"
+      },
+      {
+        "title": "Madison Square Garden",
+        "url": "https://www.msg.com/madison-square-garden",
+        "publisher": "Madison Square Garden",
+        "role": "official"
+      },
+      {
+        "title": "All 30 NBA team arenas",
+        "url": "https://www.nba.com/news/all-30-nba-arenas-by-team",
+        "publisher": "NBA.com",
+        "role": "extra"
+      }
+    ]
+  },
+  {
+    "name": "Moda Center",
+    "slug": "moda-center",
+    "city": "Portland",
+    "state": "Oregon",
+    "opened": "1995",
+    "roof_label": "Indoor",
+    "teams": [
+      {
+        "league": "nba",
+        "name": "Portland Trail Blazers"
+      }
+    ],
+    "capacities": [
+      {
+        "label": "Basketball capacity listed",
+        "value": "19,411"
+      }
+    ],
+    "surface": "",
+    "ballpark_type": "",
+    "center_field": "",
+    "notes": [],
+    "sources": [
+      {
+        "title": "List of NBA arenas",
+        "url": "https://en.wikipedia.org/wiki/List_of_NBA_arenas",
+        "publisher": "Wikipedia",
+        "role": "list"
+      },
+      {
+        "title": "All 30 NBA team arenas",
+        "url": "https://www.nba.com/news/all-30-nba-arenas-by-team",
+        "publisher": "NBA.com",
+        "role": "extra"
+      }
+    ]
+  },
+  {
+    "name": "Mortgage Matchup Center",
+    "slug": "mortgage-matchup-center",
+    "city": "Phoenix",
+    "state": "Arizona",
+    "opened": "1992",
+    "roof_label": "Indoor",
+    "teams": [
+      {
+        "league": "nba",
+        "name": "Phoenix Suns"
+      }
+    ],
+    "capacities": [
+      {
+        "label": "Basketball capacity listed",
+        "value": "17,071"
+      }
+    ],
+    "surface": "",
+    "ballpark_type": "",
+    "center_field": "",
+    "notes": [],
+    "sources": [
+      {
+        "title": "List of NBA arenas",
+        "url": "https://en.wikipedia.org/wiki/List_of_NBA_arenas",
+        "publisher": "Wikipedia",
+        "role": "list"
+      },
+      {
+        "title": "All 30 NBA team arenas",
+        "url": "https://www.nba.com/news/all-30-nba-arenas-by-team",
+        "publisher": "NBA.com",
+        "role": "extra"
+      }
+    ]
+  },
+  {
+    "name": "Paycom Center",
+    "slug": "paycom-center",
+    "city": "Oklahoma City",
+    "state": "Oklahoma",
+    "opened": "2002",
+    "roof_label": "Indoor",
+    "teams": [
+      {
+        "league": "nba",
+        "name": "Oklahoma City Thunder"
+      }
+    ],
+    "capacities": [
+      {
+        "label": "Basketball capacity listed",
+        "value": "18,203"
+      }
+    ],
+    "surface": "",
+    "ballpark_type": "",
+    "center_field": "",
+    "notes": [
+      "The NBA arena list gives an opened year of 2002 and a first NBA season of 2005 to 2006."
+    ],
+    "sources": [
+      {
+        "title": "List of NBA arenas",
+        "url": "https://en.wikipedia.org/wiki/List_of_NBA_arenas",
+        "publisher": "Wikipedia",
+        "role": "list"
+      },
+      {
+        "title": "All 30 NBA team arenas",
+        "url": "https://www.nba.com/news/all-30-nba-arenas-by-team",
+        "publisher": "NBA.com",
+        "role": "extra"
+      }
+    ]
+  },
+  {
+    "name": "Rocket Arena",
+    "slug": "rocket-arena",
+    "city": "Cleveland",
+    "state": "Ohio",
+    "opened": "1994",
+    "roof_label": "Indoor",
+    "teams": [
+      {
+        "league": "nba",
+        "name": "Cleveland Cavaliers"
+      }
+    ],
+    "capacities": [
+      {
+        "label": "Basketball capacity listed",
+        "value": "19,432"
+      }
+    ],
+    "surface": "",
+    "ballpark_type": "",
+    "center_field": "",
+    "notes": [],
+    "sources": [
+      {
+        "title": "List of NBA arenas",
+        "url": "https://en.wikipedia.org/wiki/List_of_NBA_arenas",
+        "publisher": "Wikipedia",
+        "role": "list"
+      },
+      {
+        "title": "All 30 NBA team arenas",
+        "url": "https://www.nba.com/news/all-30-nba-arenas-by-team",
+        "publisher": "NBA.com",
+        "role": "extra"
+      }
+    ]
+  },
+  {
+    "name": "Smoothie King Center",
+    "slug": "smoothie-king-center",
+    "city": "New Orleans",
+    "state": "Louisiana",
+    "opened": "1999",
+    "roof_label": "Indoor",
+    "teams": [
+      {
+        "league": "nba",
+        "name": "New Orleans Pelicans"
+      }
+    ],
+    "capacities": [
+      {
+        "label": "Basketball capacity listed",
+        "value": "16,867"
+      }
+    ],
+    "surface": "",
+    "ballpark_type": "",
+    "center_field": "",
+    "notes": [],
+    "sources": [
+      {
+        "title": "List of NBA arenas",
+        "url": "https://en.wikipedia.org/wiki/List_of_NBA_arenas",
+        "publisher": "Wikipedia",
+        "role": "list"
+      },
+      {
+        "title": "All 30 NBA team arenas",
+        "url": "https://www.nba.com/news/all-30-nba-arenas-by-team",
+        "publisher": "NBA.com",
+        "role": "extra"
+      }
+    ]
+  },
+  {
+    "name": "Spectrum Center",
+    "slug": "spectrum-center",
+    "city": "Charlotte",
+    "state": "North Carolina",
+    "opened": "2005",
+    "roof_label": "Indoor",
+    "teams": [
+      {
+        "league": "nba",
+        "name": "Charlotte Hornets"
+      }
+    ],
+    "capacities": [
+      {
+        "label": "Basketball capacity listed",
+        "value": "19,077"
+      }
+    ],
+    "surface": "",
+    "ballpark_type": "",
+    "center_field": "",
+    "notes": [],
+    "sources": [
+      {
+        "title": "List of NBA arenas",
+        "url": "https://en.wikipedia.org/wiki/List_of_NBA_arenas",
+        "publisher": "Wikipedia",
+        "role": "list"
+      },
+      {
+        "title": "All 30 NBA team arenas",
+        "url": "https://www.nba.com/news/all-30-nba-arenas-by-team",
+        "publisher": "NBA.com",
+        "role": "extra"
+      }
+    ]
+  },
+  {
+    "name": "State Farm Arena",
+    "slug": "state-farm-arena",
+    "city": "Atlanta",
+    "state": "Georgia",
+    "opened": "1999",
+    "roof_label": "Indoor",
+    "teams": [
+      {
+        "league": "nba",
+        "name": "Atlanta Hawks"
+      }
+    ],
+    "capacities": [
+      {
+        "label": "Basketball capacity listed",
+        "value": "17,044"
+      }
+    ],
+    "surface": "",
+    "ballpark_type": "",
+    "center_field": "",
+    "notes": [],
+    "sources": [
+      {
+        "title": "List of NBA arenas",
+        "url": "https://en.wikipedia.org/wiki/List_of_NBA_arenas",
+        "publisher": "Wikipedia",
+        "role": "list"
+      },
+      {
+        "title": "State Farm Arena",
+        "url": "https://www.statefarmarena.com/",
+        "publisher": "State Farm Arena",
+        "role": "official"
+      },
+      {
+        "title": "All 30 NBA team arenas",
+        "url": "https://www.nba.com/news/all-30-nba-arenas-by-team",
+        "publisher": "NBA.com",
+        "role": "extra"
+      }
+    ]
+  },
+  {
+    "name": "Target Center",
+    "slug": "target-center",
+    "city": "Minneapolis",
+    "state": "Minnesota",
+    "opened": "1990",
+    "roof_label": "Indoor",
+    "teams": [
+      {
+        "league": "nba",
+        "name": "Minnesota Timberwolves"
+      }
+    ],
+    "capacities": [
+      {
+        "label": "Basketball capacity listed",
+        "value": "18,024"
+      }
+    ],
+    "surface": "",
+    "ballpark_type": "",
+    "center_field": "",
+    "notes": [],
+    "sources": [
+      {
+        "title": "List of NBA arenas",
+        "url": "https://en.wikipedia.org/wiki/List_of_NBA_arenas",
+        "publisher": "Wikipedia",
+        "role": "list"
+      },
+      {
+        "title": "All 30 NBA team arenas",
+        "url": "https://www.nba.com/news/all-30-nba-arenas-by-team",
+        "publisher": "NBA.com",
+        "role": "extra"
+      }
+    ]
+  },
+  {
+    "name": "TD Garden",
+    "slug": "td-garden",
+    "city": "Boston",
+    "state": "Massachusetts",
+    "opened": "1995",
+    "roof_label": "Indoor",
+    "teams": [
+      {
+        "league": "nba",
+        "name": "Boston Celtics"
+      },
+      {
+        "league": "nhl",
+        "name": "Boston Bruins"
+      }
+    ],
+    "capacities": [
+      {
+        "label": "Basketball capacity listed",
+        "value": "18,624"
+      },
+      {
+        "label": "Hockey capacity listed",
+        "value": "17,565"
+      }
+    ],
+    "surface": "",
+    "ballpark_type": "",
+    "center_field": "",
+    "notes": [],
+    "sources": [
+      {
+        "title": "List of NBA arenas",
+        "url": "https://en.wikipedia.org/wiki/List_of_NBA_arenas",
+        "publisher": "Wikipedia",
+        "role": "list"
+      },
+      {
+        "title": "List of National Hockey League arenas",
+        "url": "https://en.wikipedia.org/wiki/List_of_National_Hockey_League_arenas",
+        "publisher": "Wikipedia",
+        "role": "list"
+      },
+      {
+        "title": "TD Garden",
+        "url": "https://www.tdgarden.com/",
+        "publisher": "TD Garden",
+        "role": "official"
+      },
+      {
+        "title": "All 30 NBA team arenas",
+        "url": "https://www.nba.com/news/all-30-nba-arenas-by-team",
+        "publisher": "NBA.com",
+        "role": "extra"
+      }
+    ]
+  },
+  {
+    "name": "Toyota Center",
+    "slug": "toyota-center",
+    "city": "Houston",
+    "state": "Texas",
+    "opened": "2003",
+    "roof_label": "Indoor",
+    "teams": [
+      {
+        "league": "nba",
+        "name": "Houston Rockets"
+      }
+    ],
+    "capacities": [
+      {
+        "label": "Basketball capacity listed",
+        "value": "18,055"
+      }
+    ],
+    "surface": "",
+    "ballpark_type": "",
+    "center_field": "",
+    "notes": [],
+    "sources": [
+      {
+        "title": "List of NBA arenas",
+        "url": "https://en.wikipedia.org/wiki/List_of_NBA_arenas",
+        "publisher": "Wikipedia",
+        "role": "list"
+      },
+      {
+        "title": "All 30 NBA team arenas",
+        "url": "https://www.nba.com/news/all-30-nba-arenas-by-team",
+        "publisher": "NBA.com",
+        "role": "extra"
+      }
+    ]
+  },
+  {
+    "name": "United Center",
+    "slug": "united-center",
+    "city": "Chicago",
+    "state": "Illinois",
+    "opened": "1994",
+    "roof_label": "Indoor",
+    "teams": [
+      {
+        "league": "nba",
+        "name": "Chicago Bulls"
+      },
+      {
+        "league": "nhl",
+        "name": "Chicago Blackhawks"
+      }
+    ],
+    "capacities": [
+      {
+        "label": "Basketball capacity listed",
+        "value": "20,917"
+      },
+      {
+        "label": "Hockey capacity listed",
+        "value": "19,717"
+      }
+    ],
+    "surface": "",
+    "ballpark_type": "",
+    "center_field": "",
+    "notes": [],
+    "sources": [
+      {
+        "title": "List of NBA arenas",
+        "url": "https://en.wikipedia.org/wiki/List_of_NBA_arenas",
+        "publisher": "Wikipedia",
+        "role": "list"
+      },
+      {
+        "title": "List of National Hockey League arenas",
+        "url": "https://en.wikipedia.org/wiki/List_of_National_Hockey_League_arenas",
+        "publisher": "Wikipedia",
+        "role": "list"
+      },
+      {
+        "title": "All 30 NBA team arenas",
+        "url": "https://www.nba.com/news/all-30-nba-arenas-by-team",
+        "publisher": "NBA.com",
+        "role": "extra"
+      }
+    ]
+  },
+  {
+    "name": "Xfinity Mobile Arena",
+    "slug": "xfinity-mobile-arena",
+    "city": "Philadelphia",
+    "state": "Pennsylvania",
+    "opened": "1996",
+    "roof_label": "Indoor",
+    "teams": [
+      {
+        "league": "nba",
+        "name": "Philadelphia 76ers"
+      },
+      {
+        "league": "nhl",
+        "name": "Philadelphia Flyers"
+      }
+    ],
+    "capacities": [
+      {
+        "label": "Basketball capacity listed",
+        "value": "20,007"
+      },
+      {
+        "label": "Hockey capacity listed",
+        "value": "19,538"
+      }
+    ],
+    "surface": "",
+    "ballpark_type": "",
+    "center_field": "",
+    "notes": [],
+    "sources": [
+      {
+        "title": "List of NBA arenas",
+        "url": "https://en.wikipedia.org/wiki/List_of_NBA_arenas",
+        "publisher": "Wikipedia",
+        "role": "list"
+      },
+      {
+        "title": "List of National Hockey League arenas",
+        "url": "https://en.wikipedia.org/wiki/List_of_National_Hockey_League_arenas",
+        "publisher": "Wikipedia",
+        "role": "list"
+      },
+      {
+        "title": "Xfinity Mobile Arena",
+        "url": "https://www.xfinitymobilearena.com/",
+        "publisher": "Xfinity Mobile Arena",
+        "role": "official"
+      },
+      {
+        "title": "All 30 NBA team arenas",
+        "url": "https://www.nba.com/news/all-30-nba-arenas-by-team",
+        "publisher": "NBA.com",
+        "role": "extra"
+      }
+    ]
+  },
+  {
+    "name": "Amerant Bank Arena",
+    "slug": "amerant-bank-arena",
+    "city": "Sunrise",
+    "state": "Florida",
+    "opened": "1998",
+    "roof_label": "Indoor",
+    "teams": [
+      {
+        "league": "nhl",
+        "name": "Florida Panthers"
+      }
+    ],
+    "capacities": [
+      {
+        "label": "Hockey capacity listed",
+        "value": "19,250"
+      }
+    ],
+    "surface": "",
+    "ballpark_type": "",
+    "center_field": "",
+    "notes": [],
+    "sources": [
+      {
+        "title": "List of National Hockey League arenas",
+        "url": "https://en.wikipedia.org/wiki/List_of_National_Hockey_League_arenas",
+        "publisher": "Wikipedia",
+        "role": "list"
+      }
+    ]
+  },
+  {
+    "name": "Benchmark International Arena",
+    "slug": "benchmark-international-arena",
+    "city": "Tampa",
+    "state": "Florida",
+    "opened": "1996",
+    "roof_label": "Indoor",
+    "teams": [
+      {
+        "league": "nhl",
+        "name": "Tampa Bay Lightning"
+      }
+    ],
+    "capacities": [
+      {
+        "label": "Hockey capacity listed",
+        "value": "19,092"
+      }
+    ],
+    "surface": "",
+    "ballpark_type": "",
+    "center_field": "",
+    "notes": [
+      "A Benchmark International page about the arena says the premium club level is called the Benchmark International Club Level and describes an all inclusive space called The Mark. That page does not publish section numbers."
+    ],
+    "sources": [
+      {
+        "title": "List of National Hockey League arenas",
+        "url": "https://en.wikipedia.org/wiki/List_of_National_Hockey_League_arenas",
+        "publisher": "Wikipedia",
+        "role": "list"
+      },
+      {
+        "title": "Lightning arena page",
+        "url": "https://www.nhl.com/lightning/arena/",
+        "publisher": "Tampa Bay Lightning",
+        "role": "official"
+      },
+      {
+        "title": "Benchmark International arena page",
+        "url": "https://www.benchmarkintl.com/arena/",
+        "publisher": "Benchmark International",
+        "role": "extra"
+      }
+    ]
+  },
+  {
+    "name": "Bridgestone Arena",
+    "slug": "bridgestone-arena",
+    "city": "Nashville",
+    "state": "Tennessee",
+    "opened": "1996",
+    "roof_label": "Indoor",
+    "teams": [
+      {
+        "league": "nhl",
+        "name": "Nashville Predators"
+      }
+    ],
+    "capacities": [
+      {
+        "label": "Hockey capacity listed",
+        "value": "17,159"
+      }
+    ],
+    "surface": "",
+    "ballpark_type": "",
+    "center_field": "",
+    "notes": [],
+    "sources": [
+      {
+        "title": "List of National Hockey League arenas",
+        "url": "https://en.wikipedia.org/wiki/List_of_National_Hockey_League_arenas",
+        "publisher": "Wikipedia",
+        "role": "list"
+      },
+      {
+        "title": "Bridgestone Arena",
+        "url": "https://www.bridgestonearena.com/",
+        "publisher": "Bridgestone Arena",
+        "role": "official"
+      }
+    ]
+  },
+  {
+    "name": "Climate Pledge Arena",
+    "slug": "climate-pledge-arena",
+    "city": "Seattle",
+    "state": "Washington",
+    "opened": "2021",
+    "roof_label": "Indoor",
+    "teams": [
+      {
+        "league": "nhl",
+        "name": "Seattle Kraken"
+      }
+    ],
+    "capacities": [
+      {
+        "label": "Hockey capacity listed",
+        "value": "17,151"
+      }
+    ],
+    "surface": "",
+    "ballpark_type": "",
+    "center_field": "",
+    "notes": [
+      "The Wikipedia NHL arena list says Climate Pledge Arena opened in 2021 and reuses the original roof of the Seattle Center Coliseum from 1962 after a reconstruction."
+    ],
+    "sources": [
+      {
+        "title": "List of National Hockey League arenas",
+        "url": "https://en.wikipedia.org/wiki/List_of_National_Hockey_League_arenas",
+        "publisher": "Wikipedia",
+        "role": "list"
+      },
+      {
+        "title": "Climate Pledge Arena",
+        "url": "https://climatepledgearena.com/",
+        "publisher": "Climate Pledge Arena",
+        "role": "official"
+      }
+    ]
+  },
+  {
+    "name": "Enterprise Center",
+    "slug": "enterprise-center",
+    "city": "St. Louis",
+    "state": "Missouri",
+    "opened": "1994",
+    "roof_label": "Indoor",
+    "teams": [
+      {
+        "league": "nhl",
+        "name": "St. Louis Blues"
+      }
+    ],
+    "capacities": [
+      {
+        "label": "Hockey capacity listed",
+        "value": "18,096"
+      }
+    ],
+    "surface": "",
+    "ballpark_type": "",
+    "center_field": "",
+    "notes": [],
+    "sources": [
+      {
+        "title": "List of National Hockey League arenas",
+        "url": "https://en.wikipedia.org/wiki/List_of_National_Hockey_League_arenas",
+        "publisher": "Wikipedia",
+        "role": "list"
+      }
+    ]
+  },
+  {
+    "name": "Grand Casino Arena",
+    "slug": "grand-casino-arena",
+    "city": "Saint Paul",
+    "state": "Minnesota",
+    "opened": "2000",
+    "roof_label": "Indoor",
+    "teams": [
+      {
+        "league": "nhl",
+        "name": "Minnesota Wild"
+      }
+    ],
+    "capacities": [
+      {
+        "label": "Hockey capacity listed",
+        "value": "17,954"
+      }
+    ],
+    "surface": "",
+    "ballpark_type": "",
+    "center_field": "",
+    "notes": [
+      "The Wild game day page uses the name Grand Casino Arena. It mentions a few section numbers only to locate team stores. Those numbers are not a seating recommendation, so they are not repeated here."
+    ],
+    "sources": [
+      {
+        "title": "List of National Hockey League arenas",
+        "url": "https://en.wikipedia.org/wiki/List_of_National_Hockey_League_arenas",
+        "publisher": "Wikipedia",
+        "role": "list"
+      },
+      {
+        "title": "Wild game day page",
+        "url": "https://www.nhl.com/wild/arena/game-day",
+        "publisher": "Minnesota Wild",
+        "role": "official"
+      }
+    ]
+  },
+  {
+    "name": "Honda Center",
+    "slug": "honda-center",
+    "city": "Anaheim",
+    "state": "California",
+    "opened": "1993",
+    "roof_label": "Indoor",
+    "teams": [
+      {
+        "league": "nhl",
+        "name": "Anaheim Ducks"
+      }
+    ],
+    "capacities": [
+      {
+        "label": "Hockey capacity listed",
+        "value": "17,174"
+      }
+    ],
+    "surface": "",
+    "ballpark_type": "",
+    "center_field": "",
+    "notes": [],
+    "sources": [
+      {
+        "title": "List of National Hockey League arenas",
+        "url": "https://en.wikipedia.org/wiki/List_of_National_Hockey_League_arenas",
+        "publisher": "Wikipedia",
+        "role": "list"
+      }
+    ]
+  },
+  {
+    "name": "KeyBank Center",
+    "slug": "keybank-center",
+    "city": "Buffalo",
+    "state": "New York",
+    "opened": "1996",
+    "roof_label": "Indoor",
+    "teams": [
+      {
+        "league": "nhl",
+        "name": "Buffalo Sabres"
+      }
+    ],
+    "capacities": [
+      {
+        "label": "Hockey capacity listed",
+        "value": "19,070"
+      }
+    ],
+    "surface": "",
+    "ballpark_type": "",
+    "center_field": "",
+    "notes": [],
+    "sources": [
+      {
+        "title": "List of National Hockey League arenas",
+        "url": "https://en.wikipedia.org/wiki/List_of_National_Hockey_League_arenas",
+        "publisher": "Wikipedia",
+        "role": "list"
+      },
+      {
+        "title": "KeyBank Center",
+        "url": "https://www.keybankcenter.com/",
+        "publisher": "KeyBank Center",
+        "role": "official"
+      }
+    ]
+  },
+  {
+    "name": "Lenovo Center",
+    "slug": "lenovo-center",
+    "city": "Raleigh",
+    "state": "North Carolina",
+    "opened": "1999",
+    "roof_label": "Indoor",
+    "teams": [
+      {
+        "league": "nhl",
+        "name": "Carolina Hurricanes"
+      }
+    ],
+    "capacities": [
+      {
+        "label": "Hockey capacity listed",
+        "value": "18,547"
+      }
+    ],
+    "surface": "",
+    "ballpark_type": "",
+    "center_field": "",
+    "notes": [],
+    "sources": [
+      {
+        "title": "List of National Hockey League arenas",
+        "url": "https://en.wikipedia.org/wiki/List_of_National_Hockey_League_arenas",
+        "publisher": "Wikipedia",
+        "role": "list"
+      }
+    ]
+  },
+  {
+    "name": "Nationwide Arena",
+    "slug": "nationwide-arena",
+    "city": "Columbus",
+    "state": "Ohio",
+    "opened": "2000",
+    "roof_label": "Indoor",
+    "teams": [
+      {
+        "league": "nhl",
+        "name": "Columbus Blue Jackets"
+      }
+    ],
+    "capacities": [
+      {
+        "label": "Hockey capacity listed",
+        "value": "18,144"
+      }
+    ],
+    "surface": "",
+    "ballpark_type": "",
+    "center_field": "",
+    "notes": [],
+    "sources": [
+      {
+        "title": "List of National Hockey League arenas",
+        "url": "https://en.wikipedia.org/wiki/List_of_National_Hockey_League_arenas",
+        "publisher": "Wikipedia",
+        "role": "list"
+      },
+      {
+        "title": "Nationwide Arena",
+        "url": "https://www.nationwidearena.com/",
+        "publisher": "Nationwide Arena",
+        "role": "official"
+      }
+    ]
+  },
+  {
+    "name": "PPG Paints Arena",
+    "slug": "ppg-paints-arena",
+    "city": "Pittsburgh",
+    "state": "Pennsylvania",
+    "opened": "2010",
+    "roof_label": "Indoor",
+    "teams": [
+      {
+        "league": "nhl",
+        "name": "Pittsburgh Penguins"
+      }
+    ],
+    "capacities": [
+      {
+        "label": "Hockey capacity listed",
+        "value": "18,387"
+      }
+    ],
+    "surface": "",
+    "ballpark_type": "",
+    "center_field": "",
+    "notes": [],
+    "sources": [
+      {
+        "title": "List of National Hockey League arenas",
+        "url": "https://en.wikipedia.org/wiki/List_of_National_Hockey_League_arenas",
+        "publisher": "Wikipedia",
+        "role": "list"
+      },
+      {
+        "title": "PPG Paints Arena",
+        "url": "https://www.ppgpaintsarena.com/",
+        "publisher": "PPG Paints Arena",
+        "role": "official"
+      }
+    ]
+  },
+  {
+    "name": "Prudential Center",
+    "slug": "prudential-center",
+    "city": "Newark",
+    "state": "New Jersey",
+    "opened": "2007",
+    "roof_label": "Indoor",
+    "teams": [
+      {
+        "league": "nhl",
+        "name": "New Jersey Devils"
+      }
+    ],
+    "capacities": [
+      {
+        "label": "Hockey capacity listed",
+        "value": "16,514"
+      }
+    ],
+    "surface": "",
+    "ballpark_type": "",
+    "center_field": "",
+    "notes": [],
+    "sources": [
+      {
+        "title": "List of National Hockey League arenas",
+        "url": "https://en.wikipedia.org/wiki/List_of_National_Hockey_League_arenas",
+        "publisher": "Wikipedia",
+        "role": "list"
+      },
+      {
+        "title": "Prudential Center",
+        "url": "https://www.prucenter.com/",
+        "publisher": "Prudential Center",
+        "role": "official"
+      }
+    ]
+  },
+  {
+    "name": "SAP Center",
+    "slug": "sap-center",
+    "city": "San Jose",
+    "state": "California",
+    "opened": "1993",
+    "roof_label": "Indoor",
+    "teams": [
+      {
+        "league": "nhl",
+        "name": "San Jose Sharks"
+      }
+    ],
+    "capacities": [
+      {
+        "label": "Hockey capacity listed",
+        "value": "17,435"
+      }
+    ],
+    "surface": "",
+    "ballpark_type": "",
+    "center_field": "",
+    "notes": [],
+    "sources": [
+      {
+        "title": "List of National Hockey League arenas",
+        "url": "https://en.wikipedia.org/wiki/List_of_National_Hockey_League_arenas",
+        "publisher": "Wikipedia",
+        "role": "list"
+      },
+      {
+        "title": "SAP Center",
+        "url": "https://www.sapcenter.com/",
+        "publisher": "SAP Center",
+        "role": "official"
+      }
+    ]
+  },
+  {
+    "name": "T-Mobile Arena",
+    "slug": "t-mobile-arena",
+    "city": "Paradise",
+    "state": "Nevada",
+    "opened": "2016",
+    "roof_label": "Indoor",
+    "teams": [
+      {
+        "league": "nhl",
+        "name": "Vegas Golden Knights"
+      }
+    ],
+    "capacities": [
+      {
+        "label": "Hockey capacity listed",
+        "value": "17,367"
+      }
+    ],
+    "surface": "",
+    "ballpark_type": "",
+    "center_field": "",
+    "notes": [],
+    "sources": [
+      {
+        "title": "List of National Hockey League arenas",
+        "url": "https://en.wikipedia.org/wiki/List_of_National_Hockey_League_arenas",
+        "publisher": "Wikipedia",
+        "role": "list"
+      },
+      {
+        "title": "T-Mobile Arena",
+        "url": "https://www.t-mobilearena.com/",
+        "publisher": "T-Mobile Arena",
+        "role": "official"
+      }
+    ]
+  },
+  {
+    "name": "UBS Arena",
+    "slug": "ubs-arena",
+    "city": "Elmont",
+    "state": "New York",
+    "opened": "2021",
+    "roof_label": "Indoor",
+    "teams": [
+      {
+        "league": "nhl",
+        "name": "New York Islanders"
+      }
+    ],
+    "capacities": [
+      {
+        "label": "Hockey capacity listed",
+        "value": "17,255"
+      }
+    ],
+    "surface": "",
+    "ballpark_type": "",
+    "center_field": "",
+    "notes": [],
+    "sources": [
+      {
+        "title": "List of National Hockey League arenas",
+        "url": "https://en.wikipedia.org/wiki/List_of_National_Hockey_League_arenas",
+        "publisher": "Wikipedia",
+        "role": "list"
+      },
+      {
+        "title": "UBS Arena",
+        "url": "https://ubsarena.com/",
+        "publisher": "UBS Arena",
+        "role": "official"
+      }
+    ]
+  },
+  {
+    "name": "Michigan Stadium",
+    "slug": "michigan-stadium",
+    "city": "Ann Arbor",
+    "state": "Michigan",
+    "opened": "1927",
+    "roof_label": "",
+    "teams": [
+      {
+        "league": "college-football",
+        "name": "Michigan"
+      }
+    ],
+    "capacities": [
+      {
+        "label": "Listed capacity",
+        "value": "107,601"
+      }
+    ],
+    "surface": "",
+    "ballpark_type": "",
+    "center_field": "",
+    "notes": [],
+    "sources": [
+      {
+        "title": "List of NCAA Division I FBS football stadiums",
+        "url": "https://en.wikipedia.org/wiki/List_of_NCAA_Division_I_FBS_football_stadiums",
+        "publisher": "Wikipedia",
+        "role": "list"
+      }
+    ]
+  },
+  {
+    "name": "Beaver Stadium",
+    "slug": "beaver-stadium",
+    "city": "University Park",
+    "state": "Pennsylvania",
+    "opened": "1959",
+    "roof_label": "",
+    "teams": [
+      {
+        "league": "college-football",
+        "name": "Penn State"
+      }
+    ],
+    "capacities": [
+      {
+        "label": "Listed capacity",
+        "value": "106,572"
+      }
+    ],
+    "surface": "",
+    "ballpark_type": "",
+    "center_field": "",
+    "notes": [],
+    "sources": [
+      {
+        "title": "List of NCAA Division I FBS football stadiums",
+        "url": "https://en.wikipedia.org/wiki/List_of_NCAA_Division_I_FBS_football_stadiums",
+        "publisher": "Wikipedia",
+        "role": "list"
+      }
+    ]
+  },
+  {
+    "name": "Ohio Stadium",
+    "slug": "ohio-stadium",
+    "city": "Columbus",
+    "state": "Ohio",
+    "opened": "1922",
+    "roof_label": "",
+    "teams": [
+      {
+        "league": "college-football",
+        "name": "Ohio State"
+      }
+    ],
+    "capacities": [
+      {
+        "label": "Listed capacity",
+        "value": "102,780"
+      }
+    ],
+    "surface": "",
+    "ballpark_type": "",
+    "center_field": "",
+    "notes": [],
+    "sources": [
+      {
+        "title": "List of NCAA Division I FBS football stadiums",
+        "url": "https://en.wikipedia.org/wiki/List_of_NCAA_Division_I_FBS_football_stadiums",
+        "publisher": "Wikipedia",
+        "role": "list"
+      }
+    ]
+  },
+  {
+    "name": "Tiger Stadium",
+    "slug": "tiger-stadium",
+    "city": "Baton Rouge",
+    "state": "Louisiana",
+    "opened": "1924",
+    "roof_label": "",
+    "teams": [
+      {
+        "league": "college-football",
+        "name": "LSU"
+      }
+    ],
+    "capacities": [
+      {
+        "label": "Listed capacity",
+        "value": "102,321"
+      }
+    ],
+    "surface": "",
+    "ballpark_type": "",
+    "center_field": "",
+    "notes": [],
+    "sources": [
+      {
+        "title": "List of NCAA Division I FBS football stadiums",
+        "url": "https://en.wikipedia.org/wiki/List_of_NCAA_Division_I_FBS_football_stadiums",
+        "publisher": "Wikipedia",
+        "role": "list"
+      }
+    ]
+  },
+  {
+    "name": "Neyland Stadium",
+    "slug": "neyland-stadium",
+    "city": "Knoxville",
+    "state": "Tennessee",
+    "opened": "1921",
+    "roof_label": "",
+    "teams": [
+      {
+        "league": "college-football",
+        "name": "Tennessee"
+      }
+    ],
+    "capacities": [
+      {
+        "label": "Listed capacity",
+        "value": "101,915"
+      }
+    ],
+    "surface": "",
+    "ballpark_type": "",
+    "center_field": "",
+    "notes": [],
+    "sources": [
+      {
+        "title": "List of NCAA Division I FBS football stadiums",
+        "url": "https://en.wikipedia.org/wiki/List_of_NCAA_Division_I_FBS_football_stadiums",
+        "publisher": "Wikipedia",
+        "role": "list"
+      }
+    ]
+  },
+  {
+    "name": "Darrell K Royal-Texas Memorial Stadium",
+    "slug": "darrell-k-royal-texas-memorial-stadium",
+    "city": "Austin",
+    "state": "Texas",
+    "opened": "1924",
+    "roof_label": "",
+    "teams": [
+      {
+        "league": "college-football",
+        "name": "Texas"
+      }
+    ],
+    "capacities": [
+      {
+        "label": "Listed capacity",
+        "value": "100,119"
+      }
+    ],
+    "surface": "",
+    "ballpark_type": "",
+    "center_field": "",
+    "notes": [],
+    "sources": [
+      {
+        "title": "List of NCAA Division I FBS football stadiums",
+        "url": "https://en.wikipedia.org/wiki/List_of_NCAA_Division_I_FBS_football_stadiums",
+        "publisher": "Wikipedia",
+        "role": "list"
+      }
+    ]
+  },
+  {
+    "name": "Saban Field at Bryant-Denny Stadium",
+    "slug": "saban-field-at-bryant-denny-stadium",
+    "city": "Tuscaloosa",
+    "state": "Alabama",
+    "opened": "1929",
+    "roof_label": "",
+    "teams": [
+      {
+        "league": "college-football",
+        "name": "Alabama"
+      }
+    ],
+    "capacities": [
+      {
+        "label": "Listed capacity",
+        "value": "100,077"
+      }
+    ],
+    "surface": "",
+    "ballpark_type": "",
+    "center_field": "",
+    "notes": [],
+    "sources": [
+      {
+        "title": "List of NCAA Division I FBS football stadiums",
+        "url": "https://en.wikipedia.org/wiki/List_of_NCAA_Division_I_FBS_football_stadiums",
+        "publisher": "Wikipedia",
+        "role": "list"
+      }
+    ]
+  },
+  {
+    "name": "Sanford Stadium",
+    "slug": "sanford-stadium",
+    "city": "Athens",
+    "state": "Georgia",
+    "opened": "1929",
+    "roof_label": "",
+    "teams": [
+      {
+        "league": "college-football",
+        "name": "Georgia"
+      }
+    ],
+    "capacities": [
+      {
+        "label": "Listed capacity",
+        "value": "93,033"
+      }
+    ],
+    "surface": "",
+    "ballpark_type": "",
+    "center_field": "",
+    "notes": [],
+    "sources": [
+      {
+        "title": "List of NCAA Division I FBS football stadiums",
+        "url": "https://en.wikipedia.org/wiki/List_of_NCAA_Division_I_FBS_football_stadiums",
+        "publisher": "Wikipedia",
+        "role": "list"
+      }
+    ]
+  },
+  {
+    "name": "Rose Bowl Stadium",
+    "slug": "rose-bowl-stadium",
+    "city": "Pasadena",
+    "state": "California",
+    "opened": "1921",
+    "roof_label": "",
+    "teams": [
+      {
+        "league": "college-football",
+        "name": "UCLA"
+      }
+    ],
+    "capacities": [
+      {
+        "label": "Listed capacity",
+        "value": "89,702"
+      }
+    ],
+    "surface": "",
+    "ballpark_type": "",
+    "center_field": "",
+    "notes": [],
+    "sources": [
+      {
+        "title": "List of NCAA Division I FBS football stadiums",
+        "url": "https://en.wikipedia.org/wiki/List_of_NCAA_Division_I_FBS_football_stadiums",
+        "publisher": "Wikipedia",
+        "role": "list"
+      }
+    ]
+  },
+  {
+    "name": "Steve Spurrier-Florida Field at Ben Hill Griffin Stadium",
+    "slug": "steve-spurrier-florida-field-at-ben-hill-griffin-stadium",
+    "city": "Gainesville",
+    "state": "Florida",
+    "opened": "1930",
+    "roof_label": "",
+    "teams": [
+      {
+        "league": "college-football",
+        "name": "Florida"
+      }
+    ],
+    "capacities": [
+      {
+        "label": "Listed capacity",
+        "value": "88,548"
+      }
+    ],
+    "surface": "",
+    "ballpark_type": "",
+    "center_field": "",
+    "notes": [],
+    "sources": [
+      {
+        "title": "List of NCAA Division I FBS football stadiums",
+        "url": "https://en.wikipedia.org/wiki/List_of_NCAA_Division_I_FBS_football_stadiums",
+        "publisher": "Wikipedia",
+        "role": "list"
+      }
+    ]
+  },
+  {
+    "name": "Pat Dye Field at Jordan-Hare Stadium",
+    "slug": "pat-dye-field-at-jordan-hare-stadium",
+    "city": "Auburn",
+    "state": "Alabama",
+    "opened": "1939",
+    "roof_label": "",
+    "teams": [
+      {
+        "league": "college-football",
+        "name": "Auburn"
+      }
+    ],
+    "capacities": [
+      {
+        "label": "Listed capacity",
+        "value": "88,043"
+      }
+    ],
+    "surface": "",
+    "ballpark_type": "",
+    "center_field": "",
+    "notes": [],
+    "sources": [
+      {
+        "title": "List of NCAA Division I FBS football stadiums",
+        "url": "https://en.wikipedia.org/wiki/List_of_NCAA_Division_I_FBS_football_stadiums",
+        "publisher": "Wikipedia",
+        "role": "list"
+      }
+    ]
+  },
+  {
+    "name": "Memorial Stadium, Tom Osborne Field",
+    "slug": "memorial-stadium-tom-osborne-field",
+    "city": "Lincoln",
+    "state": "Nebraska",
+    "opened": "1923",
+    "roof_label": "",
+    "teams": [
+      {
+        "league": "college-football",
+        "name": "Nebraska"
+      }
+    ],
+    "capacities": [
+      {
+        "label": "Listed capacity",
+        "value": "85,458"
+      }
+    ],
+    "surface": "",
+    "ballpark_type": "",
+    "center_field": "",
+    "notes": [],
+    "sources": [
+      {
+        "title": "List of NCAA Division I FBS football stadiums",
+        "url": "https://en.wikipedia.org/wiki/List_of_NCAA_Division_I_FBS_football_stadiums",
+        "publisher": "Wikipedia",
+        "role": "list"
+      }
+    ]
+  },
+  {
+    "name": "Frank Howard Field at Clemson Memorial Stadium",
+    "slug": "frank-howard-field-at-clemson-memorial-stadium",
+    "city": "Clemson",
+    "state": "South Carolina",
+    "opened": "1942",
+    "roof_label": "",
+    "teams": [
+      {
+        "league": "college-football",
+        "name": "Clemson"
+      }
+    ],
+    "capacities": [
+      {
+        "label": "Listed capacity",
+        "value": "81,500"
+      }
+    ],
+    "surface": "",
+    "ballpark_type": "",
+    "center_field": "",
+    "notes": [],
+    "sources": [
+      {
+        "title": "List of NCAA Division I FBS football stadiums",
+        "url": "https://en.wikipedia.org/wiki/List_of_NCAA_Division_I_FBS_football_stadiums",
+        "publisher": "Wikipedia",
+        "role": "list"
+      }
+    ]
+  },
+  {
+    "name": "Gaylord Family Oklahoma Memorial Stadium",
+    "slug": "gaylord-family-oklahoma-memorial-stadium",
+    "city": "Norman",
+    "state": "Oklahoma",
+    "opened": "1923",
+    "roof_label": "",
+    "teams": [
+      {
+        "league": "college-football",
+        "name": "Oklahoma"
+      }
+    ],
+    "capacities": [
+      {
+        "label": "Listed capacity",
+        "value": "80,126"
+      }
+    ],
+    "surface": "",
+    "ballpark_type": "",
+    "center_field": "",
+    "notes": [],
+    "sources": [
+      {
+        "title": "List of NCAA Division I FBS football stadiums",
+        "url": "https://en.wikipedia.org/wiki/List_of_NCAA_Division_I_FBS_football_stadiums",
+        "publisher": "Wikipedia",
+        "role": "list"
+      }
+    ]
+  },
+  {
+    "name": "Notre Dame Stadium",
+    "slug": "notre-dame-stadium",
+    "city": "Notre Dame",
+    "state": "Indiana",
+    "opened": "1930",
+    "roof_label": "",
+    "teams": [
+      {
+        "league": "college-football",
+        "name": "Notre Dame"
+      }
+    ],
+    "capacities": [
+      {
+        "label": "Listed capacity",
+        "value": "77,622"
+      }
+    ],
+    "surface": "",
+    "ballpark_type": "",
+    "center_field": "",
+    "notes": [],
+    "sources": [
+      {
+        "title": "List of NCAA Division I FBS football stadiums",
+        "url": "https://en.wikipedia.org/wiki/List_of_NCAA_Division_I_FBS_football_stadiums",
+        "publisher": "Wikipedia",
+        "role": "list"
+      }
+    ]
+  }
+]
