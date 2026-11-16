@@ -1,24 +1,36 @@
 #!/usr/bin/env python3
 """Site QA. Usage: python3 _build/check.py [--launch]
 
-Preview (default): every page has noindex, no beacon.
-Launch: beacon present, noindex only on 404.html.
+Preview (default): every page has noindex, no beacon, no GA4 loader.
+Launch: beacon and consent.js on every page, noindex only on 404.html.
+Launch fails if GA4_ID is empty, or if any page lacks the Cloudflare beacon
+or the GA4 loader (assets/consent.js).
 Also checks canonicals, one h1, JSON-LD, legal line, dashes, descriptions,
-root-relative links, sitemap, robots, ads.txt, CNAME, and unsourced section numbers.
+titles under 60 characters, root-relative links, sitemap, robots, ads.txt,
+CNAME, IndexNow key, and unsourced section numbers.
 """
 import glob, os, re, sys, json, html
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+import config
 files = [f for f in glob.glob(ROOT + "/**/*.html", recursive=True) if "/_build/" not in f]
 home = open(os.path.join(ROOT, "index.html"), encoding="utf-8").read()
 LAUNCH = "noindex" not in home
 if "--launch" in sys.argv and not LAUNCH:
     print("flag says launch but homepage is noindex"); sys.exit(1)
 LEGAL = {"terms", "privacy", "disclaimer", "copyright", "ad-disclosure", "editorial-policy", "contact"}
+FOOT_HREFS = ["/about/", "/contact/", "/privacy/", "/terms/", "/disclaimer/", "/copyright/", "/ad-disclosure/", "/image-policy/"]
+GA4_ID = (getattr(config, "GA4_ID", "") or "").strip()
 bad = 0
 titles = {}
 def fail(msg):
     global bad
     print(msg); bad += 1
+if LAUNCH:
+    if GA4_ID == "":
+        fail("empty GA4_ID")
+    elif not re.fullmatch(r"G-[A-Z0-9]+", GA4_ID):
+        fail("bad GA4_ID")
 linked = {}
 for f in files:
     h = open(f, encoding="utf-8").read()
@@ -44,13 +56,40 @@ for f in files:
     if LAUNCH:
         if rel != "404.html" and "noindex" in h: fail("noindex " + rel)
         if "static.cloudflareinsights.com/beacon.min.js" not in h: fail("nobeacon " + rel)
-    elif "noindex" not in h:
-        fail("preview-missing-noindex " + rel)
+        if 'src="/assets/consent.js' not in h: fail("noga4 " + rel)
+        if 'id="cookie-settings"' not in h: fail("nocookie " + rel)
+        if GA4_ID and GA4_ID not in h: fail("noga4id " + rel)
+        if "googletagmanager.com/gtag/js" in h: fail("ga4-eager " + rel)
+    else:
+        if "noindex" not in h: fail("preview-missing-noindex " + rel)
+        if "beacon.min.js" in h: fail("preview-beacon " + rel)
+        if "consent.js" in h or "WHICH_GA4_ID" in h or "googletagmanager.com" in h:
+            fail("preview-ga4 " + rel)
     if rel.startswith("venues/") and rel.count("/") >= 2:
         if 'class="sources"' not in h or not re.search(r'href="https?://', h[h.find('class="sources"'):]):
             fail("nosource " + rel)
         if re.search(r"\bsections?\s+\d+", vis, re.I): fail("section-number " + rel)
         if '"datePublished": "2026-11-16"' not in h: fail("datePublished " + rel)
+        if 'href="/image-policy/"' not in h: fail("image-policy " + rel)
+        if "/leagues/" not in h or "/guides/how-to-choose-a-seat/" not in h: fail("related " + rel)
+    if rel != "404.html":
+        if '"@type": "Article"' not in h: fail("noarticle " + rel)
+        for href in FOOT_HREFS:
+            if 'href="%s"' % href not in h: fail("footer %s %s" % (href, rel))
+        if 'property="og:title"' not in h or 'property="og:description"' not in h or 'property="og:url"' not in h or 'property="og:image"' not in h:
+            fail("og " + rel)
+    if rel == "index.html" and '"@type": "WebSite"' not in h: fail("nowebsite")
+    if rel != "404.html" and rel != "index.html" and "BreadcrumbList" not in h: fail("nobread " + rel)
+    key = rel == "index.html" or rel.startswith(("venues/", "leagues/", "states/", "cities/", "guides/"))
+    if key and "FAQPage" not in h: fail("nofaq " + rel)
+    if rel == "privacy/index.html":
+        if "Google Analytics 4" not in h: fail("privacy-ga4")
+        if "Cloudflare Web Analytics" not in h: fail("privacy-cf")
+    for img in re.finditer(r"<img\b[^>]*>", h, re.I):
+        start = max(0, img.start() - 300)
+        chunk = h[start:img.end() + 80]
+        if 'href="/image-policy/"' not in chunk:
+            fail("photo " + rel)
     if "FAQPage" in h:
         data = [json.loads(m) for m in re.findall(r'<script type="application/ld\+json">(.*?)</script>', h, re.S)]
         nq = 0
@@ -61,7 +100,7 @@ for f in files:
     t = re.search(r"<title>(.*?)</title>", h).group(1)
     t = html.unescape(t)
     titles.setdefault(t, []).append(rel)
-    if len(t) > 70: print("longtitle", len(t), t)
+    if len(t) >= 60: fail("longtitle %d %s" % (len(t), t))
     for l in re.findall(r'(?:href|src)="(/[^"#?]*)', h):
         p = os.path.join(ROOT, l.lstrip("/"))
         if not (os.path.isfile(p) or os.path.isfile(os.path.join(p, "index.html"))):
@@ -92,6 +131,7 @@ for f in files:
     else: expected.append("https://whichseating.com/" + rel[: -len("index.html")])
 if sorted(locs) != sorted(expected):
     fail("sitemap mismatch %d locs %d pages" % (len(locs), len(expected)))
+if sm.count("<lastmod>") != len(locs): fail("sitemap lastmod")
 robots = open(os.path.join(ROOT, "robots.txt"), encoding="utf-8").read()
 for bot in ["Googlebot", "Bingbot", "GPTBot", "ClaudeBot", "PerplexityBot", "OAI-SearchBot", "CCBot", "Google-Extended", "Applebot-Extended", "Bytespider"]:
     if bot not in robots: fail("robots missing " + bot)
@@ -103,5 +143,19 @@ ads = open(os.path.join(ROOT, "ads.txt"), encoding="utf-8").read()
 if "Placeholder" not in ads: fail("ads.txt")
 cname = open(os.path.join(ROOT, "CNAME"), encoding="utf-8").read().strip()
 if cname != "whichseating.com": fail("CNAME " + cname)
+key = config.INDEXNOW_KEY
+key_path = os.path.join(ROOT, key + ".txt")
+if not os.path.isfile(key_path) or open(key_path, encoding="utf-8").read().strip() != key:
+    fail("indexnow-key")
+cj_path = os.path.join(ROOT, "assets/consent.js")
+if not os.path.isfile(cj_path):
+    fail("consent.js missing")
+else:
+    cj = open(cj_path, encoding="utf-8").read()
+    if "https://www.googletagmanager.com/gtag/js?id=" not in cj: fail("consent-missing-gtag")
+    if "WHICH_GA4_ID" not in cj: fail("consent-id")
+    for signal in ("ad_storage", "ad_user_data", "ad_personalization", "analytics_storage"):
+        if signal not in cj: fail("consent-v2 " + signal)
+    if 'analytics_storage: "denied"' not in cj: fail("consent-default")
 print("files", len(files), "venues", len(venue_hrefs), "launch" if LAUNCH else "noindex", "issues", bad)
 sys.exit(1 if bad else 0)

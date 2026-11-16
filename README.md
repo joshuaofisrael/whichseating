@@ -13,17 +13,16 @@ python3 _build/check.py
 python3 _build/legal_gate.py check
 ```
 
-Launch, after whichseating.com resolves:
+Launch, after whichseating.com resolves. Exact commands are in `LAUNCH-NOTES.md`.
 
 ```bash
-# Flip the single index flag in _build/config.py (INDEXABLE = True), then:
-python3 _build/build.py --launch
-python3 _build/check.py --launch
-python3 _build/legal_gate.py check
+# One line in _build/config.py: GA4_ID = "G-XXXXXXXXXX"
+# Leave INDEXABLE = False. --launch overrides it for this run.
+./deploy.sh --launch
 ./indexnow.sh
 ```
 
-`INDEXABLE` in `_build/config.py` is the only switch for the noindex tag. `--launch` overrides it for one run and also adds the Cloudflare beacon. Paths stay root-relative in both modes. Canonicals, the sitemap, robots, and llms.txt always use `https://whichseating.com/`. `datePublished` is `2026-11-16` and is not the build clock.
+`INDEXABLE` in `_build/config.py` stays false in git. `--launch` overrides it for one run and adds the Cloudflare beacon plus the GA4 consent loader. Paths stay root-relative in both modes. Canonicals, the sitemap, robots, and llms.txt always use `https://whichseating.com/`. `datePublished` is `2026-11-16` and is not the build clock. The launch check fails while `GA4_ID` is empty.
 
 ## What v1 contains
 
@@ -37,4 +36,4 @@ GitHub Pages workflow: `.github/workflows/pages.yml` (deploys the site root on p
 
 ## Not done until the domain is live
 
-Buy whichseating.com, point DNS at GitHub Pages, set `INDEXABLE = True`, rebuild, confirm the certificate, submit the sitemap, run `./indexnow.sh`. The beacon token matches the shared JI Ventures Analytics token; a Cloudflare site entry for this hostname still has to be added before views record. Ads.txt is a placeholder with no seller id. The site shows no ads.
+Buy whichseating.com, point DNS at GitHub Pages, set `GA4_ID`, run `./deploy.sh --launch`, confirm the certificate, submit the sitemap, run `./indexnow.sh`. Leave `INDEXABLE` false. The beacon token matches the shared JI Ventures Analytics token; a Cloudflare site entry for this hostname still has to be added before views record. Ads.txt is a placeholder with no seller id. The site shows no ads.
