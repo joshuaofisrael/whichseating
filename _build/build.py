@@ -138,13 +138,13 @@ def crumbs_html(crumbs):
         else: bits.append('<li aria-current="page">%s</li>' % E(n))
     return '<nav class="crumbs" aria-label="Breadcrumb"><ol>' + "".join(bits) + "</ol></nav>"
 
-def page(path, title, desc, body, crumbs=None, extra_ld=None, legal=False, index=True):
+def page(path, title, desc, body, crumbs=None, extra_ld=None, legal=False, index=True, mod=None):
     if len(title) >= 60: raise SystemExit("title %d %s" % (len(title), path))
     desc = clip(desc)
     if len(desc) > 155: raise SystemExit("desc %d %s" % (len(desc), path))
     canon = url(path if path != "404.html" else "404.html")
     noindex = (not LAUNCH) or (not index)
-    if index: PAGES.append((path if path != "404.html" else "404.html", config.MODIFIED))
+    if index: PAGES.append((path if path != "404.html" else "404.html", mod or config.MODIFIED))
     blocks = []
     if path == "/":
         blocks.append({"@context": "https://schema.org", "@type": "WebSite", "name": BRAND, "url": BASE,
@@ -189,9 +189,9 @@ def page(path, title, desc, body, crumbs=None, extra_ld=None, legal=False, index
 <script src="/assets/site.js?v=1" defer></script>{ga}{beacon}
 </body></html>'''
 
-def article(headline, path, about=None):
+def article(headline, path, about=None, mod=None):
     data = {"@context": "https://schema.org", "@type": "Article", "headline": headline,
-            "datePublished": config.PUBLISHED, "dateModified": config.MODIFIED,
+            "datePublished": mod or config.PUBLISHED, "dateModified": mod or config.MODIFIED,
             "author": {"@type": "Organization", "name": BRAND, "url": BASE},
             "publisher": {"@type": "Organization", "name": BRAND, "url": BASE, "logo": {"@type": "ImageObject", "url": url("/logo.png")}},
             "image": url("/og.png"), "mainEntityOfPage": url(path)}
@@ -320,6 +320,10 @@ def venue_page(v):
     links.append('<a href="/cities/%s/">%s</a>' % (city_slug(v), v["city"]))
     for s in sib:
         links.append('<a href="/venues/%s/">%s</a>' % (s["slug"], s["name"]))
+    if "nfl" in leagues_of(v):
+        links.append('<a href="/guides/nfl-stadiums-with-a-roof/">Which NFL stadiums have a roof</a>')
+    if "mlb" in leagues_of(v):
+        links.append('<a href="/guides/mlb-ballparks-with-a-retractable-roof/">Which MLB ballparks have a retractable roof</a>')
     links += ['<a href="/guides/how-to-choose-a-seat/">How to choose a seat</a>',
               '<a href="/guides/shade-and-sun/">Shade and sun</a>',
               '<a href="/guides/sections-to-skip/">Sections to skip</a>',
@@ -402,9 +406,14 @@ def build_hubs():
                   READ[SPORT[lg]] + " Then open the venue page and the official page linked there.")]
         # fix grammar by hand in the question: "an NFL" is wrong. Use a simple question.
         pairs[1] = ("How do I choose seats for %s?" % LEAGUE_NAME[lg], pairs[1][1])
+        intro = "There are %d %s venues in this guide. Facts on each page are tied to the sources at the bottom of that page." % (len(vs), LEAGUE_NAME[lg])
+        if lg == "nfl":
+            intro += ' See every stadium grouped by roof: <a href="/guides/nfl-stadiums-with-a-roof/">Which NFL stadiums have a roof</a>.'
+        if lg == "mlb":
+            intro += ' See every ballpark grouped by roof: <a href="/guides/mlb-ballparks-with-a-retractable-roof/">Which MLB ballparks have a retractable roof</a>.'
         hub_page(path, "%s Seat Guides | Which Seating" % LEAGUE_NAME[lg],
                  "Which seats to pick at %s venues. Capacity and roof come from the public list." % LEAGUE_NAME[lg],
-                 h1, "There are %d %s venues in this guide. Facts on each page are tied to the sources at the bottom of that page." % (len(vs), LEAGUE_NAME[lg]),
+                 h1, intro,
                  vs, [("/", "Home"), ("/leagues/", "Leagues"), (path, LEAGUE_NAME[lg])], pairs)
     # states
     states = {}
@@ -504,6 +513,8 @@ def home():
 <li><a href="/guides/shade-and-sun/">Shade and sun</a></li>
 <li><a href="/guides/sections-to-skip/">Sections to skip</a></li>
 <li><a href="/guides/accessible-seating/">Accessible seating</a></li>
+<li><a href="/guides/nfl-stadiums-with-a-roof/">Which NFL stadiums have a roof</a></li>
+<li><a href="/guides/mlb-ballparks-with-a-retractable-roof/">Which MLB ballparks have a retractable roof</a></li>
 <li><a href="/states/">Browse by state</a></li>
 <li><a href="/cities/">Browse by city</a></li>
 </ul>
@@ -521,11 +532,15 @@ def home():
     write("/", page("/", "Which Seating: Best Seats at US Stadiums and Arenas", desc, body, extra_ld=[
         article("Which seats should you pick?", "/"), faq_ld(pairs)]))
 
-def guide(path, title, h1, desc, body_html, pairs, sources):
+def guide(path, title, h1, desc, body_html, pairs, sources, mod=None):
+    # mod is the page's own first-publication date, for pages added after the
+    # 16 Nov launch batch. The facts were still checked on config.VERIFIED
+    # (the underlying venue list data was not re-fetched today), so the
+    # "Last verified" line and the Sources "Retrieved" line keep that date.
     crumbs = [("/", "Home"), (path, h1)]
     body = '<article class="prose"><h1>%s</h1><p class="byline">By %s. Last verified %s.</p>%s%s%s</article>' % (
         E(h1), BRAND, config.VERIFIED, body_html, faq_html(pairs), sources_html(sources))
-    write(path, page(path, title, desc, body, crumbs, [article(h1, path), faq_ld(pairs)]))
+    write(path, page(path, title, desc, body, crumbs, [article(h1, path, mod=mod), faq_ld(pairs)], mod=mod))
 
 def guides():
     lists = [
@@ -571,7 +586,8 @@ def guides():
 <li><strong>Fixed.</strong> A baseball roof that does not open. Example: %s.</li>
 <li><strong>Indoor arena.</strong> Sun is not the way to pick a seat. Example: %s.</li>
 <li><strong>Not stated.</strong> The college list we used has no roof column. Example: %s. We do not guess.</li>
-</ul>''' % (vlink("Lambeau Field"), vlink("AT&T Stadium"), vlink("Chase Field"), vlink("Ford Field"),
+</ul>
+<p>See every NFL stadium grouped by roof: <a href="/guides/nfl-stadiums-with-a-roof/">Which NFL stadiums have a roof</a>. See every MLB ballpark grouped by roof: <a href="/guides/mlb-ballparks-with-a-retractable-roof/">Which MLB ballparks have a retractable roof</a>.</p>''' % (vlink("Lambeau Field"), vlink("AT&T Stadium"), vlink("Chase Field"), vlink("Ford Field"),
         vlink("SoFi Stadium"), vlink("Tropicana Field"), vlink("Madison Square Garden"), vlink("Michigan Stadium"))
     p2 = [("Do you publish a sunny section for each park?",
            "No. A shade map by section was not in the sources, so naming one would be a guess."),
@@ -610,6 +626,82 @@ def guides():
     guide("/guides/accessible-seating/", "Accessible Stadium Seating", "Accessible seating",
           "How to find accessible stadium seats without guessing section numbers.",
           g4, p4, lists)
+
+    def roof_groups(lg):
+        groups = {}
+        for v in by_league(lg):
+            groups.setdefault(v["roof_label"], []).append(v)
+        return groups
+
+    def roof_list_html(vs):
+        return "<ul>" + "".join(
+            "<li>%s, home to %s, in %s.</li>" % (vlink(v["name"]), E(team_list(v)), E(place(v))) for v in vs
+        ) + "</ul>"
+
+    nfl_roof = roof_groups("nfl")
+    nfl_order = [("Dome", "Dome (closed in normal use)"),
+                 ("Retractable", "Retractable roof (open or closed by game day)"),
+                 ("Skylight", "Skylight roof (a fixed roof, not open stands)"),
+                 ("Open-air", "Open air (no roof over the seats)")]
+    nfl_sections = "".join(
+        "<h2>%s: %d stadium%s</h2>%s" % (label, len(nfl_roof.get(key, [])), "" if len(nfl_roof.get(key, [])) == 1 else "s", roof_list_html(nfl_roof.get(key, [])))
+        for key, label in nfl_order if nfl_roof.get(key)
+    )
+    g5 = '''<p class="answer">The Wikipedia list of current NFL stadiums classifies all %d stadiums by roof. %d are open air, %d have a retractable roof, %d have a fixed skylight roof, and %d are a dome. The roof class is the first fact worth checking before you weigh sun, wind, or rain for a section.</p>
+%s
+<h2>Why the roof class matters for your seat</h2>
+<p>A dome, or a retractable roof that stays closed for the game, removes sun and weather from the seating decision. A skylight roof still lets in daylight through a fixed structure, but it is not open to the sky the way a true open air bowl is. At an open air stadium, sun and wind are back on the table, and which side of the field gets the afternoon sun depends on the building's orientation, a detail this stadium list does not publish. See <a href="/guides/shade-and-sun/">Shade and sun</a> for how this site reads that question per venue, and the stadium's own page, linked from each venue guide below, for any shade chart it publishes.</p>
+<p>Open the <a href="/leagues/nfl/">NFL venues</a> hub for every stadium page, or use <a href="/guides/how-to-choose-a-seat/">How to choose a seat</a> for the general method.</p>''' % (
+        len(by_league("nfl")), len(nfl_roof.get("Open-air", [])), len(nfl_roof.get("Retractable", [])),
+        len(nfl_roof.get("Skylight", [])), len(nfl_roof.get("Dome", [])), nfl_sections)
+    p5 = [("Which NFL stadiums have a dome?",
+           "On the current Wikipedia stadium list: %s." % ", ".join(v["name"] for v in nfl_roof.get("Dome", []))),
+          ("Which NFL stadiums have a retractable roof?",
+           "On the current Wikipedia stadium list: %s." % ", ".join(v["name"] for v in nfl_roof.get("Retractable", []))),
+          ("Which NFL stadiums are open air with no roof?",
+           "%d of the 30 stadiums on the list have no roof: %s." % (len(nfl_roof.get("Open-air", [])), ", ".join(v["name"] for v in nfl_roof.get("Open-air", [])))),
+          ("Does a retractable roof mean the stadium is always closed?",
+           "No. A retractable roof can be open or closed for a given game. The source list does not say how often each team opens it, so this page does not guess.")]
+    guide("/guides/nfl-stadiums-with-a-roof/", "Which NFL Stadiums Have a Roof?", "Which NFL stadiums have a roof?",
+          "Every NFL stadium grouped by roof type: dome, retractable, skylight, or open air, with the home team and city.",
+          g5, p5, [lists[0]], mod=config.TODAY)
+
+    mlb_roof = roof_groups("mlb")
+    mlb_order = [("Retractable", "Retractable roof (open or closed by game day)"),
+                 ("Fixed", "Fixed roof (does not open)"),
+                 ("Open", "Open air (no roof over the seats)")]
+    mlb_sections = "".join(
+        "<h2>%s: %d ballpark%s</h2>%s" % (label, len(mlb_roof.get(key, [])), "" if len(mlb_roof.get(key, [])) == 1 else "s", roof_list_html(mlb_roof.get(key, [])))
+        for key, label in mlb_order if mlb_roof.get(key)
+    )
+    g6 = '''<p class="answer">The Wikipedia list of current MLB stadiums classifies all %d ballparks by roof. %d have a retractable roof, %d is a fixed roof that does not open, and %d are open air. Checking this before the shade question matters more in baseball than in most sports, because a day game can run three hours or longer under the sun.</p>
+%s
+<h2>The one fixed roof: %s</h2>
+<p>%s is the single MLB park on this list with a fixed, non opening roof, so sun is not a seating factor there the way it is at an open air park. A 2019 report cited on the same Wikipedia list said the team closed the ballpark's upper deck and reduced capacity; the <a href="/guides/sections-to-skip/">Sections to skip</a> guide carries that note and its source. Confirm the current chart before you buy.</p>
+<h2>Why roof class matters for your seat</h2>
+<p>At a retractable roof park, sun exposure depends on whether the roof is open for that game, which this list does not record game by game. At an open air park, sun and wind reach every seat, and which side of the field gets the afternoon sun depends on the park's orientation, a detail these sources do not publish. See <a href="/guides/shade-and-sun/">Shade and sun</a> for our general method, and open the park's own page, linked from each venue guide below, for a shade chart if the team publishes one.</p>
+<p>Open the <a href="/leagues/mlb/">MLB venues</a> hub for every ballpark page, or use <a href="/guides/how-to-choose-a-seat/">How to choose a seat</a> for the general method.</p>''' % (
+        len(by_league("mlb")), len(mlb_roof.get("Retractable", [])), len(mlb_roof.get("Fixed", [])),
+        len(mlb_roof.get("Open", [])), mlb_sections,
+        E(mlb_roof["Fixed"][0]["name"]) if mlb_roof.get("Fixed") else "none",
+        E(mlb_roof["Fixed"][0]["name"]) if mlb_roof.get("Fixed") else "No park on this list carries that label")
+    p6 = [("Which MLB ballparks have a retractable roof?",
+           "On the current Wikipedia stadium list: %s." % ", ".join(v["name"] for v in mlb_roof.get("Retractable", []))),
+          ("Which MLB ballpark has a fixed roof that does not open?",
+           "%s, on the current Wikipedia stadium list." % ", ".join(v["name"] for v in mlb_roof.get("Fixed", []))),
+          ("Which MLB ballparks are open air with no roof?",
+           "%d of the %d parks on the list have no roof, including %s and %s." % (
+               len(mlb_roof.get("Open", [])), len(by_league("mlb")),
+               mlb_roof["Open"][0]["name"] if mlb_roof.get("Open") else "none",
+               mlb_roof["Open"][1]["name"] if len(mlb_roof.get("Open", [])) > 1 else "others on the list")),
+          ("Is the Tropicana Field upper deck open?",
+           "A 2019 report cited on the Wikipedia MLB list said the team closed the upper deck. Confirm the current chart before you buy.")]
+    guide("/guides/mlb-ballparks-with-a-retractable-roof/", "Which MLB Ballparks Have a Retractable Roof?",
+          "Which MLB ballparks have a retractable roof?",
+          "Every MLB ballpark grouped by roof type: retractable, fixed, or open air, with the home team and city.",
+          g6, p6, [lists[1], lists[5], {"title": "Tampa Bay Rays reduce seating capacity at Tropicana Field",
+                            "url": "https://www.usatoday.com/story/sports/mlb/rays/2019/01/04/rays-tropicana-field-close-upper-deck-reduce-capacity/2481217002/",
+                            "publisher": "USA Today", "role": "extra"}], mod=config.TODAY)
 
 def legal_wrap(path, title, h1, desc, inner):
     crumbs = [("/", "Home"), (path, h1)]
@@ -791,6 +883,8 @@ def finish():
                         ("Shade and sun", "/guides/shade-and-sun/"),
                         ("Sections to skip", "/guides/sections-to-skip/"),
                         ("Accessible seating", "/guides/accessible-seating/"),
+                        ("Which NFL stadiums have a roof", "/guides/nfl-stadiums-with-a-roof/"),
+                        ("Which MLB ballparks have a retractable roof", "/guides/mlb-ballparks-with-a-retractable-roof/"),
                         ("Sources and methods", "/methodology/"),
                         ("Editorial policy", "/editorial-policy/")]:
         lines.append("- [%s](%s)" % (title, url(path)))

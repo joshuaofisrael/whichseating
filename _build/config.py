@@ -10,6 +10,11 @@ PUBLISHED = "2026-11-16"
 MODIFIED = "2026-11-16"
 VERIFIED = "16 Nov 2026"
 
+# First-publication date for pages added after the 16 Nov 2026 launch batch.
+# Used only by those pages' own datePublished/dateModified and sitemap lastmod,
+# so the older pages above keep their own lastmod and are not "refreshed" for free.
+TODAY = "2026-11-18"
+
 SITE = "whichseating.com"
 BASE_URL = "https://whichseating.com/"
 BRAND = "Which Seating"
