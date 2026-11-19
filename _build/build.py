@@ -157,12 +157,23 @@ def page(path, title, desc, body, crumbs=None, extra_ld=None, legal=False, index
     if extra_ld: blocks.extend(extra_ld)
     ldh = "".join(ld(b) for b in blocks)
     og_type = "article" if any(b.get("@type") == "Article" for b in blocks) else "website"
+    og_image = url("/og.png")
+    for b in blocks:
+        if b.get("@type") == "Article" and b.get("image"):
+            og_image = b["image"]
+            break
     nav = "".join('<a href="%s"%s>%s</a>' % (p, ' aria-current="page"' if p == path else "", n) for p, n in NAV)
     robots = "noindex, follow" if noindex else "index, follow, max-image-preview:large"
     flag = "<!-- robots: noindex while INDEXABLE is false in _build/config.py -->" if not LAUNCH else "<!-- robots: indexable (INDEXABLE or --launch) -->"
     beacon = ("<!-- Cloudflare Web Analytics --><script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{\"token\": \"%s\"}'></script><!-- End Cloudflare Web Analytics -->" % config.CF_BEACON_TOKEN) if LAUNCH else "<!-- cf-beacon: added when INDEXABLE is true -->"
     # GA4 loads from consent.js only after Accept. The inline id is read by that file.
     ga = ('<script>window.WHICH_GA4_ID=%s;</script><script src="/assets/consent.js?v=1" defer></script>' % json.dumps(config.GA4_ID)) if LAUNCH else "<!-- ga4 loader is added by build.py --launch -->"
+    # AdSense account meta + head script (no ad units). Verification / readiness only.
+    adsense = (
+        '<meta name="google-adsense-account" content="%s">'
+        '<script async src="https://pagead2.googlesyndication.com/pagead/adsbygoogle.js?client=%s" crossorigin="anonymous"></script>'
+        % (config.ADSENSE_PUB, config.ADSENSE_PUB)
+    ) if LAUNCH else "<!-- adsense: added when INDEXABLE is true -->"
     foot_items = list(FOOT)
     if LAUNCH:
         foot_items.append(("Cookie settings", "/privacy/#analytics"))
@@ -178,8 +189,9 @@ def page(path, title, desc, body, crumbs=None, extra_ld=None, legal=False, index
 <title>{E(title)}</title><meta name="description" content="{E(desc)}"><link rel="canonical" href="{canon}">
 <meta name="robots" content="{robots}">
 {flag}
-<meta property="og:type" content="{og_type}"><meta property="og:site_name" content="{BRAND}"><meta property="og:title" content="{E(title)}"><meta property="og:description" content="{E(desc)}"><meta property="og:url" content="{canon}"><meta property="og:image" content="{url("/og.png")}"><meta name="twitter:card" content="summary_large_image">
-<link rel="icon" href="/favicon.svg" type="image/svg+xml"><link rel="stylesheet" href="/assets/style.css?v=2">{ldh}
+{adsense}
+<meta property="og:type" content="{og_type}"><meta property="og:site_name" content="{BRAND}"><meta property="og:title" content="{E(title)}"><meta property="og:description" content="{E(desc)}"><meta property="og:url" content="{canon}"><meta property="og:image" content="{og_image}"><meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml"><link rel="stylesheet" href="/assets/style.css?v=3">{ldh}
 </head><body><a class="skip" href="#main">Skip to content</a>
 <header class="site"><div class="wrap"><a class="brand" href="/">{LOGO}<span>{BRAND}</span></a><nav class="main" aria-label="Main">{nav}</nav></div></header>
 <main id="main" class="wrap">{crumbs_html(crumbs)}{body}<!-- ad-slot: below-content (reserved; no ad code) --></main>
@@ -189,14 +201,47 @@ def page(path, title, desc, body, crumbs=None, extra_ld=None, legal=False, index
 <script src="/assets/site.js?v=1" defer></script>{ga}{beacon}
 </body></html>'''
 
-def article(headline, path, about=None, mod=None):
+def article(headline, path, about=None, mod=None, published=None, image=None):
     data = {"@context": "https://schema.org", "@type": "Article", "headline": headline,
-            "datePublished": mod or config.PUBLISHED, "dateModified": mod or config.MODIFIED,
+            "datePublished": published or mod or config.PUBLISHED,
+            "dateModified": mod or config.MODIFIED,
             "author": {"@type": "Organization", "name": BRAND, "url": BASE},
             "publisher": {"@type": "Organization", "name": BRAND, "url": BASE, "logo": {"@type": "ImageObject", "url": url("/logo.png")}},
-            "image": url("/og.png"), "mainEntityOfPage": url(path)}
+            "image": url(image or "/og.png"), "mainEntityOfPage": url(path)}
     if about: data["about"] = {"@type": "Place", "name": about}
     return data
+
+HERO_IMG = "/assets/images/empty-stadium-dusk.png"
+
+def hero_photo(alt):
+    """One realistic news-photo thumbnail, AI-labelled, linking the image policy."""
+    return (
+        '<figure class="hero-photo">'
+        '<img src="%s" width="1280" height="720" loading="eager" '
+        'alt="%s">'
+        '<figcaption>AI-generated image. <a href="/image-policy/">Image policy</a>.</figcaption>'
+        '</figure>'
+    ) % (HERO_IMG, E(alt))
+
+def next_reads(items, heading="Keep reading"):
+    """3-4 closely related next-read links with thumbnails (engagement rule)."""
+    bits = ['<aside class="next-reads" aria-label="%s"><h2>%s</h2><ul class="next-reads-list">' % (E(heading), E(heading))]
+    for href, title, blurb in items:
+        bits.append(
+            '<li><a href="%s"><img src="%s" width="320" height="180" loading="lazy" alt="">'
+            '<span class="nr-text"><strong>%s</strong><span class="nr-blurb">%s</span></span></a></li>'
+            % (href, HERO_IMG, E(title), E(blurb))
+        )
+    bits.append("</ul></aside>")
+    return "".join(bits)
+
+def compare_box(heading, intro, links):
+    """Compare / check-another box for lookup guides (engagement rule)."""
+    lis = "".join('<li><a href="%s">%s</a></li>' % (href, E(label)) for href, label in links)
+    return (
+        '<aside class="compare" aria-label="%s">'
+        '<h2>%s</h2><p>%s</p><ul>%s</ul></aside>'
+    ) % (E(heading), E(heading), intro, lis)
 
 def faq_ld(pairs):
     return {"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [
@@ -209,13 +254,13 @@ def faq_html(pairs):
     bits.append("</section>")
     return "".join(bits)
 
-def sources_html(sources, extra=""):
+def sources_html(sources, extra="", retrieved=None):
     bits = ['<section class="sources" aria-labelledby="src-h"><h2 id="src-h">Sources</h2><ul>']
     for s in sources:
         bits.append('<li><a href="%s" rel="nofollow noopener" target="_blank">%s</a> (%s)</li>' % (E(s["url"]), E(s["title"]), E(s["publisher"])))
     bits.append("</ul>")
     tail = (extra + " ") if extra else ""
-    bits.append('<p class="note">Retrieved %s. %sWhich Seating is not affiliated with any team, league, or venue. See <a href="/methodology/">how we build these pages</a> and our <a href="/editorial-policy/">editorial policy</a>.</p>' % (config.VERIFIED, tail))
+    bits.append('<p class="note">Retrieved %s. %sWhich Seating is not affiliated with any team, league, or venue. See <a href="/methodology/">how we build these pages</a> and our <a href="/editorial-policy/">editorial policy</a>.</p>' % (retrieved or config.VERIFIED, tail))
     bits.append("</section>")
     return "".join(bits)
 
@@ -374,7 +419,8 @@ def card(v):
 RELATED = ('<p>Related: <a href="/guides/how-to-choose-a-seat/">How to choose a seat</a>'
            ' · <a href="/guides/shade-and-sun/">Shade and sun</a>'
            ' · <a href="/guides/sections-to-skip/">Sections to skip</a>'
-           ' · <a href="/guides/accessible-seating/">Accessible seating</a></p>')
+           ' · <a href="/guides/accessible-seating/">Accessible seating</a>'
+           ' · <a href="/guides/club-seats/">What club seats include</a></p>')
 
 def hub_page(path, title, desc, h1, intro, items, crumbs, pairs):
     # Venue pages carry the external list sources. Hubs link back to those pages and to the guides.
@@ -513,6 +559,7 @@ def home():
 <li><a href="/guides/shade-and-sun/">Shade and sun</a></li>
 <li><a href="/guides/sections-to-skip/">Sections to skip</a></li>
 <li><a href="/guides/accessible-seating/">Accessible seating</a></li>
+<li><a href="/guides/club-seats/">What club seats include</a></li>
 <li><a href="/guides/nfl-stadiums-with-a-roof/">Which NFL stadiums have a roof</a></li>
 <li><a href="/guides/mlb-ballparks-with-a-retractable-roof/">Which MLB ballparks have a retractable roof</a></li>
 <li><a href="/states/">Browse by state</a></li>
@@ -532,15 +579,20 @@ def home():
     write("/", page("/", "Which Seating: Best Seats at US Stadiums and Arenas", desc, body, extra_ld=[
         article("Which seats should you pick?", "/"), faq_ld(pairs)]))
 
-def guide(path, title, h1, desc, body_html, pairs, sources, mod=None):
-    # mod is the page's own first-publication date, for pages added after the
-    # 16 Nov launch batch. The facts were still checked on config.VERIFIED
-    # (the underlying venue list data was not re-fetched today), so the
-    # "Last verified" line and the Sources "Retrieved" line keep that date.
+def guide(path, title, h1, desc, body_html, pairs, sources, mod=None, published=None,
+          verified=None, image=None, sources_retrieved=None):
+    # mod is dateModified / sitemap lastmod. published is datePublished (defaults
+    # to mod, then to the launch PUBLISHED). verified is the byline date.
+    # sources_retrieved overrides the Sources "Retrieved" line when this page
+    # checked different primary pages than the global venue list date.
     crumbs = [("/", "Home"), (path, h1)]
-    body = '<article class="prose"><h1>%s</h1><p class="byline">By %s. Last verified %s.</p>%s%s%s</article>' % (
-        E(h1), BRAND, config.VERIFIED, body_html, faq_html(pairs), sources_html(sources))
-    write(path, page(path, title, desc, body, crumbs, [article(h1, path, mod=mod), faq_ld(pairs)], mod=mod))
+    ver = verified or config.VERIFIED
+    crumbs_hub = '<p class="hubline">Guides hub: <a href="/guides/how-to-choose-a-seat/">How to choose a seat</a> · <a href="/leagues/">Leagues</a> · <a href="/venues/">Venues</a></p>'
+    art = article(h1, path, mod=mod, published=published, image=image)
+    src = sources_html(sources, retrieved=sources_retrieved)
+    body = '<article class="prose"><h1>%s</h1><p class="byline">By %s. Last verified %s.</p>%s%s%s%s</article>' % (
+        E(h1), BRAND, ver, body_html, faq_html(pairs), src, crumbs_hub)
+    write(path, page(path, title, desc, body, crumbs, [art, faq_ld(pairs)], mod=mod))
 
 def guides():
     lists = [
@@ -560,6 +612,7 @@ def guides():
 <li>Use the official page linked on the venue for the real section map. Our bowl drawing is generic.</li>
 <li>On the ticket, reject limited view, obstructed view, and partial view unless you mean to buy that seat. <a href="/guides/sections-to-skip/">Sections to skip</a>.</li>
 <li>For step free seats and companion seats, use the venue accessibility office. <a href="/guides/accessible-seating/">Accessible seating</a>.</li>
+<li>If the ticket names a club, read what that club includes before you treat it as a better view. <a href="/guides/club-seats/">What club seats include</a>.</li>
 </ol>
 <h2>Examples</h2>
 <ul>
@@ -610,22 +663,77 @@ def guides():
           g3, p3, lists + [{"title": "Tampa Bay Rays reduce seating capacity at Tropicana Field",
                            "url": "https://www.usatoday.com/story/sports/mlb/rays/2019/01/04/rays-tropicana-field-close-upper-deck-reduce-capacity/2481217002/",
                            "publisher": "USA Today", "role": "extra"}])
-    g4 = '''<p class="answer">Accessible section numbers were not in the text sources we checked, so this guide does not guess them. The venue accessibility office and the accessible path on the official page are the source.</p>
-<h2>What to ask the venue</h2>
+    mid_reads_access = next_reads([
+        ("/guides/how-to-choose-a-seat/", "How to choose a seat", "The chart, the roof, and the ticket, in that order."),
+        ("/guides/club-seats/", "What club seats include", "Lounge access, covered seats, and in seat service, only where venues publish them."),
+        ("/guides/sections-to-skip/", "Sections to skip", "Limited view, obstructed view, and the one sourced upper deck closure."),
+    ], heading="Related guides")
+    end_reads_access = next_reads([
+        ("/guides/shade-and-sun/", "Shade and sun", "How roof class changes the sun question."),
+        ("/guides/nfl-stadiums-with-a-roof/", "Which NFL stadiums have a roof", "Dome, retractable, skylight, or open air."),
+        ("/leagues/mlb/", "MLB venues", "Every ballpark page on this site."),
+        ("/venues/", "All venues", "Browse every stadium and arena guide."),
+    ], heading="More to read")
+    compare_access = compare_box(
+        "Check another venue",
+        "Accessible inventory is sold per event. Open the venue page on this site, then the official accessibility page it points to.",
+        [("/venues/lambeau-field/", "Lambeau Field"),
+         ("/venues/yankee-stadium/", "Yankee Stadium"),
+         ("/venues/angel-stadium/", "Angel Stadium"),
+         ("/venues/loandepot-park/", "LoanDepot Park"),
+         ("/venues/madison-square-garden/", "Madison Square Garden")])
+    g4 = '''%s
+<p class="answer">Accessible seats are a separate inventory from the standard section map. Buy the wheelchair or companion ticket the venue sells for that event, and confirm the path from your gate. This guide cites only section lists that the venue itself publishes in plain text.</p>
+<h2>What every fan should ask before buying</h2>
 <ul>
-<li>Which sections have wheelchair spaces and companion seats for this event.</li>
-<li>Whether the seat is step free from the gate you will use.</li>
-<li>How to buy that seat. Standard maps often hide accessible inventory until you ask.</li>
+<li>Which ticket type you need: wheelchair space, companion seat, aisle transfer seat, or semi ambulatory seat.</li>
+<li>Whether the path from the gate on your ticket is step free to that section.</li>
+<li>How many companion seats you can buy next to the accessible space.</li>
+<li>Whether the venue relocates season tickets game by game when accessible inventory is still open.</li>
 </ul>
-<p>Official pages we did open, and where you should start, include %s, %s, and %s. None of those pages gave us a plain text list of accessible section numbers on the check dated %s.</p>''' % (
-        vlink("Lambeau Field"), vlink("Madison Square Garden"), vlink("Yankee Stadium"), config.VERIFIED)
+%s
+<h2>What official ADA pages publish today</h2>
+<p>These facts come from the venue pages linked in Sources, checked %s. Layouts change, so re check the live page before you buy.</p>
+<h3>%s</h3>
+<p>The Packers guests with disabilities page says you must obtain wheelchair and companion tickets before entering if you will watch from a wheelchair or scooter. Season ticket holders can trade non accessible tickets for wheelchair and companion seats game by game when inventory remains, with a stated limit of one wheelchair and one companion seat per swap. Wheelchair and companion season seats are sold to people whose disability requires that seating, with a stated limit of four tickets (one wheelchair and up to three companions). The page does not print a public list of accessible section numbers.</p>
+<h3>%s</h3>
+<p>The Yankees Guide for Guests with Disabilities says wheelchair accessible and designated aisle transfer seats are sold at various price points and locations. The same page lists electrical outlets for recharging mobility equipment at wheelchair accessible seating areas in sections 021B, 029, 104 through 106, 109, 111, 114A, 116, 118 through 121B, 124, 127A, 130, 132 through 134, 211, 225, 226, 305, 306, 309, 310, 313 through 315, 317 through 320A, 320C through 323, 325 through 327, 330, 331, 333 and 334, plus bleacher sections 203 and 235 through 237. It also states there are 16 public elevators. For current seat locations, the page directs guests to Disabled Services rather than a printable chart of every open wheelchair row.</p>
+<h3>%s</h3>
+<p>The Angels accessible seating page says more than 500 wheelchair, semi ambulatory, and companion tickets are available. It lists accessible seating on the Terrace Level in sections 201 through 213 and 221 through 233, the Left Field Pavilion in sections 257 through 260, and the Right Field Pavilion in sections 241 through 249. It also lists accessible seats in premium club areas including the Lexus Diamond Club (sections 114 through 122) and Club Level sections 322 and 330, and notes that seating in those premium areas offers in seat food and beverage service. A buyer of an accessible seat may purchase up to three additional contiguous companion seats in the same row when they remain available.</p>
+<h3>%s</h3>
+<p>The Marlins disability access guide says wheelchair accessible and semi ambulatory seats with operable armrests sit on all ballpark levels, and one companion or escort may accompany a guest with a disability in the designated areas. The same guide lists electrical outlets at wheelchair accessible seating on the Promenade Level (sections 1, 9 through 20, 28, 30 through 31, 35 and 39), Legends Level (sections 205, 211, 220 and 223), and Vista Level (sections 309 through 311, 317, 319, 320 and 322). Wheelchair transport is offered from an entrance to a seating section and back.</p>
+<h3>%s</h3>
+<p>The Madison Square Garden site states that the arena provides wheelchair seats, designated aisle transfer seats, and companion seats, plus accessible restrooms and assisted listening devices. It does not publish a plain text list of accessible section numbers on the pages we opened; it points guests to Accessibility Services for event specific inventory.</p>
+%s
+<h2>How this ties to picking any seat</h2>
+<p>Accessible inventory is not a substitute for reading the chart. If you also care about sun, roof, or a limited view label, use <a href="/guides/how-to-choose-a-seat/">How to choose a seat</a>, <a href="/guides/shade-and-sun/">Shade and sun</a>, and <a href="/guides/sections-to-skip/">Sections to skip</a> alongside the venue accessibility office.</p>
+%s''' % (
+        hero_photo("Empty stadium seating bowl at dusk with lights on along the aisles"),
+        mid_reads_access, config.VERIFIED_TODAY,
+        vlink("Lambeau Field"), vlink("Yankee Stadium"), vlink("Angel Stadium"),
+        vlink("LoanDepot Park"), vlink("Madison Square Garden"),
+        compare_access, end_reads_access)
     p4 = [("Which section is accessible?",
-           "We do not name one. Ask the venue. Accessible inventory is not the same as the standard section map."),
+           "Only sections the venue lists for accessible inventory. Yankee Stadium, Angel Stadium, and LoanDepot Park publish section lists on their ADA pages linked in Sources. Lambeau Field and Madison Square Garden direct you to their accessibility offices instead of a public section list."),
           ("Can a companion sit with me?",
-           "Venues sell companion seats next to many wheelchair spaces. The venue, not this page, confirms the pair for your event.")]
-    guide("/guides/accessible-seating/", "Accessible Stadium Seating", "Accessible seating",
-          "How to find accessible stadium seats without guessing section numbers.",
-          g4, p4, lists)
+           "Yes when the venue sells companion seats. The Angels page allows up to three contiguous companions with an accessible seat when available. The Marlins guide allows one companion or escort in designated areas. Lambeau Field states limits on wheelchair and companion pairs. Confirm the pair on the ticket for your event."),
+          ("Do accessible seats appear on the normal map?",
+           "Often not until you ask for accessible inventory. Treat the ADA page and the ticket office path as the source, not a generic seating diagram."),
+          ("What if my ticketed seat does not work for my disability?",
+           "Several venues describe a relocation process through guest services when a ticketed seat cannot accommodate a disability. Ask at the venue; this guide does not invent a relocation rule.")]
+    access_sources = [
+        {"title": "Packers Services for Guests with Disabilities", "url": "https://www.packers.com/tickets/guests-with-disabilities", "publisher": "Green Bay Packers", "role": "official"},
+        {"title": "Yankee Stadium Guide For Guests With Disabilities", "url": "https://www.mlb.com/yankees/ballpark/information/disabled-services", "publisher": "MLB.com / New York Yankees", "role": "official"},
+        {"title": "Accessible Seating | Los Angeles Angels", "url": "https://www.mlb.com/angels/tickets/accessible-seating", "publisher": "MLB.com / Los Angeles Angels", "role": "official"},
+        {"title": "Accessibility Guide | Los Angeles Angels", "url": "https://www.mlb.com/angels/ballpark/accessibility-guide", "publisher": "MLB.com / Los Angeles Angels", "role": "official"},
+        {"title": "Access Guide for Guests With Disabilities | Miami Marlins", "url": "https://www.mlb.com/marlins/ballpark/disability-access-guide", "publisher": "MLB.com / Miami Marlins", "role": "official"},
+        {"title": "Madison Square Garden", "url": "https://www.msg.com/madison-square-garden", "publisher": "Madison Square Garden", "role": "official"},
+    ]
+    guide("/guides/accessible-seating/", "Accessible Stadium Seating: What Venues Publish",
+          "Accessible seating: what venues publish",
+          "Accessible stadium seats from official ADA pages: wheelchair, companion, and aisle transfer facts without guessing.",
+          g4, p4, access_sources, mod=config.TODAY, published=config.PUBLISHED,
+          verified=config.VERIFIED_TODAY, image=HERO_IMG, sources_retrieved=config.VERIFIED_TODAY)
 
     def roof_groups(lg):
         groups = {}
@@ -664,7 +772,7 @@ def guides():
            "No. A retractable roof can be open or closed for a given game. The source list does not say how often each team opens it, so this page does not guess.")]
     guide("/guides/nfl-stadiums-with-a-roof/", "Which NFL Stadiums Have a Roof?", "Which NFL stadiums have a roof?",
           "Every NFL stadium grouped by roof type: dome, retractable, skylight, or open air, with the home team and city.",
-          g5, p5, [lists[0]], mod=config.TODAY)
+          g5, p5, [lists[0]], mod="2026-11-18")
 
     mlb_roof = roof_groups("mlb")
     mlb_order = [("Retractable", "Retractable roof (open or closed by game day)"),
@@ -701,12 +809,94 @@ def guides():
           "Every MLB ballpark grouped by roof type: retractable, fixed, or open air, with the home team and city.",
           g6, p6, [lists[1], lists[5], {"title": "Tampa Bay Rays reduce seating capacity at Tropicana Field",
                             "url": "https://www.usatoday.com/story/sports/mlb/rays/2019/01/04/rays-tropicana-field-close-upper-deck-reduce-capacity/2481217002/",
-                            "publisher": "USA Today", "role": "extra"}], mod=config.TODAY)
+                            "publisher": "USA Today", "role": "extra"}], mod="2026-11-18")
 
-def legal_wrap(path, title, h1, desc, inner):
+    mid_reads_club = next_reads([
+        ("/guides/how-to-choose-a-seat/", "How to choose a seat", "Roof, chart, and ticket labels before you spend on a club."),
+        ("/guides/shade-and-sun/", "Shade and sun", "Open air vs retractable vs dome, without invented shade maps."),
+        ("/guides/nfl-stadiums-with-a-roof/", "Which NFL stadiums have a roof", "Roof class for every NFL stadium on our list."),
+    ], heading="Related guides")
+    end_reads_club = next_reads([
+        ("/guides/mlb-ballparks-with-a-retractable-roof/", "MLB retractable roofs", "Which ballparks can close the roof on game day."),
+        ("/guides/accessible-seating/", "Accessible seating", "What ADA pages publish about wheelchair and companion seats."),
+        ("/guides/sections-to-skip/", "Sections to skip", "Limited view and obstructed labels to reject on the ticket."),
+        ("/leagues/nfl/", "NFL venues", "Every NFL stadium guide on this site."),
+    ], heading="More to read")
+    compare_club = compare_box(
+        "Check another seat question",
+        "Club amenities are venue specific. Pair this page with a venue guide, a roof guide, or the accessible seating page.",
+        [("/venues/lucas-oil-stadium/", "Lucas Oil Stadium"),
+         ("/venues/empower-field-at-mile-high/", "Empower Field at Mile High"),
+         ("/venues/soldier-field/", "Soldier Field"),
+         ("/venues/loandepot-park/", "LoanDepot Park"),
+         ("/venues/angel-stadium/", "Angel Stadium"),
+         ("/guides/shade-and-sun/", "Shade and sun")])
+    g7 = '''%s
+<p class="answer">Club seats are a premium ticket tier. What you get is whatever that venue prints for that club: lounge access, padded seats, private entrances, and sometimes included food or in seat service. This page compares only official club pages we opened on %s. It does not publish prices, and it does not invent a package for a stadium we did not check.</p>
+<h2>What "club seats" usually means on official pages</h2>
+<p>Across the NFL and MLB club pages below, three promises show up again and again:</p>
+<ul>
+<li><strong>Lounge access.</strong> A climate controlled or private club space behind or beside the seats, often open before kickoff or first pitch and for a stated window after the game.</li>
+<li><strong>Better seat hardware.</strong> Wider or padded seats, sometimes with extra leg room, in a named club section.</li>
+<li><strong>Separate entry.</strong> VIP or private entrances that skip the general gate line.</li>
+</ul>
+<p>Food and drink are not one rule. Some clubs include food and selected drinks. Others sell specialty food inside the lounge. Always read the amenity list for the exact club name on your ticket.</p>
+%s
+<h2>NFL examples from team club pages</h2>
+<h3>%s (Indianapolis Colts)</h3>
+<p>The Colts club seats page describes the KennMar East Club and Ascension St. Vincent West Club. It lists padded seats with extra leg room between the 25 yard lines, VIP entrances for premium ticket holders, club lounges with live music and complimentary samplings, and a concierge desk in each lounge. Lounge sampling is described as available from gate open until kickoff while supplies last. The page does not claim a full all inclusive meal plan for every club seat.</p>
+<h3>%s (Denver Broncos)</h3>
+<p>The Broncos United Globe Club page lists club level access three hours before kickoff and up to one hour after the game, exclusive premium entrances, extra wide 22 inch padded seats, and high end food and beverage with named action stations, pizza ovens, and full service bars. West Club sections 300 through 315 and East Club sections 331 through 346 are named on that page.</p>
+<h3>%s (Chicago Bears)</h3>
+<p>The Bears United Club page places club seats on the east side of Soldier Field on the 200 and 300 levels and lists climate controlled indoor lounge access for club seat ticket holders. It says the lounge opens two hours before kickoff and stays open about five hours after the game starts. Amenities named on the page include private entrances and restrooms, specialty food, 12 full service bars, 21 inch wide cushioned seats, a private team store, and more than 140 indoor TVs. The page also lists the United Club section numbers on those two levels.</p>
+<h2>MLB examples from team premium pages</h2>
+<h3>%s (Miami Marlins)</h3>
+<p>The Marlins PNC Club page lists valet parking, a private entrance, all inclusive food and beverage including house wine, beer, and soft drinks, a private lounge, large cushioned seats, and in seat service. It states the club is available to Marlins Members.</p>
+<h3>%s (Los Angeles Angels)</h3>
+<p>The Angels Don Julio Club page places seats behind home plate on the Terrace Level, with executive style seating and countertops, exclusive lounge access, food and non alcoholic beverages included, and preferred parking options. It does not describe in seat delivery on that page.</p>
+%s
+<h2>Are club seats "worth it"?</h2>
+<p>Which Seating does not publish prices or a value score. Worth depends on which printed amenity you actually need:</p>
+<ol>
+<li><strong>Watching the play.</strong> A club seat still has to face the field well. Use <a href="/guides/how-to-choose-a-seat/">How to choose a seat</a> and the venue chart. A lounge does not fix a bad angle.</li>
+<li><strong>Weather.</strong> An indoor lounge helps at an open air stadium when you can leave your seat. It does not change the roof over the seat itself. Check <a href="/guides/nfl-stadiums-with-a-roof/">Which NFL stadiums have a roof</a> and <a href="/guides/mlb-ballparks-with-a-retractable-roof/">Which MLB ballparks have a retractable roof</a> first.</li>
+<li><strong>Food included vs for purchase.</strong> The Marlins PNC Club and Angels Don Julio Club pages describe included food. The Colts club page emphasizes lounge samplings and specialty menus. The Broncos page highlights action stations and bars. Match the ticket name to the amenity list.</li>
+<li><strong>In seat service.</strong> The Marlins PNC Club page names in seat service. The Angels accessible seating page notes in seat service in some premium accessible areas. Do not assume every club seat includes runners.</li>
+<li><strong>Access time.</strong> Broncos and Bears pages state lounge open windows before and after the game. If early entry matters, verify the hours on the club page for that season.</li>
+</ol>
+<p>If the official page does not list lounge access, covered seating, or in seat service for the product on your ticket, this site will not invent them. Open the venue page on Which Seating, then the official premium link in its sources.</p>
+%s''' % (
+        hero_photo("Empty stadium seating bowl at dusk with lights on along the aisles"),
+        config.VERIFIED_TODAY, mid_reads_club,
+        vlink("Lucas Oil Stadium"), vlink("Empower Field at Mile High"), vlink("Soldier Field"),
+        vlink("LoanDepot Park"), vlink("Angel Stadium"),
+        compare_club, end_reads_club)
+    p7 = [("What do club seats include?",
+           "Whatever that venue lists for the named club: often lounge access, padded seats, and a private entrance. Food may be included or sold separately. Read the club page for the ticket name you hold."),
+          ("Do club seats come with in seat service?",
+           "Only when the venue says so. The Marlins PNC Club page names in seat service. Other club pages we checked emphasize lounges and bars instead. Do not assume runners at every club seat."),
+          ("Are club seats covered from sun and rain?",
+           "Not automatically. A climate controlled lounge is not the same as a roof over your seat. Check the stadium roof class and the club page before you buy."),
+          ("Are club seats worth the upgrade?",
+           "This site does not publish prices or a value score. Decide from the printed amenities: lounge hours, included food, seat width, private entry, and whether the view matches what you want to watch.")]
+    club_sources = [
+        {"title": "Colts Premium Seating | Club Seating", "url": "https://www.colts.com/tickets/premium-seating/club-seats/", "publisher": "Indianapolis Colts", "role": "official"},
+        {"title": "United Globe Club", "url": "https://www.denverbroncos.com/tickets/premiumseating/unitedclublevel", "publisher": "Denver Broncos", "role": "official"},
+        {"title": "United Club | Chicago Bears", "url": "https://www.chicagobears.com/game-day/united-club", "publisher": "Chicago Bears", "role": "official"},
+        {"title": "PNC Club | Miami Marlins", "url": "https://www.mlb.com/marlins/tickets/premium/the-club", "publisher": "MLB.com / Miami Marlins", "role": "official"},
+        {"title": "Don Julio Club | Los Angeles Angels", "url": "https://www.mlb.com/angels/tickets/premium/don-julio-club", "publisher": "MLB.com / Los Angeles Angels", "role": "official"},
+    ]
+    guide("/guides/club-seats/", "What Do NFL and MLB Club Seats Include?",
+          "What do NFL and MLB club seats include?",
+          "What club seats include at NFL and MLB venues: lounge access, covered comfort, and in seat service, only where venues say so.",
+          g7, p7, club_sources, mod=config.TODAY, published=config.TODAY,
+          verified=config.VERIFIED_TODAY, image=HERO_IMG, sources_retrieved=config.VERIFIED_TODAY)
+
+def legal_wrap(path, title, h1, desc, inner, mod=None, published=None):
     crumbs = [("/", "Home"), (path, h1)]
     body = '<article class="prose"><h1>%s</h1>%s<p class="legal-line">%s</p></article>' % (E(h1), inner, config.LEGAL_LINE)
-    write(path, page(path, title, desc, body, crumbs, [article(h1, path)], legal=True))
+    write(path, page(path, title, desc, body, crumbs,
+                     [article(h1, path, mod=mod, published=published)], legal=True, mod=mod))
 
 def static_pages():
     legal_wrap("/editorial-policy/", "Editorial Policy | Which Seating", "Editorial policy",
@@ -765,16 +955,17 @@ def static_pages():
 <h2>Diagrams</h2>
 <p>The bowl drawing on a venue page is an original diagram. It is not a copy of a seating chart, a broadcast graphic, or a team map. The caption on that drawing links to this page.</p>
 <h2>Photos</h2>
-<p>The site uses no venue photos and no team logos. The logo and the social card are simple seat drawings we made for the site. They are not photographs and they are not presented as pictures of a real building.</p>
+<p>Guide articles may use one realistic news style thumbnail. The caption says AI-generated image and links to this policy. Those images do not depict a real person, a readable logo, or a copied seat chart. The site logo and the default social card are simple seat drawings we made for the site.</p>
 <h2>AI-generated images</h2>
-<p>If we add an AI-generated illustration, the caption will say "AI-generated image" and it will not depict a real person or a real team mark.</p>
+<p>AI-generated illustrations are labelled in the caption as "AI-generated image" and link here. They are not photographs of a specific branded stadium event.</p>
 <h2>Questions</h2>
-<p>If you believe an image uses your work, see our <a href="/copyright/">copyright policy</a> or <a href="/contact/">contact us</a>.</p>''' % config.VERIFIED
+<p>If you believe an image uses your work, see our <a href="/copyright/">copyright policy</a> or <a href="/contact/">contact us</a>.</p>''' % config.VERIFIED_TODAY
     write("/image-policy/", page("/image-policy/", "Image Policy | Which Seating",
                                  "How Which Seating handles diagrams, photos, and team marks.",
                                  '<article class="prose"><h1>Image policy</h1>%s</article>' % img,
                                  [("/", "Home"), ("/image-policy/", "Image policy")],
-                                 [article("Image policy", "/image-policy/")]))
+                                 [article("Image policy", "/image-policy/", mod=config.TODAY, published=config.PUBLISHED)],
+                                 mod=config.TODAY))
     legal_wrap("/terms/", "Terms of Use | Which Seating", "Terms of use",
                "Terms of use for Which Seating (whichseating.com).",
                '''<p>Last updated %s. These terms govern your use of whichseating.com ("Which Seating", "we", "us"). Which Seating is a trade name of Joshua Israel Ventures LLC, a Florida limited liability company. By using the site you agree to these terms.</p>
@@ -805,10 +996,10 @@ def static_pages():
 <p>Google Analytics 4 loads only after you accept the cookie banner. Until you choose, Consent Mode v2 defaults are denied for analytics storage, ad storage, ad user data, and ad personalization, and the Google tag is not requested. If you accept, the site loads gtag.js for the measurement ID in the build config, and Google may set analytics cookies. If you decline, the tag stays unloaded. The Cookie settings link in the footer opens that choice again. While the measurement ID is blank, accepting does not send data to Google.</p>
 <h2>Contact</h2>
 <p>If you email us, we use your address and message only to reply, and we keep them only as long as needed. The address is on the <a href="/contact/">contact page</a>.</p>
-<h2>Advertising</h2>
-<p>The site shows no ads today. If we add ads in future, for example through Google AdSense, third party vendors including Google may use cookies to serve ads based on your prior visits to this and other websites. You will be able to opt out of personalised advertising at <a href="https://www.google.com/settings/ads" rel="nofollow noopener" target="_blank">Google Ads Settings</a> and <a href="https://www.aboutads.info/choices/" rel="nofollow noopener" target="_blank">aboutads.info/choices</a>. Where the law requires it (for example in the EEA, the UK, and Switzerland), we will ask for consent through a certified consent management platform before any advertising cookies are set. We will update this policy before any ads go live.</p>
+<h2 id="advertising">Advertising</h2>
+<p>Which Seating uses Google AdSense. Pages include the AdSense account meta tag and the AdSense script for publisher account %s. The site does not place ad units on pages yet, so you should not see display ads from this site today. When ad units go live, third party vendors including Google may use cookies to serve ads based on your prior visits to this and other websites. You can opt out of personalised advertising at <a href="https://www.google.com/settings/ads" rel="nofollow noopener" target="_blank">Google Ads Settings</a> and <a href="https://www.aboutads.info/choices/" rel="nofollow noopener" target="_blank">aboutads.info/choices</a>. Where the law requires it (for example in the EEA, the UK, and Switzerland), we will ask for consent through a certified consent management platform before any advertising cookies are set. Authorized sellers are listed in <a href="/ads.txt">ads.txt</a>. See also our <a href="/ad-disclosure/">advertising disclosure</a>.</p>
 <h2>Cookies</h2>
-<p>Which Seating's own pages do not set cookies. Cloudflare Web Analytics does not use cookies. Google Analytics 4 may set cookies only after you accept. You can decline, change that choice from Cookie settings, or block cookies in your browser. The guides work without them.</p>
+<p>Which Seating's own pages do not set cookies. Cloudflare Web Analytics does not use cookies. Google Analytics 4 may set cookies only after you accept. When ads are shown, Google and other vendors may set advertising cookies subject to the consent rules above. You can decline analytics, change that choice from Cookie settings, or block cookies in your browser. The guides work without them.</p>
 <h2>Hosting</h2>
 <p>The site is hosted on GitHub Pages, which may log IP addresses for security and operations.</p>
 <h2>Your rights</h2>
@@ -816,7 +1007,8 @@ def static_pages():
 <h2>Children</h2>
 <p>The site is for a general audience and is not directed to children under 13. We do not knowingly collect personal information from children.</p>
 <h2>Changes</h2>
-<p>We will post any changes here with a new date.</p>''' % config.VERIFIED)
+<p>We will post any changes here with a new date.</p>''' % (config.VERIFIED_TODAY, config.ADSENSE_PUB),
+               mod=config.TODAY, published=config.PUBLISHED)
     legal_wrap("/disclaimer/", "Disclaimer | Which Seating", "Disclaimer",
                "Disclaimer for Which Seating (whichseating.com).",
                '''<p>Last updated %s.</p>
@@ -831,11 +1023,12 @@ def static_pages():
 <h2>Limitation of liability</h2>
 <p>To the extent permitted by law, Joshua Israel Ventures LLC is not liable for any loss arising from reliance on this site. See our <a href="/terms/">terms of use</a>.</p>''' % config.VERIFIED)
     legal_wrap("/ad-disclosure/", "Advertising Disclosure | Which Seating", "Advertising disclosure",
-               "Advertising disclosure for Which Seating. The site shows no ads today.",
-               '''<p>Last updated %s. Which Seating is free to use. The site shows no ads and contains no affiliate links. The file ads.txt at the site root is a placeholder with no authorized sellers. In future we may show advertising, for example through Google AdSense, or add affiliate links to ticket sellers.</p>
-<p>If ads appear they will be separate from our guides and labeled. Advertisers will have no influence over which seats we describe. If we add affiliate links, we may earn a commission at no extra cost to you, and we will label those links.</p>
+               "Advertising disclosure for Which Seating and Google AdSense readiness.",
+               '''<p>Last updated %s. Which Seating is free to use and contains no affiliate links today. The site is configured for Google AdSense (publisher %s): every page carries the AdSense account meta tag and the AdSense script, and <a href="/ads.txt">ads.txt</a> authorizes google.com for that publisher id. No ad units are placed on pages yet, so display ads should not appear until units are added after approval.</p>
+<p>When ads appear they will be separate from our guides and labeled. Advertisers will have no influence over which seats we describe. If we add affiliate links later, we may earn a commission at no extra cost to you, and we will label those links.</p>
 <h2>Editorial independence</h2>
-<p>No team, league, venue, or ticket seller pays for coverage or for a change to a page. Questions: use our <a href="/contact/">contact page</a>.</p>''' % config.VERIFIED)
+<p>No team, league, venue, or ticket seller pays for coverage or for a change to a page. Questions: use our <a href="/contact/">contact page</a>.</p>''' % (config.VERIFIED_TODAY, config.ADSENSE_PUB),
+               mod=config.TODAY, published=config.PUBLISHED)
     legal_wrap("/copyright/", "Copyright and DMCA Policy | Which Seating", "Copyright and DMCA policy",
                "Copyright and DMCA policy for Which Seating (whichseating.com).",
                '''<p>Last updated %s. Original text, design, diagrams, and data compilations on Which Seating are owned by Joshua Israel Ventures LLC. Facts are cited to their sources. The site uses no team logos and no venue photos. See our <a href="/image-policy/">image policy</a>.</p>
@@ -883,6 +1076,7 @@ def finish():
                         ("Shade and sun", "/guides/shade-and-sun/"),
                         ("Sections to skip", "/guides/sections-to-skip/"),
                         ("Accessible seating", "/guides/accessible-seating/"),
+                        ("What club seats include", "/guides/club-seats/"),
                         ("Which NFL stadiums have a roof", "/guides/nfl-stadiums-with-a-roof/"),
                         ("Which MLB ballparks have a retractable roof", "/guides/mlb-ballparks-with-a-retractable-roof/"),
                         ("Sources and methods", "/methodology/"),
@@ -893,9 +1087,8 @@ def finish():
         lines.append("- [%s](%s) (%s): %s" % (v["name"], url("/venues/%s/" % v["slug"]), team_list(v), cap_list(v)))
     open(os.path.join(ROOT, "llms.txt"), "w", encoding="utf-8").write("\n".join(lines) + "\n")
     ads = """# whichseating.com ads.txt
-# Placeholder only. This site does not run ads and has no authorized sellers.
-# Replace this file before any ad tag goes live. Do not leave a fake seller id here.
-"""
+google.com, %s, DIRECT, f08c47fec0942fa0
+""" % config.ADSENSE_PUB_TXT
     open(os.path.join(ROOT, "ads.txt"), "w").write(ads)
     open(os.path.join(ROOT, "CNAME"), "w").write("whichseating.com\n")
     open(os.path.join(ROOT, config.INDEXNOW_KEY + ".txt"), "w").write(config.INDEXNOW_KEY)

@@ -86,8 +86,15 @@ for f in files:
         if "Google Analytics 4" not in h: fail("privacy-ga4")
         if "Cloudflare Web Analytics" not in h: fail("privacy-cf")
     for img in re.finditer(r"<img\b[^>]*>", h, re.I):
+        # Next-read card thumbs are decorative links to our own pages; the
+        # article hero still needs the image-policy caption nearby.
+        window = h[max(0, img.start() - 2500):img.start()]
+        last_aside = window.rfind('<aside class="next-reads"')
+        last_aside_end = window.rfind("</aside>")
+        if last_aside != -1 and last_aside > last_aside_end:
+            continue
         start = max(0, img.start() - 300)
-        chunk = h[start:img.end() + 80]
+        chunk = h[start:img.end() + 120]
         if 'href="/image-policy/"' not in chunk:
             fail("photo " + rel)
     if "FAQPage" in h:
@@ -140,7 +147,17 @@ llms = open(os.path.join(ROOT, "llms.txt"), encoding="utf-8").read()
 for href in venue_hrefs:
     if "https://whichseating.com" + href not in llms: fail("llms missing " + href)
 ads = open(os.path.join(ROOT, "ads.txt"), encoding="utf-8").read()
-if "Placeholder" not in ads: fail("ads.txt")
+ads_pub = (getattr(config, "ADSENSE_PUB_TXT", "") or "").strip()
+if not ads_pub or ads_pub not in ads or "google.com," not in ads:
+    fail("ads.txt")
+if LAUNCH:
+    adsense_pub = (getattr(config, "ADSENSE_PUB", "") or "").strip()
+    if not adsense_pub:
+        fail("empty ADSENSE_PUB")
+    # Spot check homepage for AdSense readiness (meta + script, no ad units required).
+    if 'name="google-adsense-account"' not in home: fail("adsense-meta")
+    if adsense_pub not in home: fail("adsense-pub")
+    if "pagead2.googlesyndication.com/pagead/adsbygoogle.js" not in home: fail("adsense-script")
 cname = open(os.path.join(ROOT, "CNAME"), encoding="utf-8").read().strip()
 if cname != "whichseating.com": fail("CNAME " + cname)
 key = config.INDEXNOW_KEY
