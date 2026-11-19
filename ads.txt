@@ -1,3 +1,2 @@
 # whichseating.com ads.txt
-# Placeholder only. This site does not run ads and has no authorized sellers.
-# Replace this file before any ad tag goes live. Do not leave a fake seller id here.
+google.com, pub-5681559774142917, DIRECT, f08c47fec0942fa0

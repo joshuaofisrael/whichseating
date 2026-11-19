@@ -10,10 +10,12 @@ PUBLISHED = "2026-11-16"
 MODIFIED = "2026-11-16"
 VERIFIED = "16 Nov 2026"
 
-# First-publication date for pages added after the 16 Nov 2026 launch batch.
-# Used only by those pages' own datePublished/dateModified and sitemap lastmod,
-# so the older pages above keep their own lastmod and are not "refreshed" for free.
-TODAY = "2026-11-18"
+# First-publication / material-change date for pages added or refreshed after
+# the 16 Nov 2026 launch batch. Used only by those pages' own datePublished /
+# dateModified and sitemap lastmod, so older pages keep their own lastmod
+# (no manufactured freshness).
+TODAY = "2026-11-19"
+VERIFIED_TODAY = "19 Nov 2026"
 
 SITE = "whichseating.com"
 BASE_URL = "https://whichseating.com/"
@@ -26,5 +28,9 @@ CF_BEACON_TOKEN = "eac63f2b5dbc4539a2d95249baab6472"
 # measurement id (the G- value from the GA4 property).
 # ./deploy.sh --launch fails the check while this is empty.
 GA4_ID = "G-NLDQ2E1E8V"
+# Google AdSense publisher id. Head script + meta only; no ad units yet.
+# ads.txt uses the pub- form without the ca- prefix.
+ADSENSE_PUB = "ca-pub-5681559774142917"
+ADSENSE_PUB_TXT = "pub-5681559774142917"
 CONTACT_EMAIL = "joshuaofisrael@gmail.com"
 LEGAL_LINE = "© 2026 Joshua Israel Ventures LLC. All rights reserved. Which Seating is a trade name of Joshua Israel Ventures LLC, a Florida limited liability company."
