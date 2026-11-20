@@ -122,7 +122,6 @@ venues/coors-field
 venues/enterprise-center
 venues/everbank-stadium
 venues/fedexforum
-venues/fenway-park
 venues/fiserv-forum
 venues/frost-bank-center
 venues/gainbridge-fieldhouse
@@ -169,5 +168,4 @@ venues/toyota-center
 venues/truist-park
 venues/ubs-arena
 venues/united-center
-venues/wrigley-field
 venues/yankee-stadium
