@@ -13,6 +13,24 @@ import glob, os, re, sys, json, html
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 import config
+
+# Paths in _build/thin-noindex.txt are intentionally noindex (AdSense low-value-content fix, 20 Nov 2026).
+import os as _os
+_THIN = set()
+try:
+    with open(_os.path.join(_os.path.dirname(_os.path.abspath(__file__)), "thin-noindex.txt"), encoding="utf-8") as _fh:
+        _THIN = {l.strip().strip("/") for l in _fh if l.strip() and not l.startswith("#")}
+except FileNotFoundError:
+    pass
+
+
+def _thin_rel(rel):
+    r = str(rel).replace("\\", "/")
+    if r.endswith("index.html"):
+        r = r[: -len("index.html")]
+    return r.strip("/") in _THIN
+
+
 files = [f for f in glob.glob(ROOT + "/**/*.html", recursive=True) if "/_build/" not in f]
 home = open(os.path.join(ROOT, "index.html"), encoding="utf-8").read()
 LAUNCH = "noindex" not in home
@@ -54,7 +72,7 @@ for f in files:
     if not dm: fail("nodesc " + rel)
     elif len(html.unescape(dm.group(1))) > 155: fail("desc %d %s" % (len(html.unescape(dm.group(1))), rel))
     if LAUNCH:
-        if rel != "404.html" and "noindex" in h: fail("noindex " + rel)
+        if rel != "404.html" and "noindex" in h and not _thin_rel(rel): fail("noindex " + rel)
         if "static.cloudflareinsights.com/beacon.min.js" not in h: fail("nobeacon " + rel)
         if 'src="/assets/consent.js' not in h: fail("noga4 " + rel)
         if 'id="cookie-settings"' not in h: fail("nocookie " + rel)
@@ -134,6 +152,7 @@ expected = []
 for f in files:
     rel = os.path.relpath(f, ROOT)
     if rel == "404.html": continue
+    if _thin_rel(rel): continue
     if rel == "index.html": expected.append("https://whichseating.com/")
     else: expected.append("https://whichseating.com/" + rel[: -len("index.html")])
 if sorted(locs) != sorted(expected):

@@ -138,7 +138,24 @@ def crumbs_html(crumbs):
         else: bits.append('<li aria-current="page">%s</li>' % E(n))
     return '<nav class="crumbs" aria-label="Breadcrumb"><ol>' + "".join(bits) + "</ol></nav>"
 
+# AdSense low-value-content fix (20 Nov 2026): paths listed in _build/thin-noindex.txt
+# get noindex,follow and stay out of the sitemap until they have real unique substance.
+_THIN_NOINDEX = set()
+try:
+    import os as _os
+    with open(_os.path.join(_os.path.dirname(_os.path.abspath(__file__)), "thin-noindex.txt"), encoding="utf-8") as _fh:
+        _THIN_NOINDEX = {l.strip().strip("/") for l in _fh if l.strip() and not l.startswith("#")}
+except FileNotFoundError:
+    pass
+
+
+def _is_thin(path):
+    return str(path).strip("/") in _THIN_NOINDEX
+
+
 def page(path, title, desc, body, crumbs=None, extra_ld=None, legal=False, index=True, mod=None):
+    if _is_thin(path):
+        index = False
     if len(title) >= 60: raise SystemExit("title %d %s" % (len(title), path))
     desc = clip(desc)
     if len(desc) > 155: raise SystemExit("desc %d %s" % (len(desc), path))
@@ -998,6 +1015,7 @@ def static_pages():
 <p>If you email us, we use your address and message only to reply, and we keep them only as long as needed. The address is on the <a href="/contact/">contact page</a>.</p>
 <h2 id="advertising">Advertising</h2>
 <p>Which Seating uses Google AdSense. Pages include the AdSense account meta tag and the AdSense script for publisher account %s. The site does not place ad units on pages yet, so you should not see display ads from this site today. When ad units go live, third party vendors including Google may use cookies to serve ads based on your prior visits to this and other websites. You can opt out of personalised advertising at <a href="https://www.google.com/settings/ads" rel="nofollow noopener" target="_blank">Google Ads Settings</a> and <a href="https://www.aboutads.info/choices/" rel="nofollow noopener" target="_blank">aboutads.info/choices</a>. Where the law requires it (for example in the EEA, the UK, and Switzerland), we will ask for consent through a certified consent management platform before any advertising cookies are set. Authorized sellers are listed in <a href="/ads.txt">ads.txt</a>. See also our <a href="/ad-disclosure/">advertising disclosure</a>.</p>
+<h2>Google advertising cookies and your choices</h2><p>Third-party vendors, including Google, use cookies to serve ads based on a user's prior visits to this website or other websites. Google's use of advertising cookies enables it and its partners to serve ads based on your visit to this site and/or other sites on the Internet. You may opt out of personalized advertising by visiting <a href="https://adssettings.google.com/" rel="nofollow noopener">Google Ads Settings</a>. Alternatively, you can opt out of a third-party vendor's use of cookies for personalized advertising at <a href="https://www.aboutads.info/choices/" rel="nofollow noopener">aboutads.info/choices</a>. For more information, see <a href="https://policies.google.com/technologies/partner-sites" rel="nofollow noopener">how Google uses information from sites or apps that use its services</a>.</p>
 <h2>Cookies</h2>
 <p>Which Seating's own pages do not set cookies. Cloudflare Web Analytics does not use cookies. Google Analytics 4 may set cookies only after you accept. When ads are shown, Google and other vendors may set advertising cookies subject to the consent rules above. You can decline analytics, change that choice from Cookie settings, or block cookies in your browser. The guides work without them.</p>
 <h2>Hosting</h2>
