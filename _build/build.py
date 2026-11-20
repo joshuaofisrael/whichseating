@@ -171,7 +171,7 @@ def page(path, title, desc, body, crumbs=None, extra_ld=None, legal=False, index
     # AdSense account meta + head script (no ad units). Verification / readiness only.
     adsense = (
         '<meta name="google-adsense-account" content="%s">'
-        '<script async src="https://pagead2.googlesyndication.com/pagead/adsbygoogle.js?client=%s" crossorigin="anonymous"></script>'
+        '<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=%s" crossorigin="anonymous"></script>'
         % (config.ADSENSE_PUB, config.ADSENSE_PUB)
     ) if LAUNCH else "<!-- adsense: added when INDEXABLE is true -->"
     foot_items = list(FOOT)

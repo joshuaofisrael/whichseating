@@ -157,7 +157,7 @@ if LAUNCH:
     # Spot check homepage for AdSense readiness (meta + script, no ad units required).
     if 'name="google-adsense-account"' not in home: fail("adsense-meta")
     if adsense_pub not in home: fail("adsense-pub")
-    if "pagead2.googlesyndication.com/pagead/adsbygoogle.js" not in home: fail("adsense-script")
+    if "pagead2.googlesyndication.com/pagead/js/adsbygoogle.js" not in home: fail("adsense-script")
 cname = open(os.path.join(ROOT, "CNAME"), encoding="utf-8").read().strip()
 if cname != "whichseating.com": fail("CNAME " + cname)
 key = config.INDEXNOW_KEY
