@@ -17,6 +17,11 @@ VERIFIED = "16 Nov 2026"
 TODAY = "2026-11-19"
 VERIFIED_TODAY = "19 Nov 2026"
 
+# 20 Nov 2026 SEO run. Pass these only on pages whose facts changed that day.
+# Do not assign them as the global MODIFIED, or unchanged pages pick up a fake lastmod.
+RUN_20 = "2026-11-20"
+VERIFIED_20 = "20 Nov 2026"
+
 SITE = "whichseating.com"
 BASE_URL = "https://whichseating.com/"
 BRAND = "Which Seating"

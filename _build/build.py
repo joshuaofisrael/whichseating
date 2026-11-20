@@ -230,7 +230,12 @@ def article(headline, path, about=None, mod=None, published=None, image=None):
 
 HERO_IMG = "/assets/images/empty-stadium-dusk.png"
 
-def hero_photo(alt):
+FIELD_IMG = "/assets/images/stadium-pitch-floodlights.png"
+# Filled in main() from refresh_20261120 so a full rebuild can attach
+# venue-specific copy without changing the default template output.
+VENUE_UPGRADES = {}
+
+def hero_photo(alt, src=None):
     """One realistic news-photo thumbnail, AI-labelled, linking the image policy."""
     return (
         '<figure class="hero-photo">'
@@ -238,16 +243,20 @@ def hero_photo(alt):
         'alt="%s">'
         '<figcaption>AI-generated image. <a href="/image-policy/">Image policy</a>.</figcaption>'
         '</figure>'
-    ) % (HERO_IMG, E(alt))
+    ) % (src or HERO_IMG, E(alt))
 
 def next_reads(items, heading="Keep reading"):
-    """3-4 closely related next-read links with thumbnails (engagement rule)."""
+    """3-4 closely related next-read links with thumbnails (engagement rule).
+    Each item is (href, title, blurb) or (href, title, blurb, img).
+    """
     bits = ['<aside class="next-reads" aria-label="%s"><h2>%s</h2><ul class="next-reads-list">' % (E(heading), E(heading))]
-    for href, title, blurb in items:
+    for item in items:
+        href, title, blurb = item[0], item[1], item[2]
+        img = item[3] if len(item) > 3 else HERO_IMG
         bits.append(
             '<li><a href="%s"><img src="%s" width="320" height="180" loading="lazy" alt="">'
             '<span class="nr-text"><strong>%s</strong><span class="nr-blurb">%s</span></span></a></li>'
-            % (href, HERO_IMG, E(title), E(blurb))
+            % (href, img, E(title), E(blurb))
         )
     bits.append("</ul></aside>")
     return "".join(bits)
@@ -359,10 +368,15 @@ def venue_page(v):
     lg = leagues_of(v)[0]
     crumbs = [("/", "Home"), ("/venues/", "Venues"), ("/leagues/%s/" % lg, LEAGUE_NAME[lg]), (path, v["name"])]
     pairs = pairs_for(v)
+    up = VENUE_UPGRADES.get(v["slug"])
     chips = "".join('<span class="chip">%s</span>' % E(x) for x in [LEAGUE_NAME[x] for x in leagues_of(v)] + [v["roof_label"] or "Roof not stated", place(v)])
-    quick = "<ul>" + "".join("<li><strong>%s</strong> %s</li>" % (lab, E(txt)) for lab, txt in [
-        ("Best view.", best_text(v)), ("Sun and roof.", sun_text(v)), ("Skip.", skip_text(v)),
-        ("Accessible seating.", access_text(v)), ("Value.", value_text(v))]) + "</ul>"
+    if up:
+        pairs = up["pairs"]
+        quick = up["quick"]
+    else:
+        quick = "<ul>" + "".join("<li><strong>%s</strong> %s</li>" % (lab, E(txt)) for lab, txt in [
+            ("Best view.", best_text(v)), ("Sun and roof.", sun_text(v)), ("Skip.", skip_text(v)),
+            ("Accessible seating.", access_text(v)), ("Value.", value_text(v))]) + "</ul>"
     rows = [("Place", place(v)), ("Home teams", team_list(v)), ("Opened", v["opened"] or "Not stated"),
             ("Roof on the source list", v["roof_label"] or "Not stated")]
     for c in v["capacities"]:
@@ -390,7 +404,10 @@ def venue_page(v):
               '<a href="/guides/shade-and-sun/">Shade and sun</a>',
               '<a href="/guides/sections-to-skip/">Sections to skip</a>',
               '<a href="/guides/accessible-seating/">Accessible seating</a>']
+    if up:
+        links.insert(0, '<a href="/guides/best-view-of-the-field/">Where to sit to see the whole field</a>')
     where = "the Bronx, New York" if v["city"] == "Bronx" else place(v)
+    verified = up["verified"] if up else config.VERIFIED
     intro = "%s in %s is listed as home to %s. %s. Roof on the source list: %s." % (
         v["name"], where, team_list(v), cap_list(v), v["roof_label"] or "not stated")
     body = '''<article class="prose wide"><h1>Which seats are best at %s?</h1>
@@ -416,16 +433,33 @@ def venue_page(v):
 <h2>More on this building</h2><p>%s</p>
 %s
 %s
-</article>''' % (E(v["name"]), BRAND, config.VERIFIED, chips, quick, E(intro), bowl(sports_of(v)[0]),
-                 E(best_text(v)), notes, E(v["name"]), table, config.VERIFIED,
-                 " · ".join(links), faq_html(pairs), sources_html(v["sources"]))
+</article>''' % (E(v["name"]), BRAND, verified, chips, quick, E(intro), bowl(sports_of(v)[0]),
+                 E(best_text(v)), notes + "<!--upgrade-->", E(v["name"]), table, config.VERIFIED,
+                 " · ".join(links), (up["end"] if up else "") + faq_html(pairs), sources_html(list(v["sources"]) + (up["sources"] if up else [])))
+    body = body.replace("<!--upgrade-->", up["html"] if up else "")
+    if up:
+        body = body.replace('<article class="prose wide">', '<article class="prose wide" data-sourced-sections="yes">', 1)
+        body = body.replace(
+            "<h2>What we left out</h2>\n<div class=\"leftout\"><ul>\n"
+            "<li>Numbered \"best\" sections. Not printed in the sources we checked.</li>\n"
+            "<li>A shade map by section.</li>\n"
+            "<li>A numbered obstructed view list, unless a note above states one.</li>\n"
+            "<li>Accessible section numbers.</li>\n"
+            "<li>Prices and fees. They change by event.</li>\n"
+            "</ul></div>",
+            up["leftout"],
+            1,
+        )
     title = venue_title(v["name"])
     where = "the Bronx, New York" if v["city"] == "Bronx" else place(v)
     full = "Which seats to pick at %s in %s. Capacity, roof, and how to read the chart. No invented section numbers." % (v["name"], where)
     short = "Seat guide for %s. Capacity, roof, and how to read the chart. No invented section numbers." % v["name"]
-    desc = full if len(full) <= 155 else short
+    desc = up["desc"] if up else (full if len(full) <= 155 else short)
     if len(desc) > 155: raise SystemExit("desc " + v["name"])
-    html_out = page(path, title, desc, body, crumbs, [article("Which seats are best at %s?" % v["name"], path, v["name"]), faq_ld(pairs)])
+    mod = up["mod"] if up else None
+    html_out = page(path, title, desc, body, crumbs, [article(
+        "Which seats are best at %s?" % v["name"], path, v["name"],
+        mod=mod, published=config.PUBLISHED if mod else None), faq_ld(pairs)], mod=mod)
     write(path, html_out)
 
 def card(v):
@@ -439,11 +473,11 @@ RELATED = ('<p>Related: <a href="/guides/how-to-choose-a-seat/">How to choose a 
            ' · <a href="/guides/accessible-seating/">Accessible seating</a>'
            ' · <a href="/guides/club-seats/">What club seats include</a></p>')
 
-def hub_page(path, title, desc, h1, intro, items, crumbs, pairs):
+def hub_page(path, title, desc, h1, intro, items, crumbs, pairs, mod=None):
     # Venue pages carry the external list sources. Hubs link back to those pages and to the guides.
     body = '<article class="prose wide"><h1>%s</h1><p class="byline">By %s. Last verified %s.</p><p>%s</p><ul class="cards">%s</ul>%s%s<p>Each venue page lists the public list and the official page we checked. <a href="/methodology/">Sources and methods</a>.</p></article>' % (
         E(h1), BRAND, config.VERIFIED, intro, "".join(card(v) for v in items), RELATED, faq_html(pairs))
-    write(path, page(path, title, desc, body, crumbs, [article(h1, path), faq_ld(pairs)]))
+    write(path, page(path, title, desc, body, crumbs, [article(h1, path, mod=mod, published=config.PUBLISHED if mod else None), faq_ld(pairs)], mod=mod))
 
 def build_hubs():
     # leagues index
@@ -474,10 +508,12 @@ def build_hubs():
             intro += ' See every stadium grouped by roof: <a href="/guides/nfl-stadiums-with-a-roof/">Which NFL stadiums have a roof</a>.'
         if lg == "mlb":
             intro += ' See every ballpark grouped by roof: <a href="/guides/mlb-ballparks-with-a-retractable-roof/">Which MLB ballparks have a retractable roof</a>.'
+            intro += ' For home plate versus the upper deck, see <a href="/guides/best-view-of-the-field/">where to sit to see the whole field</a>.'
         hub_page(path, "%s Seat Guides | Which Seating" % LEAGUE_NAME[lg],
                  "Which seats to pick at %s venues. Capacity and roof come from the public list." % LEAGUE_NAME[lg],
                  h1, intro,
-                 vs, [("/", "Home"), ("/leagues/", "Leagues"), (path, LEAGUE_NAME[lg])], pairs)
+                 vs, [("/", "Home"), ("/leagues/", "Leagues"), (path, LEAGUE_NAME[lg])], pairs,
+                 mod=config.RUN_20 if lg == "mlb" else None)
     # states
     states = {}
     cities = {}
@@ -573,6 +609,7 @@ def home():
 <h2>Venues by league</h2><ul class="cards">%s</ul>
 <h2>Guides</h2><ul class="cols">
 <li><a href="/guides/how-to-choose-a-seat/">How to choose a seat</a></li>
+<li><a href="/guides/best-view-of-the-field/">Where to sit to see the whole field</a></li>
 <li><a href="/guides/shade-and-sun/">Shade and sun</a></li>
 <li><a href="/guides/sections-to-skip/">Sections to skip</a></li>
 <li><a href="/guides/accessible-seating/">Accessible seating</a></li>
@@ -594,7 +631,7 @@ def home():
     body += faq_html(pairs)
     desc = "Which seats to pick at major US stadiums and arenas, and which to skip. Sourced guides for NFL, MLB, NBA, NHL, and college."
     write("/", page("/", "Which Seating: Best Seats at US Stadiums and Arenas", desc, body, extra_ld=[
-        article("Which seats should you pick?", "/"), faq_ld(pairs)]))
+        article("Which seats should you pick?", "/", mod=config.RUN_20, published=config.PUBLISHED), faq_ld(pairs)], mod=config.RUN_20))
 
 def guide(path, title, h1, desc, body_html, pairs, sources, mod=None, published=None,
           verified=None, image=None, sources_retrieved=None):
@@ -621,32 +658,13 @@ def guides():
         {"title": "MLB.com ballpark guide directory", "url": "https://www.mlb.com/fans/ballpark-guides/mlb", "publisher": "MLB.com", "role": "official"},
     ]
     vlink = lambda name: '<a href="/venues/%s/">%s</a>' % (slug(name), name)
-    g1 = '''<p class="answer">Read the venue page, then the official page it links, then the ticket. Use the lowest level near the middle of the playing surface for a straight on view. Skip any seat marked limited view. Do not trust a section number that Which Seating did not copy from a source.</p>
-<h2>Steps</h2>
-<ol>
-<li>Open the venue in this guide. Start with a league: <a href="/leagues/nfl/">NFL</a>, <a href="/leagues/mlb/">MLB</a>, <a href="/leagues/nba/">NBA</a>, <a href="/leagues/nhl/">NHL</a>, or <a href="/leagues/college-football/">college football</a>.</li>
-<li>Read the roof line. A dome, a fixed roof, or an indoor arena changes the sun question. A retractable roof depends on the event. <a href="/guides/shade-and-sun/">Shade and sun</a>.</li>
-<li>Use the official page linked on the venue for the real section map. Our bowl drawing is generic.</li>
-<li>On the ticket, reject limited view, obstructed view, and partial view unless you mean to buy that seat. <a href="/guides/sections-to-skip/">Sections to skip</a>.</li>
-<li>For step free seats and companion seats, use the venue accessibility office. <a href="/guides/accessible-seating/">Accessible seating</a>.</li>
-<li>If the ticket names a club, read what that club includes before you treat it as a better view. <a href="/guides/club-seats/">What club seats include</a>.</li>
-</ol>
-<h2>Examples</h2>
-<ul>
-<li>%s, an open air NFL stadium.</li>
-<li>%s, a retractable NFL roof.</li>
-<li>%s, a dome.</li>
-<li>%s, a baseball park with an official MLB.com ballpark page.</li>
-<li>%s, an indoor arena shared by two teams.</li>
-</ul>''' % (vlink("Lambeau Field"), vlink("AT&T Stadium"), vlink("Caesars Superdome"), vlink("Yankee Stadium"), vlink("Madison Square Garden"))
-    p1 = [("What is the safest way to pick a section?",
-           "Use the venue's own chart and the words on the ticket. Which Seating will not give you a section number the venue did not publish in our sources."),
-          ("Do you rank sections by price?",
-           "No. Prices change by opponent and by day. We do not publish a value ranking.")]
+    import refresh_20261120 as run20
+    g1, p1, choose_sources, choose_desc = run20.choose(hero_photo, next_reads, compare_box, vlink)
     guide("/guides/how-to-choose-a-seat/", "How to Choose a Stadium Seat", "How to choose a seat",
-          "How to pick a stadium or arena seat using the official chart, the roof, and the ticket.",
-          g1, p1, lists)
-    g2 = '''<p class="answer">Sun depends on the roof class in the source list. We do not publish a shade map by section, because the lists we use do not print one.</p>
+          choose_desc, g1, p1, choose_sources,
+          mod=config.RUN_20, published=config.PUBLISHED,
+          verified=config.VERIFIED_20, image=HERO_IMG, sources_retrieved=config.VERIFIED_20)
+    g2 = '''%s<p class="answer">Sun depends on the roof class in the source list. We do not publish a shade map by section, because the lists we use do not print one.</p>''' % hero_photo("Empty stadium seating bowl at dusk with lights on along the aisles") + '''
 <h2>Roof classes in this guide</h2>
 <ul>
 <li><strong>Open air.</strong> Sun and weather reach the seats. Example: %s. We still do not name a sunny section.</li>
@@ -663,23 +681,19 @@ def guides():
            "No. A shade map by section was not in the sources, so naming one would be a guess."),
           ("What if the roof can open?",
            "Treat a retractable roof as open air when it is open, and as a closed building when it is shut. The list does not say which sections are shaded either way.")]
+    shade_html, shade_pairs, shade_sources = run20.shade_tail(next_reads, compare_box)
+    g2 += shade_html
+    p2 = p2 + shade_pairs
     guide("/guides/shade-and-sun/", "Stadium Shade and Sun", "Shade and sun",
-          "How roof type changes sun and shade at a stadium, without invented section numbers.",
-          g2, p2, lists)
-    g3 = '''<p class="answer">Skip a seat when the chart or the ticket says limited view, obstructed view, or partial view. We do not keep a second list of bad section numbers.</p>
-<h2>The one sourced closure in this guide</h2>
-<p>At %s, the Wikipedia MLB list gives a capacity of 25,000 and cites a 2019 USA Today report that the Rays closed the upper deck. Do not assume an upper deck seat there is on sale. Check the current Rays ballpark page.</p>
-<h2>What we will not do</h2>
-<p>Fan sites publish long lists of sections to avoid. We do not copy those lists. If the venue has not printed the number, it is not here. Report a venue page that does publish an obstructed list and we will add it with a citation. <a href="/contact/">Contact</a>.</p>''' % vlink("Tropicana Field")
-    p3 = [("Which section numbers should I avoid?",
-           "Only numbers the venue or the ticket marks as limited, obstructed, or partial view. This guide does not invent a blacklist."),
-          ("Is the Tropicana Field upper deck open?",
-           "A 2019 report cited on the Wikipedia MLB list said the Rays closed the upper deck. Confirm the current chart before you buy.")]
+          "Roof class decides the sun. Fenway's infield grandstand is the open park with a roof over those seats.",
+          g2, p2, lists + shade_sources,
+          mod=config.RUN_20, published=config.PUBLISHED,
+          verified=config.VERIFIED_20, image=HERO_IMG, sources_retrieved=config.VERIFIED_20)
+    g3, p3, skip_sources, skip_desc = run20.skip(hero_photo, next_reads, compare_box, vlink)
     guide("/guides/sections-to-skip/", "Stadium Sections to Skip", "Sections to skip",
-          "Skip limited view and obstructed seats. We do not invent a list of bad section numbers.",
-          g3, p3, lists + [{"title": "Tampa Bay Rays reduce seating capacity at Tropicana Field",
-                           "url": "https://www.usatoday.com/story/sports/mlb/rays/2019/01/04/rays-tropicana-field-close-upper-deck-reduce-capacity/2481217002/",
-                           "publisher": "USA Today", "role": "extra"}])
+          skip_desc, g3, p3, skip_sources,
+          mod=config.RUN_20, published=config.PUBLISHED,
+          verified=config.VERIFIED_20, image=HERO_IMG, sources_retrieved=config.VERIFIED_20)
     mid_reads_access = next_reads([
         ("/guides/how-to-choose-a-seat/", "How to choose a seat", "The chart, the roof, and the ticket, in that order."),
         ("/guides/club-seats/", "What club seats include", "Lounge access, covered seats, and in seat service, only where venues publish them."),
@@ -909,6 +923,13 @@ def guides():
           g7, p7, club_sources, mod=config.TODAY, published=config.TODAY,
           verified=config.VERIFIED_TODAY, image=HERO_IMG, sources_retrieved=config.VERIFIED_TODAY)
 
+    g8, p8, best_sources, best_desc = run20.best_view(hero_photo, next_reads, compare_box, vlink)
+    guide("/guides/best-view-of-the-field/", "Best Seats to See the Whole Field",
+          "Where do you sit to see the whole field?",
+          best_desc, g8, p8, best_sources,
+          mod=config.RUN_20, published=config.RUN_20,
+          verified=config.VERIFIED_20, image=FIELD_IMG, sources_retrieved=config.VERIFIED_20)
+
 def legal_wrap(path, title, h1, desc, inner, mod=None, published=None):
     crumbs = [("/", "Home"), (path, h1)]
     body = '<article class="prose"><h1>%s</h1>%s<p class="legal-line">%s</p></article>' % (E(h1), inner, config.LEGAL_LINE)
@@ -1090,7 +1111,8 @@ def finish():
     lines = ["# Which Seating", "",
              "> Which Seating (whichseating.com) tells readers which seats to pick at major US stadiums and arenas, and which to skip. Facts come from public lists and official pages. Section numbers appear only when a source prints them. Checked %s." % config.VERIFIED,
              "", "Independent. Not affiliated with any team, league, or venue.", "", "## Guides"]
-    for title, path in [("How to choose a seat", "/guides/how-to-choose-a-seat/"),
+    for title, path in [                        ("How to choose a seat", "/guides/how-to-choose-a-seat/"),
+                        ("Where to sit to see the whole field", "/guides/best-view-of-the-field/"),
                         ("Shade and sun", "/guides/shade-and-sun/"),
                         ("Sections to skip", "/guides/sections-to-skip/"),
                         ("Accessible seating", "/guides/accessible-seating/"),
@@ -1113,6 +1135,9 @@ google.com, %s, DIRECT, f08c47fec0942fa0
     print(len(VENUES), "venues;", len(PAGES), "indexable URLs;", "LAUNCH" if LAUNCH else "NOINDEX")
 
 def main():
+    global VENUE_UPGRADES
+    import refresh_20261120 as run20
+    VENUE_UPGRADES = run20.venues(next_reads, compare_box)
     for v in VENUES:
         venue_page(v)
     venues_index()

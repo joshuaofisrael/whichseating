@@ -86,7 +86,11 @@ for f in files:
     if rel.startswith("venues/") and rel.count("/") >= 2:
         if 'class="sources"' not in h or not re.search(r'href="https?://', h[h.find('class="sources"'):]):
             fail("nosource " + rel)
-        if re.search(r"\bsections?\s+\d+", vis, re.I): fail("section-number " + rel)
+        # Section numbers are allowed only on a venue page that quotes a venue's
+        # own seating page and is marked data-sourced-sections. Every other
+        # venue page still fails, so a template cannot invent a section list.
+        if re.search(r"\bsections?\s+\d+", vis, re.I) and 'data-sourced-sections="yes"' not in h:
+            fail("section-number " + rel)
         if '"datePublished": "2026-11-16"' not in h: fail("datePublished " + rel)
         if 'href="/image-policy/"' not in h: fail("image-policy " + rel)
         if "/leagues/" not in h or "/guides/how-to-choose-a-seat/" not in h: fail("related " + rel)
