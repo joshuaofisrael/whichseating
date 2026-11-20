@@ -2,6 +2,7 @@
 # Facts below were read off the linked club and MLB.com pages on 20 Nov 2026.
 # This module does not invent section lists, prices, or rankings.
 
+import os
 import config
 
 V = config.VERIFIED_20
@@ -473,4 +474,94 @@ def best_view(hero, nr, cb, vlink):
     ]
     desc = "Home plate, the baselines, or the upper deck: what Yankees, Red Sox, and Cubs pages say about the view."
     _clean("best desc", desc)
+    return body, pairs, sources, desc
+
+
+def pillar_image_ready():
+    root = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+    return os.path.isfile(os.path.join(root, "assets/images/stadium-pillar-view.png"))
+
+
+def obstructed_view(hero, nr, cb, vlink):
+    """Held until assets/images/stadium-pillar-view.png exists. Returns None otherwise."""
+    if not pillar_image_ready():
+        return None
+    pillar = "/assets/images/stadium-pillar-view.png"
+    hero_html = hero("Empty stadium seat with a column in the sightline", pillar)
+    mid = nr([
+        ("/guides/sections-to-skip/", "Sections to skip", "The closed Tropicana deck is a different problem from a bad label."),
+        ("/venues/fenway-park/", "Fenway Park", "The net from Field Box 79 to Field Box 9 is not an obstructed label."),
+        ("/guides/best-view-of-the-field/", "See the whole field", "A clear look at the field can still sit behind a screen.", FIELD),
+        ("/venues/wrigley-field/", "Wrigley Field", "The Cubs' renumbering FAQ does not list obstructed sections."),
+    ])
+    end = nr([
+        ("/guides/how-to-choose-a-seat/", "How to choose a seat", "Roof, club language, chart, then the ticket word."),
+        ("/venues/yankee-stadium/", "Yankee Stadium", "A 2016 bleacher note, and a warning when the event is not baseball."),
+        ("/venues/tropicana-field/", "Tropicana Field", "Upper deck closed since 2019, still, on the April 2026 guide."),
+        ("/leagues/mlb/", "MLB venues", "Every ballpark page on this site."),
+    ], heading="More to read")
+    compare = cb(
+        "Check the listing against a park",
+        "Use the row that matches the words on your listing. A park with no row here has not published a list we could quote.",
+        [("/guides/sections-to-skip/", "Sections to skip"),
+         ("/venues/fenway-park/", "Fenway Park"),
+         ("/venues/tropicana-field/", "Tropicana Field"),
+         ("/venues/yankee-stadium/", "Yankee Stadium"),
+         ("/guides/how-to-choose-a-seat/", "How to choose a seat")],
+    )
+    body = '''%s
+<p class="answer">Spot an obstructed view seat by the word on the club's own listing. Obstructed, limited, partial, and restricted are the labels. A safety net and a closed deck are different facts, and a fan site pole chart is not a source. Checked %s.</p>
+<p>The photo is a generic seat and column. It is not a photo of a named park, and it is not a seating chart. <a href="/image-policy/">Image policy</a>.</p>
+<h2>Match the words on the listing</h2>
+<p>These are the club pages that actually use the words. None of them is a numbered blacklist of every bad seat in baseball.</p>
+<div class="tablewrap"><table class="stats">
+<thead><tr><th scope="col">What the listing says</th><th scope="col">Where the club says it</th><th scope="col">What that does, and does not, tell you</th></tr></thead>
+<tbody>
+<tr><th scope="row">Obstructed View, named next to standing room</th><td><a href="%s">Brewers ticket page</a> for 30 July 2025 vs the Cubs, still posted on the club site</td><td>Obstructed View is its own inventory. The page does not give section numbers. The product name is the warning.</td></tr>
+<tr><th scope="row">Partial, restricted, or obstructed view</th><td><a href="%s">Dodgers page</a> for the 2022 World Series ticket drawing</td><td>The club put all three adjectives in one sentence and said the seat could be anywhere in the park. The page is about 2022. Use it as the vocabulary, then trust the current listing.</td></tr>
+<tr><th scope="row">Sightlines may be obstructed for this event</th><td><a href="%s">Yankees presale page</a> for a soccer match at Yankee Stadium</td><td>A baseball seat can face a different sport badly. Read the event, not only the section you liked for a game.</td></tr>
+<tr><th scope="row">Protective netting, Field Box Section 79 to Field Box Section 9</th><td><a href="%s">Red Sox netting page</a></td><td>About 12 feet 8 inches above the field. The page tells fans to watch for bats and balls. It does not say obstructed. A screen in front of a close seat is not that label.</td></tr>
+<tr><th scope="row">Upper deck closed since 2019</th><td><a href="%s">MLB.com Tropicana guide</a>, 9 April 2026</td><td>Capacity listed as 25,025. This is a deck that is off sale, not a seat with a pole. The Rays played 2025 at George M. Steinbrenner Field and returned to the dome for 2026. The guide still says the upper deck is closed.</td></tr>
+</tbody></table></div>
+%s
+<h2>Do this before you pay</h2>
+<ol>
+<li>Read the listing for obstructed, limited, partial, or restricted. If one of those words is there, you already have the club's warning. <a href="/guides/sections-to-skip/">Sections to skip</a> is the longer writeup of the same check.</li>
+<li>Do not fill in a section number the club left blank. The <a href="%s">Cubs renumbering FAQ</a> explains L and R and the 2019 number change. It does not name an obstructed row. The <a href="/venues/wrigley-field/">Wrigley page</a> stops at what that FAQ prints.</li>
+<li>Separate the net from the label. At <a href="/venues/fenway-park/">Fenway</a> the net covers a published span of Field Box seats and the Red Sox page still does not call them obstructed. Skip the net only if you do not want a screen.</li>
+<li>Separate a closed deck from a bad view. At %s the 9 April 2026 guide still says the upper deck is closed. Do not buy it on the theory that the 2026 return reopened it.</li>
+<li>Do not treat a 2016 renovation note as this year's map. On 24 October 2016 Bryan Hoch reported for <a href="%s">MLB.com</a> that the Yankees planned to remove obstructed view bleacher seats, about 1,100 of them, inside a cut of just under 2,100 seats. The <a href="%s">premium seating page</a> opened on %s describes current clubs and does not reprint that bleacher list. History is not the ticket in your hand.</li>
+</ol>
+<p>If a venue later prints a numbered obstructed list, that list belongs on the venue page with a citation. Until then the listing word, the netting note, the closed deck, and the event warning are the checks. <a href="/guides/how-to-choose-a-seat/">How to choose a seat</a> puts this step after the roof and the chart. <a href="/guides/best-view-of-the-field/">Where to sit to see the whole field</a> is the opposite question: what a clear view is called when a club describes one.</p>
+%s
+%s''' % (
+        hero_html, V,
+        BREWERS_OV, DODGERS_2022, YANKEES_SOCCER, REDSOX_NET, TROP_GUIDE,
+        mid, CUBS_RENUM, vlink("Tropicana Field"),
+        YANKEES_2016, YANKEES_SUITES, V,
+        compare, end,
+    )
+    _clean("obstructed", body)
+    pairs = [
+        ("How do I know a seat is obstructed before I buy?",
+         "Read the club's listing for obstructed, limited, partial, or restricted. The Brewers' page for 30 July 2025 names Obstructed View as inventory and does not list sections. The word is the warning."),
+        ("Is Fenway netting an obstructed view?",
+         "No. The Red Sox netting page puts the screen from Field Box Section 79 to Field Box Section 9 and does not use the word obstructed."),
+        ("Did the Yankees remove obstructed bleacher seats?",
+         "A 24 October 2016 MLB.com report said the club planned to remove about 1,100 obstructed view bleacher seats. The premium seating page checked on 20 Nov 2026 does not confirm a current list. Use the ticket for your event."),
+        ("Is the Tropicana upper deck the same as an obstructed seat?",
+         "No. The MLB.com guide dated 9 April 2026 says the upper deck has been closed since 2019. That is a deck off sale, not a pole in front of an open seat."),
+    ]
+    sources = [
+        {"title": "Brewers ticket page, 30 July 2025", "url": BREWERS_OV, "publisher": "Milwaukee Brewers", "role": "official"},
+        {"title": "Dodgers 2022 World Series ticket opportunity", "url": DODGERS_2022, "publisher": "Los Angeles Dodgers", "role": "official"},
+        {"title": "Yankees soccer presale terms", "url": YANKEES_SOCCER, "publisher": "New York Yankees", "role": "official"},
+        {"title": "Fenway Park Netting", "url": REDSOX_NET, "publisher": "Boston Red Sox", "role": "official"},
+        {"title": "Tropicana Field guide", "url": TROP_GUIDE, "publisher": "MLB.com", "role": "official"},
+        {"title": "Wrigley Field seat renumbering", "url": CUBS_RENUM, "publisher": "Chicago Cubs", "role": "official"},
+        {"title": "Yankee Stadium design enhancements, 24 Oct 2016", "url": YANKEES_2016, "publisher": "MLB.com", "role": "official"},
+        {"title": "Yankees premium seating", "url": YANKEES_SUITES, "publisher": "New York Yankees", "role": "official"},
+    ]
+    desc = "Spot an obstructed view seat from the word on the club listing, not from a fan site pole chart."
+    _clean("obstructed desc", desc)
     return body, pairs, sources, desc
