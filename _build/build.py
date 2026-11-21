@@ -634,14 +634,17 @@ def home():
 <li><a href="/guides/sections-to-skip/">Sections to skip</a></li>
 <li><a href="/guides/accessible-seating/">Accessible seating</a></li>
 <li><a href="/guides/club-seats/">What club seats include</a></li>
-<li><a href="/guides/nfl-stadiums-with-a-roof/">Which NFL stadiums have a roof</a></li>
+%s<li><a href="/guides/nfl-stadiums-with-a-roof/">Which NFL stadiums have a roof</a></li>
 <li><a href="/guides/mlb-ballparks-with-a-retractable-roof/">Which MLB ballparks have a retractable roof</a></li>
 <li><a href="/states/">Browse by state</a></li>
 <li><a href="/cities/">Browse by city</a></li>
 </ul>
 <h2>How a page is built</h2>
 <p>We copy capacity, roof, year opened, and home teams from a public list, and we link the official page when a check on %s got a response. We do not invent section numbers, shade maps, or obstructed view lists. <a href="/methodology/">Sources and methods</a>.</p>''' % (
-        len(VENUES), picker_html(), "".join(cards), config.VERIFIED)
+        len(VENUES), picker_html(), "".join(cards),
+        '<li><a href="/guides/arena-concert-seating/">Arena concerts: floor or bowl</a></li>\n'
+        if os.path.isfile(os.path.join(ROOT, "guides/arena-concert-seating/index.html")) else "",
+        config.VERIFIED)
     pairs = [
         ("Which seats should I pick?",
          "Open the venue you are attending. The page tells you how to read that chart, and which seats to skip when the ticket says limited view, obstructed view, or partial view. Section numbers appear only when a source prints them."),
@@ -950,6 +953,9 @@ def guides():
           mod=config.RUN_20, published=config.RUN_20,
           verified=config.VERIFIED_20, image=FIELD_IMG, sources_retrieved=config.VERIFIED_20)
 
+    import refresh_20261121 as run21
+    run21.write_concert(guide, hero_photo, next_reads, compare_box, ROOT)
+
 def legal_wrap(path, title, h1, desc, inner, mod=None, published=None):
     crumbs = [("/", "Home"), (path, h1)]
     body = '<article class="prose"><h1>%s</h1>%s<p class="legal-line">%s</p></article>' % (E(h1), inner, config.LEGAL_LINE)
@@ -1131,16 +1137,19 @@ def finish():
     lines = ["# Which Seating", "",
              "> Which Seating (whichseating.com) tells readers which seats to pick at major US stadiums and arenas, and which to skip. Facts come from public lists and official pages. Section numbers appear only when a source prints them. Checked %s." % config.VERIFIED,
              "", "Independent. Not affiliated with any team, league, or venue.", "", "## Guides"]
-    for title, path in [                        ("How to choose a seat", "/guides/how-to-choose-a-seat/"),
-                        ("Where to sit to see the whole field", "/guides/best-view-of-the-field/"),
-                        ("Shade and sun", "/guides/shade-and-sun/"),
-                        ("Sections to skip", "/guides/sections-to-skip/"),
-                        ("Accessible seating", "/guides/accessible-seating/"),
-                        ("What club seats include", "/guides/club-seats/"),
-                        ("Which NFL stadiums have a roof", "/guides/nfl-stadiums-with-a-roof/"),
-                        ("Which MLB ballparks have a retractable roof", "/guides/mlb-ballparks-with-a-retractable-roof/"),
-                        ("Sources and methods", "/methodology/"),
-                        ("Editorial policy", "/editorial-policy/")]:
+    guide_links = [("How to choose a seat", "/guides/how-to-choose-a-seat/"),
+                   ("Where to sit to see the whole field", "/guides/best-view-of-the-field/"),
+                   ("Shade and sun", "/guides/shade-and-sun/"),
+                   ("Sections to skip", "/guides/sections-to-skip/"),
+                   ("Accessible seating", "/guides/accessible-seating/"),
+                   ("What club seats include", "/guides/club-seats/")]
+    if os.path.isfile(os.path.join(ROOT, "guides/arena-concert-seating/index.html")):
+        guide_links.append(("Arena concerts: floor or bowl", "/guides/arena-concert-seating/"))
+    guide_links += [("Which NFL stadiums have a roof", "/guides/nfl-stadiums-with-a-roof/"),
+                    ("Which MLB ballparks have a retractable roof", "/guides/mlb-ballparks-with-a-retractable-roof/"),
+                    ("Sources and methods", "/methodology/"),
+                    ("Editorial policy", "/editorial-policy/")]
+    for title, path in guide_links:
         lines.append("- [%s](%s)" % (title, url(path)))
     lines += ["", "## Venues"]
     for v in sorted(VENUES, key=lambda v: v["name"]):
