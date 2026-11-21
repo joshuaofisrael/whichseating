@@ -22,6 +22,10 @@ VERIFIED_TODAY = "19 Nov 2026"
 RUN_20 = "2026-11-20"
 VERIFIED_20 = "20 Nov 2026"
 
+# 21 Nov 2026 SEO run. Same rule: only pages whose facts changed.
+RUN_21 = "2026-11-21"
+VERIFIED_21 = "21 Nov 2026"
+
 SITE = "whichseating.com"
 BASE_URL = "https://whichseating.com/"
 BRAND = "Which Seating"
