@@ -111,7 +111,6 @@ venues/acrisure-stadium
 venues/amerant-bank-arena
 venues/angel-stadium
 venues/bank-of-america-stadium
-venues/barclays-center
 venues/bridgestone-arena
 venues/busch-stadium
 venues/chase-center
@@ -154,7 +153,6 @@ venues/paycor-stadium
 venues/petco-park
 venues/pnc-park
 venues/progressive-field
-venues/prudential-center
 venues/rate-field
 venues/raymond-james-stadium
 venues/rocket-arena
@@ -167,5 +165,4 @@ venues/target-field
 venues/toyota-center
 venues/truist-park
 venues/ubs-arena
-venues/united-center
 venues/yankee-stadium

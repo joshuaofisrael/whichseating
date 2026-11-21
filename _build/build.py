@@ -258,7 +258,9 @@ def next_reads(items, heading="Keep reading"):
             '<span class="nr-text"><strong>%s</strong><span class="nr-blurb">%s</span></span></a></li>'
             % (href, img, E(title), E(blurb))
         )
-    bits.append("</ul></aside>")
+    bits.append("</ul>")
+    bits.append('<p class="note">Thumbnails are AI-generated. <a href="/image-policy/">Image policy</a>.</p>')
+    bits.append("</aside>")
     return "".join(bits)
 
 def compare_box(heading, intro, links):
@@ -408,12 +410,13 @@ def venue_page(v):
         links.insert(0, '<a href="/guides/best-view-of-the-field/">Where to sit to see the whole field</a>')
     where = "the Bronx, New York" if v["city"] == "Bronx" else place(v)
     verified = up["verified"] if up else config.VERIFIED
+    photo = up.get("photo", "") if up else ""
     intro = "%s in %s is listed as home to %s. %s. Roof on the source list: %s." % (
         v["name"], where, team_list(v), cap_list(v), v["roof_label"] or "not stated")
     body = '''<article class="prose wide"><h1>Which seats are best at %s?</h1>
 <p class="byline">By %s. Last verified %s.</p>
 <p class="chips">%s</p>
-<div class="answer"><p><strong>Quick answer</strong></p>%s</div>
+%s<div class="answer"><p><strong>Quick answer</strong></p>%s</div>
 <p>%s</p>
 %s
 <h2>How to read the chart</h2>
@@ -433,7 +436,7 @@ def venue_page(v):
 <h2>More on this building</h2><p>%s</p>
 %s
 %s
-</article>''' % (E(v["name"]), BRAND, verified, chips, quick, E(intro), bowl(sports_of(v)[0]),
+</article>''' % (E(v["name"]), BRAND, verified, chips, photo, quick, E(intro), bowl(sports_of(v)[0]),
                  E(best_text(v)), notes + "<!--upgrade-->", E(v["name"]), table, config.VERIFIED,
                  " · ".join(links), (up["end"] if up else "") + faq_html(pairs), sources_html(list(v["sources"]) + (up["sources"] if up else [])))
     body = body.replace("<!--upgrade-->", up["html"] if up else "")
@@ -450,7 +453,7 @@ def venue_page(v):
             up["leftout"],
             1,
         )
-    title = venue_title(v["name"])
+    title = (up.get("title") if up else None) or venue_title(v["name"])
     where = "the Bronx, New York" if v["city"] == "Bronx" else place(v)
     full = "Which seats to pick at %s in %s. Capacity, roof, and how to read the chart. No invented section numbers." % (v["name"], where)
     short = "Seat guide for %s. Capacity, roof, and how to read the chart. No invented section numbers." % v["name"]
@@ -459,7 +462,8 @@ def venue_page(v):
     mod = up["mod"] if up else None
     html_out = page(path, title, desc, body, crumbs, [article(
         "Which seats are best at %s?" % v["name"], path, v["name"],
-        mod=mod, published=config.PUBLISHED if mod else None), faq_ld(pairs)], mod=mod)
+        mod=mod, published=config.PUBLISHED if mod else None,
+        image=(up.get("image") if up else None)), faq_ld(pairs)], mod=mod)
     write(path, html_out)
 
 def card(v):
@@ -473,10 +477,11 @@ RELATED = ('<p>Related: <a href="/guides/how-to-choose-a-seat/">How to choose a 
            ' · <a href="/guides/accessible-seating/">Accessible seating</a>'
            ' · <a href="/guides/club-seats/">What club seats include</a></p>')
 
-def hub_page(path, title, desc, h1, intro, items, crumbs, pairs, mod=None):
+def hub_page(path, title, desc, h1, intro, items, crumbs, pairs, mod=None, verified=None, extra=""):
     # Venue pages carry the external list sources. Hubs link back to those pages and to the guides.
-    body = '<article class="prose wide"><h1>%s</h1><p class="byline">By %s. Last verified %s.</p><p>%s</p><ul class="cards">%s</ul>%s%s<p>Each venue page lists the public list and the official page we checked. <a href="/methodology/">Sources and methods</a>.</p></article>' % (
-        E(h1), BRAND, config.VERIFIED, intro, "".join(card(v) for v in items), RELATED, faq_html(pairs))
+    # extra is empty for unchanged hubs, so their HTML stays the same.
+    body = '<article class="prose wide"><h1>%s</h1><p class="byline">By %s. Last verified %s.</p><p>%s</p>%s<ul class="cards">%s</ul>%s%s<p>Each venue page lists the public list and the official page we checked. <a href="/methodology/">Sources and methods</a>.</p></article>' % (
+        E(h1), BRAND, verified or config.VERIFIED, intro, extra, "".join(card(v) for v in items), RELATED, faq_html(pairs))
     write(path, page(path, title, desc, body, crumbs, [article(h1, path, mod=mod, published=config.PUBLISHED if mod else None), faq_ld(pairs)], mod=mod))
 
 def build_hubs():
@@ -493,6 +498,8 @@ def build_hubs():
     write("/leagues/", page("/leagues/", "Venues by League | Which Seating",
                             "Which seats to pick at NFL, MLB, NBA, NHL, and college football venues, grouped by league.",
                             body, [("/", "Home"), ("/leagues/", "Leagues")], [article("Venues by league", "/leagues/"), faq_ld(pairs)]))
+    import refresh_20261121 as run21
+    _league21 = run21.leagues(next_reads, compare_box, hero_photo)
     for lg in LEAGUE_ORDER:
         vs = by_league(lg)
         path = "/leagues/%s/" % lg
@@ -509,11 +516,24 @@ def build_hubs():
         if lg == "mlb":
             intro += ' See every ballpark grouped by roof: <a href="/guides/mlb-ballparks-with-a-retractable-roof/">Which MLB ballparks have a retractable roof</a>.'
             intro += ' For home plate versus the upper deck, see <a href="/guides/best-view-of-the-field/">where to sit to see the whole field</a>.'
-        hub_page(path, "%s Seat Guides | Which Seating" % LEAGUE_NAME[lg],
-                 "Which seats to pick at %s venues. Capacity and roof come from the public list." % LEAGUE_NAME[lg],
-                 h1, intro,
+        extra = ""
+        verified = None
+        title = "%s Seat Guides | Which Seating" % LEAGUE_NAME[lg]
+        desc = "Which seats to pick at %s venues. Capacity and roof come from the public list." % LEAGUE_NAME[lg]
+        mod = config.RUN_20 if lg == "mlb" else None
+        if lg in ("nba", "college-football"):
+            pack = _league21[lg]
+            h1 = pack["h1"]
+            intro = pack["intro"]
+            pairs = pack["pairs"]
+            extra = pack["extra"]
+            verified = pack["verified"]
+            mod = pack["mod"]
+            title = pack["title"]
+            desc = pack["desc"]
+        hub_page(path, title, desc, h1, intro,
                  vs, [("/", "Home"), ("/leagues/", "Leagues"), (path, LEAGUE_NAME[lg])], pairs,
-                 mod=config.RUN_20 if lg == "mlb" else None)
+                 mod=mod, verified=verified, extra=extra)
     # states
     states = {}
     cities = {}
@@ -1137,7 +1157,9 @@ google.com, %s, DIRECT, f08c47fec0942fa0
 def main():
     global VENUE_UPGRADES
     import refresh_20261120 as run20
+    import refresh_20261121 as run21
     VENUE_UPGRADES = run20.venues(next_reads, compare_box)
+    VENUE_UPGRADES.update(run21.venues(next_reads, compare_box, hero_photo))
     for v in VENUES:
         venue_page(v)
     venues_index()
