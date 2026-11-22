@@ -190,7 +190,7 @@ def page(path, title, desc, body, crumbs=None, extra_ld=None, legal=False, index
         '<meta name="google-adsense-account" content="%s">'
         '<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=%s" crossorigin="anonymous"></script>'
         % (config.ADSENSE_PUB, config.ADSENSE_PUB)
-    ) if LAUNCH else "<!-- adsense: added when INDEXABLE is true -->"
+    ) if False else ""  # AdSense detached 21 Nov 2026 until the account is approved (see seo-central/site-seo-rules.md). Do not re-add.
     foot_items = list(FOOT)
     if LAUNCH:
         foot_items.append(("Cookie settings", "/privacy/#analytics"))
@@ -1146,9 +1146,7 @@ def finish():
     for v in sorted(VENUES, key=lambda v: v["name"]):
         lines.append("- [%s](%s) (%s): %s" % (v["name"], url("/venues/%s/" % v["slug"]), team_list(v), cap_list(v)))
     open(os.path.join(ROOT, "llms.txt"), "w", encoding="utf-8").write("\n".join(lines) + "\n")
-    ads = """# whichseating.com ads.txt
-google.com, %s, DIRECT, f08c47fec0942fa0
-""" % config.ADSENSE_PUB_TXT
+    ads = "# whichseating.com ads.txt\n"  # AdSense detached 21 Nov 2026 until the account is approved (see seo-central/site-seo-rules.md). Do not re-add.
     open(os.path.join(ROOT, "ads.txt"), "w").write(ads)
     open(os.path.join(ROOT, "CNAME"), "w").write("whichseating.com\n")
     open(os.path.join(ROOT, config.INDEXNOW_KEY + ".txt"), "w").write(config.INDEXNOW_KEY)

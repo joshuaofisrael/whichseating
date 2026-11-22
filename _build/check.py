@@ -171,9 +171,9 @@ for href in venue_hrefs:
     if "https://whichseating.com" + href not in llms: fail("llms missing " + href)
 ads = open(os.path.join(ROOT, "ads.txt"), encoding="utf-8").read()
 ads_pub = (getattr(config, "ADSENSE_PUB_TXT", "") or "").strip()
-if not ads_pub or ads_pub not in ads or "google.com," not in ads:
-    fail("ads.txt")
-if LAUNCH:
+if ads_pub and ads_pub in ads:  # AdSense detached 21 Nov 2026 until the account is approved (see seo-central/site-seo-rules.md). Do not re-add.
+    fail("ads.txt still has the AdSense line")
+if False:
     adsense_pub = (getattr(config, "ADSENSE_PUB", "") or "").strip()
     if not adsense_pub:
         fail("empty ADSENSE_PUB")
@@ -181,6 +181,7 @@ if LAUNCH:
     if 'name="google-adsense-account"' not in home: fail("adsense-meta")
     if adsense_pub not in home: fail("adsense-pub")
     if "pagead2.googlesyndication.com/pagead/js/adsbygoogle.js" not in home: fail("adsense-script")
+if 'google-adsense-account' in home or "adsbygoogle.js" in home: fail("adsense tag must stay off until approval")
 cname = open(os.path.join(ROOT, "CNAME"), encoding="utf-8").read().strip()
 if cname != "whichseating.com": fail("CNAME " + cname)
 key = config.INDEXNOW_KEY
