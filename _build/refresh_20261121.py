@@ -2,6 +2,7 @@
 # Facts were read off the linked venue and school pages on 21 Nov 2026.
 # This module does not invent section lists, prices, or rankings.
 
+import os
 import config
 
 V = config.VERIFIED_21
@@ -542,3 +543,95 @@ def _college(nr, cb, hero):
         "verified": V,
         "mod": D,
     }
+
+
+CONCERT_IMG = "/assets/images/arena-concert-lower-bowl.png"
+MSG_CONCERT = "https://www.msg.com/madison-square-garden/seating/msg-concerts"
+MSG_SUITE = "https://www.msg.com/madison-square-garden/luxury-suites/suites/infosys-suite-level"
+MSG_TOUR = "https://www.msg.com/msg-english-follow-along-tour-guide"
+
+
+def write_concert(guide, hero_photo, next_reads, compare_box, root):
+    """Emit the arena concert guide only when its thumbnail is in the tree."""
+    img_path = os.path.join(root, CONCERT_IMG.lstrip("/"))
+    if not os.path.isfile(img_path):
+        print("IMAGE NEEDED: realistic news photo of an arena lower bowl, natural light, no logos, no readable text, no faces. File: assets/images/arena-concert-lower-bowl.png")
+        return False
+    _emit_concert(guide, hero_photo, next_reads, compare_box)
+    return True
+
+
+def _emit_concert(guide, hero_photo, nr, cb):
+    mid = nr([
+        ("/venues/madison-square-garden/", "Madison Square Garden", "Nine named maps, and a concert page that says the setup varies."),
+        ("/venues/crypto-com-arena/", "Crypto.com Arena", "A GA floor has no seats. The upper concourse is the 300 level."),
+        ("/venues/t-mobile-arena/", "T-Mobile Arena", "End stage and center stage are two different capacities."),
+        ("/venues/prudential-center/", "Prudential Center", "The arena publishes both maps by name."),
+    ], heading="Open the building")
+    end = nr([
+        ("/guides/how-to-choose-a-seat/", "How to choose a seat", "The chart name first, then the words on the ticket."),
+        ("/guides/sections-to-skip/", "Sections to skip", "A limited view label is a ticket fact."),
+        ("/venues/united-center/", "United Center", "Reserved floor and a general admission floor are different files."),
+        ("/leagues/nba/", "NBA venues", "Most of these arenas are on the basketball list too."),
+    ], heading="Keep reading")
+    compare = cb(
+        "Check another arena",
+        'The three buildings below do not share a vocabulary. <a href="/venues/madison-square-garden/">MSG</a> names bands and says the setup varies. <a href="/venues/crypto-com-arena/">Crypto.com Arena</a> says the floor ticket can be standing room. <a href="/venues/t-mobile-arena/">T-Mobile Arena</a> prints two concert capacities.',
+        [("/venues/madison-square-garden/", "Madison Square Garden"),
+         ("/venues/crypto-com-arena/", "Crypto.com Arena"),
+         ("/venues/t-mobile-arena/", "T-Mobile Arena"),
+         ("/venues/prudential-center/", "Prudential Center"),
+         ("/venues/barclays-center/", "Barclays Center")],
+    )
+    body = f'''{hero_photo("Arena lower bowl in daylight, empty seats facing a bare stage end, no logos and no readable signs", CONCERT_IMG)}
+<p class="note">The photo is a generic lower bowl. It is not Madison Square Garden, Crypto.com Arena, or T-Mobile Arena, and it is not a seating chart. <a href="/image-policy/">Image policy</a>.</p>
+<p class="answer">Madison Square Garden, Crypto.com Arena, and T-Mobile Arena do not publish a ranking of floor, lower bowl, upper level, and a side seat. They publish different paperwork, and the paperwork does not use the same words. MSG groups the floor with the 100s and the 200s, then lists the 300s with the bridge and the 400s on their own, and it says the stage setup varies by event. Crypto.com Arena says a general admission floor ticket has no seat, and it stacks a 300 level above three suite levels. T-Mobile Arena prints a smaller capacity for an end stage concert than for a center stage concert, and it places loge boxes at the end of the lower bowl opposite the stage. Checked {V}.</p>
+<h2>End stage and center stage are not one chart with two nicknames</h2>
+<p>Start with the building that prints the split as a headcount. On {V} both the <a href="{TM_INFO}">T-Mobile Arena info page</a> and the <a href="{TM_AZ}">A to Z guide</a> list end stage concerts at 12,000 to 18,000 and center stage concerts at 19,500 to 20,000. Hockey is 17,500 on both pages. Basketball is 18,000 on the info page and 19,000 on the A to Z guide, so this guide does not pick a basketball number. The concert ranges match. The pages do not name the sections that account for the gap between an end stage show and a center stage show. A smaller end stage number means the bowl on sale is smaller. It is not, by itself, a list of seats to avoid.</p>
+<p>Madison Square Garden does not use those two phrases on its concert seat map. The <a href="{MSG_CONCERT}">concerts page</a> says stage setup and seat configuration varies by event. The same page carries nine named maps: NY Knicks, NY Rangers, Concerts, College Basketball, Professional Bull Riding, WWE, Tennis, Boxing, and UFC. Concerts is one file among those nine. It is not split on that page into an end stage file and a center stage file. If you need the two names printed as two maps, that is <a href="/venues/prudential-center/">Prudential Center</a>, whose seating page titles them End Stage Seating and Center Stage Seating. <a href="/venues/united-center/">United Center</a> splits the floor instead: one chart with floor seating, one chart with a general admission floor.</p>
+{mid}
+<h2>Floor: sometimes a chair, sometimes a wristband</h2>
+<p>Crypto.com Arena's <a href="{CRYPTO_AZ}">A to Z guide</a> is blunt about one product. The general admission area on the floor is standing room only and there are no seats. The ticket reads "GA FLR." You enter at the Kobe Bryant entrance, you get a wristband, and the guide says some shows use a different setup. Read the event page before you assume the floor is a chair.</p>
+<p>T-Mobile Arena's A to Z guide says the same kind of thing in its own words. The general admission floor is standing room only, there are no seats, you get a wristband inside, and early arrivals are asked to line up no earlier than 4 p.m. Concert doors generally open 60 minutes before the event. That is a standing ticket. A reserved seat in the bowl is a different purchase.</p>
+<p>MSG's concert page does not say whether the floor is seated or standing. What it does say, in the filter on that page, is that Floor, 100s, and 200s are one group. Suites are separate. The 400s are separate. The 300s are grouped with the Hyundai Bridge. Because the page also says the configuration varies by event, a floor section on one show can be a seat and on the next show a different shape entirely. The filter names the bands. It does not freeze them.</p>
+<h2>Lower bowl and upper level, in each building's own stack</h2>
+<p>Crypto.com Arena lists six levels: event level for floor and GA tickets, main concourse for 100 and 200 level tickets, suite levels A, B, and C, and an upper concourse for 300 level tickets. The <a href="{CRYPTO_VITAL}">vital stats page</a> says two thirds of the seating is in the lower level, counts 2,515 premier seats, and lists concert capacity at 19,395. The A to Z guide says concerts near 20,000 depending on setup, basketball at 19,079, and hockey at 18,118. Vital stats say 18,997 for the Lakers and 18,145 for the Kings. Both pages were open on {V}. The lower level is where most of the chairs are, on the vital stats page. The 300 level is the upper concourse, above three suite levels, which is a taller climb than a building with one suite ring. That is this arena's stack. It is not a template for the other two.</p>
+<p>At the Garden, the concert filters are the public stack: floor with the 100s and 200s, then suites, then 400s, then 300s with the Hyundai Bridge. The <a href="{MSG_SUITE}">Infosys suite page</a> places that suite product in the upper bowl, just below bridge level, and it says the location is stage facing for concerts. The page's own line is "some of the best stage-facing sight lines." That is MSG describing the Infosys suites, which hold 12 to 21 people. The same page also lists an event level suite at ice or court level for 8 to 13 people, and a suite it calls an extension of the lower bowl for 12 to 24 people. Three products, three heights. The tour script, opened the same day, names the walk in a different sponsor vocabulary: level 5 is the arena floor, level 6 is the Kalshi Concourse, level 7 is Lexus Suites, and level 10 is the Hyundai Bridge. The suite page still says Infosys. The tour script says Kalshi. Both strings are on msg.com. This guide does not decide which sponsor name is current beyond what each page prints.</p>
+<p>The tour script also says that removing visible support beams gives fans a perfectly unobstructed view from every single seat in the arena. That sentence is about the roof, forty-eight cables to a tension ring, not about a concert stage. The concert page still says the setup varies by event. A building with no pillars can still put a stage in front of some seats. The <a href="/venues/madison-square-garden/">Garden page</a> on this site is the Knicks and Rangers guide. This one is the concert reading.</p>
+{compare}
+<h2>There is no published side stage band</h2>
+<p>The words side stage do not appear on the MSG concert page, the Crypto.com Arena A to Z guide, or the T-Mobile Arena pages opened for this check. The closest official sentences point the other way. T-Mobile's loge boxes, the A to Z guide says, sit at one end of the lower level at the opposite end of the stage for viewing concerts, four to six guests, with a screen for every two seats. That is the far end, facing the stage, not a seat beside it. Club memberships are the two center sections, and the guide does not print their numbers. MSG's filter refuses the side split by putting the floor, the 100s, and the 200s in a single button. If a ticket says limited view or obstructed view, that label is the fact. <a href="/guides/sections-to-skip/">Sections to skip</a> is where that label belongs.</p>
+<p>Barclays is the nearby caution on the floor, already written up on its <a href="/venues/barclays-center/">own page</a>: a GA floor ticket there is standing room with no seat, and the concerts chart is a separate file from the Nets chart. Use it when the question is Brooklyn. Use this page when the question is how to read the three buildings people compare first.</p>
+{end}'''
+    _clean("concert body", body)
+    title = "Arena Concerts: Floor or the Bowl?"
+    desc = "Floor, lower bowl, or upper level at an arena concert: what MSG, Crypto.com Arena, and T-Mobile Arena actually print."
+    h1 = "Which arena concert seat faces the stage?"
+    if len(title) >= 60:
+        raise SystemExit("concert title %d" % len(title))
+    if len(desc) > 155:
+        raise SystemExit("concert desc %d" % len(desc))
+    pairs = [
+        ("Is the floor the best seat at an arena concert?",
+         "Not as a rule, and sometimes it is not a seat. Crypto.com Arena and T-Mobile Arena both say a general admission floor ticket is standing room with no seats. MSG groups the floor with the 100s and 200s and says the stage setup varies by event."),
+        ("What is the difference between an end stage and a center stage?",
+         "At T-Mobile Arena the printed capacities differ: 12,000 to 18,000 for an end stage concert and 19,500 to 20,000 for a center stage concert. MSG's concert page does not use those two names. It says the configuration varies and publishes one map called Concerts. Prudential Center publishes both names as separate maps."),
+        ("Where is the upper level?",
+         "At Crypto.com Arena the upper concourse is the 300 level, above three suite levels. At MSG the concert filters list the 300s with the Hyundai Bridge and the 400s on their own. At T-Mobile Arena the upper concourse is one of seven levels, and not every level opens for every event."),
+        ("Which seats are beside the stage?",
+         "The three official pages checked on 21 Nov 2026 do not label a side stage band. T-Mobile Arena describes loge boxes at the opposite end of the stage. A limited view note on the ticket is the fact to trust."),
+    ]
+    for q, ans in pairs:
+        _clean("concert faq", q + ans)
+    sources = [
+        {"title": "Concert seating chart", "url": MSG_CONCERT, "publisher": "Madison Square Garden", "role": "official"},
+        {"title": "Infosys Suite Level", "url": MSG_SUITE, "publisher": "Madison Square Garden", "role": "official"},
+        {"title": "All Access Tour guide", "url": MSG_TOUR, "publisher": "Madison Square Garden", "role": "official"},
+        {"title": "A to Z guide", "url": CRYPTO_AZ, "publisher": "Crypto.com Arena", "role": "official"},
+        {"title": "Vital stats", "url": CRYPTO_VITAL, "publisher": "Crypto.com Arena", "role": "official"},
+        {"title": "Arena info", "url": TM_INFO, "publisher": "T-Mobile Arena", "role": "official"},
+        {"title": "A to Z guide", "url": TM_AZ, "publisher": "T-Mobile Arena", "role": "official"},
+        {"title": "Seating maps", "url": PRU_SEAT, "publisher": "Prudential Center", "role": "official"},
+    ]
+    guide("/guides/arena-concert-seating/", title, h1, desc, body, pairs, sources,
+          mod=D, published=D, verified=V, image=CONCERT_IMG, sources_retrieved=V)
